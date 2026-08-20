@@ -833,6 +833,83 @@ data.next.length?data.next[0].date:"නැත";
 }
 
 render();
-</script>
-</body>
-</html>
+</scr/* ===== ADMIN SECURITY ===== */
+
+let adminLoggedIn = false;
+
+function requireAdmin() {
+    if (!adminLoggedIn) {
+        login();
+        return false;
+    }
+    return true;
+}
+
+/* Login successful නම් Admin access ලබා දෙන්න */
+const oldCheckLogin = checkLogin;
+
+checkLogin = function () {
+    const pinBox = document.getElementById("pin");
+
+    if (pinBox && pinBox.value === data.settings.adminPin) {
+        adminLoggedIn = true;
+        closeModal();
+        alert("✅ Admin Login සාර්ථකයි.");
+        render();
+        return;
+    }
+
+    alert("❌ Admin Password වැරදියි.");
+};
+
+/* Admin නොවන කෙනෙක්ට data-changing buttons ක්‍රියා නොකරවීම */
+document.addEventListener("click", function (e) {
+
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    const action = btn.getAttribute("onclick") || "";
+
+    const protectedActions = [
+        "newMember",
+        "editMember",
+        "deleteMember",
+        "saveMember",
+        "newLoan",
+        "saveLoan",
+        "deleteLoan",
+        "newPayment",
+        "savePayment",
+        "deletePayment",
+        "newMeeting",
+        "saveMeeting",
+        "newReport",
+        "newAccount",
+        "deleteReport",
+        "deleteAccount",
+        "newMemory",
+        "saveMemory",
+        "deleteMemory",
+        "newNotice",
+        "saveNotice",
+        "deleteNotice",
+        "newAttendance",
+        "deleteAttendance",
+        "newNextMeeting",
+        "deleteNext",
+        "adminSettings",
+        "saveSettings",
+        "restoreData"
+    ];
+
+    const isProtected = protectedActions.some(x => action.includes(x));
+
+    if (isProtected && !adminLoggedIn) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        login();
+    }
+
+}, true);
+</bod
+
