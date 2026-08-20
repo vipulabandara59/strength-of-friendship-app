@@ -2,48 +2,27 @@
 <html lang="si">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Strength of friendship</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,"Noto Sans Sinhala",sans-serif;background:#f4f7fb;color:#172033}
-header{background:linear-gradient(120deg,#e53935,#1565c0,#fbc02d);color:white;text-align:center;padding:22px 12px}
-header h1{margin:0;font-size:28px}
-header p{margin:7px 0 0}
-nav{display:flex;overflow-x:auto;gap:7px;background:white;padding:10px;position:sticky;top:0;z-index:20;box-shadow:0 2px 10px #0002}
-nav button{white-space:nowrap;border:0;border-radius:20px;padding:10px 14px;background:#edf1f7}
-nav button.active{background:#1565c0;color:white}
-main{max-width:1200px;margin:auto;padding:15px}
-section{display:none}
-section.active{display:block}
-.card{background:white;border-radius:16px;padding:17px;margin:12px 0;box-shadow:0 3px 15px #0001}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Sinhala",sans-serif;background:#f5f7fb;color:#182033}
+header{padding:25px;text-align:center;color:#fff;background:linear-gradient(120deg,#e53935,#1565c0,#fbc02d)}
+header h1{margin:0;font-size:30px}header p{margin:8px 0 0}
+nav{display:flex;gap:7px;overflow:auto;padding:10px;background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px #0002}
+nav button{border:0;border-radius:20px;padding:10px 14px;white-space:nowrap}
+nav button.on{background:#1565c0;color:#fff}
+main{max-width:1200px;margin:auto;padding:15px}section{display:none}.show{display:block}
+.card{background:#fff;padding:17px;margin:12px 0;border-radius:16px;box-shadow:0 3px 14px #0001}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-input,textarea,select{width:100%;padding:11px;border:1px solid #ccd3df;border-radius:9px;margin:5px 0 12px;font:inherit}
-textarea{min-height:100px}
-button{font:inherit}
-.btn{border:0;border-radius:9px;padding:10px 15px;margin:3px}
-.blue{background:#1565c0;color:white}
-.red{background:#d32f2f;color:white}
-.yellow{background:#fbc02d;color:#111}
-.green{background:#2e7d32;color:white}
-.gray{background:#e5e7eb}
-.member-card{border-top:5px solid #1565c0}
-.photo{height:160px;background:#edf1f7;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px}
-.photo img{width:100%;height:100%;object-fit:cover}
-table{width:100%;border-collapse:collapse;min-width:700px}
-th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}
-.tablewrap{overflow:auto}
-.badge{display:inline-block;background:#e8f0fe;color:#1565c0;padding:5px 9px;border-radius:20px;font-size:12px}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:12px}
-.modal.show{display:flex}
-.modalbox{background:white;border-radius:18px;width:min(700px,100%);max-height:92vh;overflow:auto;padding:20px}
-.close{float:right;border:0;background:#eee;border-radius:50%;width:35px;height:35px}
-.notice{border-left:5px solid #e53935}
-.stat{font-size:27px;font-weight:bold;color:#1565c0}
-footer{text-align:center;padding:25px;color:#666}
-img.preview{max-width:250px;border-radius:12px;margin:8px 0}
-.small{font-size:13px;color:#667085}
-.empty{text-align:center;padding:30px;color:#777}
+input,textarea,select{width:100%;padding:11px;margin:5px 0 12px;border:1px solid #ccd3df;border-radius:9px;font:inherit}textarea{min-height:100px}
+.btn{border:0;border-radius:9px;padding:10px 15px;margin:3px}.blue{background:#1565c0;color:white}.red{background:#d32f2f;color:white}.yellow{background:#fbc02d}.green{background:#2e7d32;color:#fff}
+.photo{height:170px;background:#edf1f7;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}
+table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:9px;border-bottom:1px solid #ddd}.scroll{overflow:auto}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center;padding:12px}.modal.open{display:flex}
+.box{background:#fff;padding:20px;border-radius:18px;width:min(700px,100%);max-height:92vh;overflow:auto}
+.close{float:right;border:0;border-radius:50%;width:34px;height:34px}.tag{background:#e8f0fe;color:#1565c0;padding:5px 9px;border-radius:20px;font-size:12px}
+img.preview{max-width:260px;border-radius:12px}
+footer{text-align:center;padding:25px;color:#777}
 </style>
 </head>
 <body>
@@ -54,862 +33,177 @@ img.preview{max-width:250px;border-radius:12px;margin:8px 0}
 </header>
 
 <nav id="nav"></nav>
-
-<main>
-
-<section id="home" class="active">
-<div class="card">
-<h2>🏠 මුල් පිටුව</h2>
-<p>අප සංගමයේ සියලුම තොරතුරු එකම ස්ථානයක.</p>
-</div>
-<div class="grid">
-<div class="card"><h3>සාමාජිකයන්</h3><div class="stat" id="statMembers">0</div></div>
-<div class="card"><h3>ණය වාර්තා</h3><div class="stat" id="statLoans">0</div></div>
-<div class="card"><h3>ගෙවීම්</h3><div class="stat" id="statPayments">0</div></div>
-<div class="card"><h3>ඉදිරි හමුව</h3><div id="nextMeeting">නැත</div></div>
-</div>
-<div class="card">
-<h3>📢 විශේෂ නිවේදන</h3>
-<div id="homeNotices"></div>
-</div>
-<div class="card">
-<h3>සංගමයේ මූලික තොරතුරු</h3>
-<p><b>නම:</b> Strength of friendship</p>
-<p><b>ලිපිනය:</b> A 1/10 මැදගොඩ අමිතිරිගල</p>
-</div>
-</section>
-
-<section id="members">
-<div class="card">
-<h2>👥 සාමාජිකයන්</h2>
-<p>සාමාජිකයන් 30 දෙනෙකු සඳහා සියලු විස්තර Edit කරන්න පුළුවන්.</p>
-<button class="btn blue" onclick="newMember()">+ සාමාජිකයෙකු එක් කරන්න</button>
-</div>
-<div id="membersList" class="grid"></div>
-</section>
-
-<section id="constitution">
-<div class="card">
-<h2>📜 ව්‍යවස්ථාව</h2>
-<div id="constitutionDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">Edit / Upload</button>
-</div>
-</section>
-
-<section id="bank">
-<div class="card">
-<h2>🏦 බැංකු විස්තර</h2>
-<div id="bankDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">Edit</button>
-</div>
-<div class="card">
-<h3>💳 QR Code</h3>
-<div id="qrDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">QR Upload / Edit</button>
-</div>
-</section>
-
-<section id="loans">
-<div class="card">
-<h2>💰 ණය ලබාදීම</h2>
-<p>50 දෙනෙකු/වාර්තා සඳහා තොරතුරු ඇතුළත් කළ හැක.</p>
-<button class="btn blue" onclick="newLoan()">+ ණය වාර්තාව</button>
-</div>
-<div class="card tablewrap">
-<table>
-<thead><tr>
-<th>දිනය</th><th>සාමාජිකයා</th><th>අංකය</th><th>ගත් මුදල</th><th>ගෙවූ මුදල</th><th>ඉතිරි මුදල</th><th>අවසාන ගෙවීම</th><th>විශේෂ සටහන්</th><th>Action</th>
-</tr></thead>
-<tbody id="loanTable"></tbody>
-</table>
-</div>
-</section>
-
-<section id="payments">
-<div class="card">
-<h2>💵 ගෙවීම්</h2>
-<div class="grid">
-<div><b>මාසික සාමාජික ගාස්තුව</b><br>රු. 2,000</div>
-<div><b>මරණාධාර ගාස්තුව</b><br>රු. 1,000</div>
-<div><b>ඇතුළත් වීමේ ගාස්තුව</b><br><span id="joinFee">ඇතුළත් කර නැත</span></div>
-</div>
-<button class="btn blue" onclick="newPayment()">+ ගෙවීමක් එක් කරන්න</button>
-</div>
-<div id="paymentsList"></div>
-</section>
-
-<section id="support">
-<div class="card">
-<h2>🤝 වෙනත් විස්තර / ආධාර</h2>
-<div id="supportDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">Edit</button>
-</div>
-</section>
-
-<section id="calendar">
-<div class="card">
-<h2>📅 සුහද හමුවේ වැඩසටහන් කැලැන්ඩරය</h2>
-<p>මාස 12 සඳහා වැඩසටහන් සහ සාමාජිකයන් 3 දෙනෙකු ඇතුළත් කළ හැක.</p>
-<button class="btn blue" onclick="newMeeting()">+ වැඩසටහනක් එක් කරන්න</button>
-</div>
-<div id="calendarGrid" class="grid"></div>
-</section>
-
-<section id="reports">
-<div class="card">
-<h2>📊 මාසික වාර්තා</h2>
-<button class="btn blue" onclick="newReport()">+ මාසික වාර්තාව</button>
-</div>
-<div id="reportsList"></div>
-</section>
-
-<section id="accounts">
-<div class="card">
-<h2>🧾 මාසික ගිණුම් වාර්තා</h2>
-<button class="btn blue" onclick="newAccount()">+ ගිණුම් වාර්තාව</button>
-</div>
-<div id="accountsList"></div>
-</section>
-
-<section id="memories">
-<div class="card">
-<h2>📸 අපේ මතකයන්</h2>
-<p>ඡායාරූප සහ විස්තර Upload කරන්න.</p>
-<button class="btn blue" onclick="newMemory()">+ මතකයක් එක් කරන්න</button>
-</div>
-<div id="memoriesGrid" class="grid"></div>
-</section>
-
-<section id="notices">
-<div class="card">
-<h2>📢 විශේෂ නිවේදන</h2>
-<p>ඡායාරූප සහ විස්තර ඇතුළත් කළ හැක.</p>
-<button class="btn blue" onclick="newNotice()">+ නිවේදනයක් එක් කරන්න</button>
-</div>
-<div id="noticesList"></div>
-</section>
-
-<section id="attendance">
-<div class="card">
-<h2>✅ Online Attendance</h2>
-<p>සාමාජිකයන්ගේ පැමිණීම සටහන් කරන්න.</p>
-<button class="btn blue" onclick="newAttendance()">+ Attendance</button>
-</div>
-<div id="attendanceList"></div>
-</section>
-
-<section id="online">
-<div class="card">
-<h2>🌐 Online ගෙවීම්</h2>
-<div id="onlineDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">Edit / Google Form</button>
-</div>
-<div class="card">
-<h2>💳 Online ණය මුදලක් ගැනීම</h2>
-<div id="loanFormDisplay"></div>
-<button class="btn blue" onclick="adminSettings()">Google Form Edit</button>
-</div>
-</section>
-
-<section id="next">
-<div class="card">
-<h2>🗓️ ඉදිරියට පැවැත්වෙන සමිති වාරය</h2>
-<button class="btn blue" onclick="newNextMeeting()">+ විස්තර එක් කරන්න</button>
-</div>
-<div id="nextList"></div>
-</section>
-
-<section id="admin">
-<div class="card">
-<h2>⚙️ Admin / Edit</h2>
-<p>සියලු දේ Edit / Save / Delete / Upload කිරීමට Admin login අවශ්‍යයි.</p>
-<button class="btn blue" onclick="login()">Admin Login</button>
-<button class="btn yellow" onclick="exportData()">Backup Download</button>
-<button class="btn green" onclick="document.getElementById('restore').click()">Restore Backup</button>
-<input id="restore" type="file" accept=".json" hidden onchange="restoreData(this.files[0])">
-</div>
-</section>
-
-</main>
-
+<main id="app"></main>
 <footer>Strength of friendship</footer>
 
 <div id="modal" class="modal">
-<div class="modalbox">
-<button class="close" onclick="closeModal()">×</button>
-<div id="modalBody"></div>
-</div>
+<div class="box"><button class="close" onclick="closeM()">×</button><div id="mb"></div></div>
 </div>
 
 <script>
-const KEY="strength_friendship_complete_v2";
-
-let data=JSON.parse(localStorage.getItem(KEY)||"null")||{
+const K="SOF_FINAL_2026";
+let D=JSON.parse(localStorage.getItem(K)||"null")||{
 settings:{
-startDate:"",
-constitution:"",
-constitutionFile:"",
+address:"A 1/10 මැදගොඩ අමිතිරිගල",
 bank:"මහජන බැංකුව\n00293 දෙහිඕවිට ශාඛාව\nගිණුම් අංකය: 293-2-001-7-0031758",
-qr:"",
-joinFee:"",
-support:"සාමාජිකයෙක් හදිසියේ අසනීප වූ විට:\nඇතුළත් කර නැත\n\nසාමාජිකයෙකුගේ බිරිඳ හෝ දරුවන් හදිසියේ අසනීප වූ විට:\nඇතුළත් කර නැත\n\nවිශේෂ සටහන්:\n",
-online:"",
-loanForm:"",
-notice:"",
-adminPin:"1234"
+constitution:"",pdf:"",qr:"",
+joinFee:"",memberFee:"රු. 2,000",deathFee:"රු. 1,000",
+sick:"",familySick:"",special:"",
+payment:"",paymentForm:"",loanForm:"",
+password:"1234"
 },
-members:Array.from({length:30},(_,i)=>({
-no:i+1,name:"",phone:"",photo:""
-})),
-loans:[],
-payments:[],
-meetings:Array.from({length:12},(_,i)=>({
-month:i+1,title:"",date:"",members:"",notes:""
-})),
-reports:[],
-accounts:[],
-memories:[],
-notices:[],
-attendance:[],
-next:[]
+members:Array.from({length:30},(_,i)=>({no:i+1,name:"",phone:"",photo:""})),
+loans:[],payments:[],
+calendar:Array.from({length:12},(_,i)=>({month:i+1,title:"",date:"",members:"",notes:""})),
+reports:[],accounts:[],memories:[],notices:[],attendance:[],next:[]
 };
+let ADMIN=false;
 
-function save(){
-localStorage.setItem(KEY,JSON.stringify(data));
-render();
-}
-
-function esc(x){
-return String(x||"").replace(/[&<>"']/g,m=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",
-'"':"&quot;","'":"&#039;"
-}[m]));
-}
-
-const pages=[
-["home","මුල් පිටුව"],
-["members","සාමාජිකයන්"],
-["constitution","ව්‍යවස්ථාව"],
-["bank","බැංකු"],
-["loans","ණය"],
-["payments","ගෙවීම්"],
-["support","වෙනත් විස්තර"],
-["calendar","සුහද හමුව"],
-["reports","වාර්තා"],
-["accounts","ගිණුම්"],
-["memories","අපේ මතකයන්"],
-["notices","විශේෂ නිවේදන"],
-["attendance","පැමිණීම"],
-["online","Online"],
-["next","ඉදිරි සමිති වාරය"],
-["admin","Admin / Edit"]
+const P=[
+["home","මුල් පිටුව"],["members","සාමාජිකයන්"],["constitution","ව්‍යවස්ථාව"],
+["bank","බැංකු"],["loans","ණය"],["payments","ගෙවීම්"],["other","වෙනත් විස්තර"],
+["calendar","සුහද හමුව"],["reports","වාර්තා"],["accounts","ගිණුම්"],
+["memories","අපේ මතකයන්"],["notices","විශේෂ නිවේදන"],["attendance","පැමිණීම"],
+["online","Online"],["next","ඉදිරි සමිති වාරය"],["admin","Admin / Edit"]
 ];
 
-document.getElementById("nav").innerHTML=pages.map((p,i)=>
-`<button class="${i===0?"active":""}" onclick="go('${p[0]}',this)">${p[1]}</button>`
-).join("");
+nav.innerHTML=P.map((p,i)=>`<button class="${i?'':'on'}" onclick="page('${p[0]}',this)">${p[1]}</button>`).join("");
 
-function go(id,b){
-document.querySelectorAll("main section").forEach(x=>x.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
-b.classList.add("active");
-render();
+function save(){localStorage.setItem(K,JSON.stringify(D));render()}
+function esc(x){return String(x||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function page(id,b){document.querySelectorAll("main section").forEach(x=>x.classList.remove("show"));document.getElementById(id).classList.add("show");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("on"));b.classList.add("on");render()}
+function openM(x){mb.innerHTML=x;modal.classList.add("open")}function closeM(){modal.classList.remove("open")}
+
+function need(){if(!ADMIN){login();return false}return true}
+function login(){openM(`<h2>🔐 Admin Login</h2><input id="pin" type="password" placeholder="Password"><button class="btn blue" onclick="doLogin()">Login</button>`)}
+function doLogin(){if(pin.value===D.settings.password){ADMIN=true;closeM();render();alert("Admin Login සාර්ථකයි")}else alert("Password වැරදියි")}
+
+function actions(add){return ADMIN?add:""}
+
+function render(){
+app.innerHTML=P.map(p=>`<section id="${p[0]}"></section>`).join("");
+
+home.innerHTML=`
+<div class="card"><h2>🏠 මුල් පිටුව</h2>
+<p><b>Strength of friendship</b></p>
+<p>ලිපිනය: ${esc(D.settings.address)}</p></div>
+<div class="grid">
+<div class="card"><h3>සාමාජිකයන්</h3><b>${D.members.filter(x=>x.name).length}/30</b></div>
+<div class="card"><h3>ණය</h3><b>${D.loans.length}</b></div>
+<div class="card"><h3>ගෙවීම්</h3><b>${D.payments.length}</b></div>
+</div>
+<div class="card"><h3>📢 විශේෂ නිවේදන</h3>${D.notices.map(x=>`<p><b>${esc(x.title)}</b><br>${esc(x.text)}</p>`).join("")||"නිවේදන නැත."}</div>`;
+
+members.innerHTML=`<div class="card"><h2>👥 සාමාජිකයන්</h2>${actions(`<button class="btn blue" onclick="member()">+ Add</button>`)}</div>
+<div class="grid">${D.members.map((m,i)=>`
+<div class="card"><div class="photo">${m.photo?`<img src="${m.photo}">`:"📷"}</div>
+<span class="tag">අංකය ${m.no}</span><h3>${esc(m.name)||"නම ඇතුළත් කර නැත"}</h3><p>📞 ${esc(m.phone)}</p>
+${actions(`<button class="btn blue" onclick="member(${i})">Edit</button><button class="btn red" onclick="del('members',${i})">Delete</button>`)}</div>`).join("")}</div>`;
+
+constitution.innerHTML=`<div class="card"><h2>📜 ව්‍යවස්ථාව</h2><div>${esc(D.settings.constitution).replace(/\n/g,"<br>")||"ඇතුළත් කර නැත"}</div>${D.settings.pdf?`<a href="${D.settings.pdf}" target="_blank">📄 PDF Open</a>`:""}${actions(`<br><button class="btn blue" onclick="settings()">Edit / Upload</button>`)}</div>`;
+
+bank.innerHTML=`<div class="card"><h2>🏦 බැංකු විස්තර</h2><p>${esc(D.settings.bank).replace(/\n/g,"<br>")}</p>${actions(`<button class="btn blue" onclick="settings()">Edit</button>`)}</div>
+<div class="card"><h3>QR Code</h3>${D.settings.qr?`<img class="preview" src="${D.settings.qr}">`:"QR නැත"}${actions(`<br><button class="btn blue" onclick="settings()">Upload</button>`)}</div>`;
+
+loans.innerHTML=`<div class="card"><h2>💰 ණය</h2>${actions(`<button class="btn blue" onclick="loan()">+ Add Loan</button>`)}</div>
+<div class="card scroll"><table><tr><th>දිනය</th><th>නම</th><th>අංකය</th><th>මුදල</th><th>ගෙවූ</th><th>ඉතිරි</th><th>අවසාන ගෙවීම</th><th>සටහන්</th><th></th></tr>
+${D.loans.map((x,i)=>`<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${esc(x.no)}</td><td>${x.total}</td><td>${x.paid}</td><td>${x.total-x.paid}</td><td>${esc(x.last)}</td><td>${esc(x.note)}</td><td>${actions(`<button class="btn red" onclick="del('loans',${i})">Delete</button>`)}</td></tr>`).join("")}</table></div>`;
+
+payments.innerHTML=`<div class="card"><h2>💵 ගෙවීම්</h2><p>මාසික ගාස්තුව: ${esc(D.settings.memberFee)} | මරණාධාර: ${esc(D.settings.deathFee)} | ඇතුළත් වීම: ${esc(D.settings.joinFee)}</p>${actions(`<button class="btn blue" onclick="payment()">+ Add Payment</button>`)}</div>
+${D.payments.map((x,i)=>`<div class="card"><b>${esc(x.name)}</b> — ${esc(x.date)} — රු. ${esc(x.amount)}<br>${esc(x.type)} ${actions(`<button class="btn red" onclick="del('payments',${i})">Delete</button>`)}</div>`).join("")}`;
+
+other.innerHTML=`<div class="card"><h2>🤝 වෙනත් විස්තර</h2>
+<p><b>සාමාජික ගාස්තුව:</b> ${esc(D.settings.memberFee)}</p>
+<p><b>මරණාධාර:</b> ${esc(D.settings.deathFee)}</p>
+<p><b>ඇතුළත් වීම:</b> ${esc(D.settings.joinFee)}</p>
+<p><b>සාමාජිකයෙකු අසනීප වූ විට:</b><br>${esc(D.settings.sick)}</p>
+<p><b>බිරිඳ/දරුවන් අසනීප වූ විට:</b><br>${esc(D.settings.familySick)}</p>
+<p><b>විශේෂ සටහන්:</b><br>${esc(D.settings.special)}</p>
+${actions(`<button class="btn blue" onclick="settings()">Edit</button>`)}</div>`;
+
+calendar.innerHTML=`<div class="card"><h2>📅 මාස 12 සුහද හමුව</h2>${actions(`<button class="btn blue" onclick="meeting()">Edit Month</button>`)}</div><div class="grid">
+${D.calendar.map((x,i)=>`<div class="card"><h3>${i+1}. මාසය</h3><b>${esc(x.title)||"වැඩසටහන නැත"}</b><p>${esc(x.date)}</p><p>${esc(x.members)}</p><p>${esc(x.notes)}</p></div>`).join("")}</div>`;
+
+reports.innerHTML=boxList("📊 මාසික වාර්තා",D.reports,"report");
+accounts.innerHTML=boxList("🧾 මාසික ගිණුම් වාර්තා",D.accounts,"account");
+memories.innerHTML=gallery();
+notices.innerHTML=noticesView();
+attendance.innerHTML=boxList("✅ Online Attendance",D.attendance,"attendance");
+online.innerHTML=`<div class="card"><h2>🌐 Online ගෙවීම්</h2><p>${esc(D.settings.payment)}</p>${D.settings.paymentForm?`<a class="btn blue" href="${esc(D.settings.paymentForm)}" target="_blank">Payment Google Form</a>`:""}${actions(`<button class="btn blue" onclick="settings()">Edit</button>`)}</div>
+<div class="card"><h3>Online ණය මුදලක් ගැනීම</h3>${D.settings.loanForm?`<a class="btn blue" href="${esc(D.settings.loanForm)}" target="_blank">Loan Google Form</a>`:"Form එකක් නැත"}</div>`;
+
+next.innerHTML=boxList("🗓️ ඉදිරි සමිති වාරය",D.next,"next");
+
+admin.innerHTML=`<div class="card"><h2>⚙️ Admin / Edit</h2><p>${ADMIN?"🟢 Admin Mode":"🔴 View Only"}</p>${ADMIN?`<button class="btn blue" onclick="settings()">Settings / Upload</button><button class="btn yellow" onclick="backup()">Backup</button>`:`<button class="btn blue" onclick="login()">Admin Login</button>`}</div>`;
 }
 
-function openModal(html){
-document.getElementById("modalBody").innerHTML=html;
-document.getElementById("modal").classList.add("show");
-}
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-
-function login(){
-openModal(`
-<h2>🔐 Admin Login</h2>
-<input id="pin" type="password" placeholder="Admin Password">
-<button class="btn blue" onclick="checkLogin()">Login</button>
-`);
+function boxList(title,a,type){
+return `<div class="card"><h2>${title}</h2>${actions(`<button class="btn blue" onclick="${type}()">+ Add</button>`)}</div>${a.map((x,i)=>`<div class="card"><h3>${esc(x.month||x.title||x.date||"වාර්තාව")}</h3><p>${esc(JSON.stringify(x)).replace(/[{}"]/g," ")}</p>${actions(`<button class="btn red" onclick="del('${type}',${i})">Delete</button>`)}</div>`).join("")}`;
 }
 
-function checkLogin(){
-if(document.getElementById("pin").value===data.settings.adminPin){
-closeModal();
-adminSettings();
-}else alert("Password වැරදියි.");
+function gallery(){
+return `<div class="card"><h2>📸 අපේ මතකයන්</h2>${actions(`<button class="btn blue" onclick="memory()">+ Add</button>`)}</div><div class="grid">${D.memories.map((x,i)=>`<div class="card">${x.photo?`<img class="preview" src="${x.photo}">`:""}<h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${actions(`<button class="btn red" onclick="del('memories',${i})">Delete</button>`)}</div>`).join("")}</div>`;
+}
+function noticesView(){
+return `<div class="card"><h2>📢 විශේෂ නිවේදන</h2>${actions(`<button class="btn blue" onclick="notice()">+ Add</button>`)}</div>${D.notices.map((x,i)=>`<div class="card">${x.photo?`<img class="preview" src="${x.photo}">`:""}<h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>${actions(`<button class="btn red" onclick="del('notices',${i})">Delete</button>`)}</div>`).join("")}`;
 }
 
-function adminSettings(){
-openModal(`
-<h2>⚙️ Admin Settings</h2>
+function member(i= D.members.findIndex(x=>!x.name)){
+if(!need())return;if(i<0){D.members.push({no:D.members.length+1,name:"",phone:"",photo:""});i=D.members.length-1}
+let x=D.members[i];openM(`<h2>සාමාජිකයා ${x.no}</h2><input id="n" value="${esc(x.name)}" placeholder="නම"><input id="ph" value="${esc(x.phone)}" placeholder="දුරකථන"><input id="pf" type="file" accept="image/*">${x.photo?`<img class="preview" src="${x.photo}">`:""}<button class="btn blue" onclick="saveMember(${i})">Save</button>`);
+}
+function saveMember(i){let f=pf.files[0];D.members[i].name=n.value;D.members[i].phone=ph.value;if(f){let r=new FileReader();r.onload=()=>{D.members[i].photo=r.result;save();closeM()};r.readAsDataURL(f)}else{save();closeM()}}
 
-<label>ආරම්භක දිනය</label>
-<input id="sdate" value="${esc(data.settings.startDate)}">
+function loan(){if(!need())return;openM(`<h2>ණය වාර්තාව</h2><input id="ld" type="date"><input id="ln" placeholder="සාමාජිකයාගේ නම"><input id="lno" placeholder="සාමාජික අංකය"><input id="lt" type="number" placeholder="ණය මුදල"><input id="lp" type="number" placeholder="ගෙවූ මුදල"><input id="ll" type="date"><textarea id="lx" placeholder="විශේෂ සටහන්"></textarea><button class="btn blue" onclick="D.loans.push({date:ld.value,name:ln.value,no:lno.value,total:+lt.value,paid:+lp.value,last:ll.value,note:lx.value});save();closeM()">Save</button>`)}
 
-<label>ව්‍යවස්ථාව</label>
-<textarea id="constitution">${esc(data.settings.constitution)}</textarea>
+function payment(){if(!need())return;openM(`<h2>ගෙවීම</h2><input id="pd" type="date"><input id="pn" placeholder="නම"><input id="pt" placeholder="ගෙවීම් වර්ගය"><input id="pa" type="number" placeholder="මුදල"><button class="btn blue" onclick="D.payments.push({date:pd.value,name:pn.value,type:pt.value,amount:pa.value});save();closeM()">Save</button>`)}
 
-<label>ව්‍යවස්ථා PDF</label>
-<input id="constitutionFile" type="file" accept="application/pdf">
+function meeting(){if(!need())return;openM(`<h2>මාසික වැඩසටහන</h2><select id="mm">${D.calendar.map((x,i)=>`<option value="${i}">${i+1} මාසය</option>`)}</select><input id="mt" placeholder="වැඩසටහන"><input id="md" type="date"><textarea id="mms" placeholder="සාමාජිකයන් 3 දෙනා"></textarea><textarea id="mx" placeholder="විශේෂ සටහන්"></textarea><button class="btn blue" onclick="let i=+mm.value;D.calendar[i]={month:i+1,title:mt.value,date:md.value,members:mms.value,notes:mx.value};save();closeM()">Save</button>`)}
 
-<label>බැංකු විස්තර</label>
-<textarea id="bank">${esc(data.settings.bank)}</textarea>
+function report(){if(!need())return;openM(`<h2>මාසික වාර්තාව</h2><input id="rm" placeholder="මාසය"><textarea id="rt"></textarea><button class="btn blue" onclick="D.reports.push({month:rm.value,text:rt.value});save();closeM()">Save</button>`)}
+function account(){if(!need())return;openM(`<h2>මාසික ගිණුම්</h2><input id="am" placeholder="මාසය"><input id="ai" placeholder="ආදායම"><input id="ae" placeholder="වියදම"><textarea id="ax"></textarea><button class="btn blue" onclick="D.accounts.push({month:am.value,income:ai.value,expense:ae.value,note:ax.value});save();closeM()">Save</button>`)}
+function attendance(){if(!need())return;openM(`<h2>Attendance</h2><input id="ad" type="date"><textarea id="al" placeholder="පැමිණි සාමාජිකයන්"></textarea><button class="btn blue" onclick="D.attendance.push({date:ad.value,list:al.value});save();closeM()">Save</button>`)}
+function next(){if(!need())return;openM(`<h2>ඉදිරි සමිති වාරය</h2><input id="np" placeholder="ස්ථානය"><input id="nd" type="date"><textarea id="nm" placeholder="දායක සාමාජිකයන්"></textarea><textarea id="nx"></textarea><button class="btn blue" onclick="D.next.push({place:np.value,date:nd.value,members:nm.value,notes:nx.value});save();closeM()">Save</button>`)}
+function memory(){if(!need())return;openM(`<h2>මතකයක්</h2><input id="mtt" placeholder="මාතෘකාව"><textarea id="mxx"></textarea><input id="mf" type="file" accept="image/*"><button class="btn blue" onclick="addMemory()">Upload & Save</button>`)}
+function addMemory(){let f=mf.files[0],x={title:mtt.value,text:mxx.value,photo:""};if(f){let r=new FileReader();r.onload=()=>{x.photo=r.result;D.memories.push(x);save();closeM()};r.readAsDataURL(f)}else{D.memories.push(x);save();closeM()}}
+function notice(){if(!need())return;openM(`<h2>නිවේදනය</h2><input id="nt" placeholder="මාතෘකාව"><textarea id="nx2"></textarea><input id="nf" type="file" accept="image/*"><button class="btn blue" onclick="addNotice()">Upload & Save</button>`)}
+function addNotice(){let f=nf.files[0],x={title:nt.value,text:nx2.value,photo:""};if(f){let r=new FileReader();r.onload=()=>{x.photo=r.result;D.notices.push(x);save();closeM()};r.readAsDataURL(f)}else{D.notices.push(x);save();closeM()}}
 
-<label>QR Code</label>
-<input id="qr" type="file" accept="image/*">
-
-<label>ඇතුළත් වීමේ ගාස්තුව</label>
-<input id="joinFee" value="${esc(data.settings.joinFee)}">
-
-<label>අසනීප/ආධාර/විශේෂ සටහන්</label>
-<textarea id="support">${esc(data.settings.support)}</textarea>
-
-<label>Online Payment විස්තර</label>
-<textarea id="online">${esc(data.settings.online)}</textarea>
-
-<label>Online Loan Google Form</label>
-<input id="loanForm" value="${esc(data.settings.loanForm)}">
-
-<label>Home විශේෂ නිවේදනය</label>
-<textarea id="notice">${esc(data.settings.notice)}</textarea>
-
-<label>අලුත් Admin Password</label>
-<input id="newPin" type="password" value="${esc(data.settings.adminPin)}">
-
-<button class="btn blue" onclick="saveSettings()">💾 Save All</button>
-`);
+function settings(){
+if(!need())return;
+openM(`<h2>⚙️ Admin Settings</h2>
+<textarea id="addr">${esc(D.settings.address)}</textarea>
+<textarea id="bankx">${esc(D.settings.bank)}</textarea>
+<textarea id="constx">${esc(D.settings.constitution)}</textarea>
+<input id="pdf" type="file" accept="application/pdf">
+<input id="qrf" type="file" accept="image/*">
+<input id="jf" value="${esc(D.settings.joinFee)}" placeholder="ඇතුළත් වීමේ ගාස්තුව">
+<textarea id="sickx">${esc(D.settings.sick)}</textarea>
+<textarea id="fam">${esc(D.settings.familySick)}</textarea>
+<textarea id="sp">${esc(D.settings.special)}</textarea>
+<textarea id="pay">${esc(D.settings.payment)}"></textarea>
+<input id="payf" value="${esc(D.settings.paymentForm)}" placeholder="Payment Google Form URL">
+<input id="loanf" value="${esc(D.settings.loanForm)}" placeholder="Loan Google Form URL">
+<input id="pass" value="${esc(D.settings.password)}" placeholder="Admin Password">
+<button class="btn blue" onclick="saveSettings()">💾 Save All</button>`);
 }
 
 function saveSettings(){
-data.settings.startDate=document.getElementById("sdate").value;
-data.settings.constitution=document.getElementById("constitution").value;
-data.settings.bank=document.getElementById("bank").value;
-data.settings.joinFee=document.getElementById("joinFee").value;
-data.settings.support=document.getElementById("support").value;
-data.settings.online=document.getElementById("online").value;
-data.settings.loanForm=document.getElementById("loanForm").value;
-data.settings.notice=document.getElementById("notice").value;
-data.settings.adminPin=document.getElementById("newPin").value||"1234";
-
-let cf=document.getElementById("constitutionFile").files[0];
-let qr=document.getElementById("qr").files[0];
-let count=0;
-
-function done(){
-count--;
-if(count<=0){save();closeModal();alert("සියල්ල Save කළා.");}
+D.settings.address=addr.value;D.settings.bank=bankx.value;D.settings.constitution=constx.value;D.settings.joinFee=jf.value;D.settings.sick=sickx.value;D.settings.familySick=fam.value;D.settings.special=sp.value;D.settings.payment=pay.value;D.settings.paymentForm=payf.value;D.settings.loanForm=loanf.value;D.settings.password=pass.value||"1234";
+let jobs=0,done=()=>{if(!--jobs){save();closeM()}};
+if(pdf.files[0]){jobs++;let r=new FileReader();r.onload=()=>{D.settings.pdf=r.result;done()};r.readAsDataURL(pdf.files[0])}
+if(qrf.files[0]){jobs++;let r=new FileReader();r.onload=()=>{D.settings.qr=r.result;done()};r.readAsDataURL(qrf.files[0])}
+if(!jobs){save();closeM()}
 }
 
-if(cf){
-count++;
-let r=new FileReader();
-r.onload=()=>{data.settings.constitutionFile=r.result;done()};
-r.readAsDataURL(cf);
-}
-if(qr){
-count++;
-let r=new FileReader();
-r.onload=()=>{data.settings.qr=r.result;done()};
-r.readAsDataURL(qr);
-}
-if(count===0){save();closeModal();alert("සියල්ල Save කළා.");}
-}
-
-function newMember(){
-let i=data.members.findIndex(x=>!x.name);
-if(i<0){data.members.push({no:data.members.length+1,name:"",phone:"",photo:""});i=data.members.length-1}
-editMember(i);
-}
-
-function editMember(i){
-let m=data.members[i];
-openModal(`
-<h2>සාමාජික අංකය ${m.no}</h2>
-<label>සාමාජිකයාගේ නම</label>
-<input id="mn" value="${esc(m.name)}">
-<label>දුරකථන අංකය</label>
-<input id="mp" value="${esc(m.phone)}">
-<label>ඡායාරූපය</label>
-<input id="mphoto" type="file" accept="image/*">
-${m.photo?`<img class="preview" src="${m.photo}">`:""}
-<button class="btn blue" onclick="saveMember(${i})">💾 Save</button>
-`);
-}
-
-function saveMember(i){
-data.members[i].name=document.getElementById("mn").value;
-data.members[i].phone=document.getElementById("mp").value;
-let f=document.getElementById("mphoto").files[0];
-
-if(f){
-let r=new FileReader();
-r.onload=()=>{
-data.members[i].photo=r.result;
-save();closeModal();
-};
-r.readAsDataURL(f);
-}else{save();closeModal()}
-}
-
-function deleteMember(i){
-if(confirm("මෙම සාමාජිකයා Delete කරන්නද?")){
-data.members[i]={no:i+1,name:"",phone:"",photo:""};
-save();
-}
-}
-
-function newLoan(){
-openModal(`
-<h2>ණය වාර්තාව</h2>
-<input id="ldate" type="date" placeholder="දිනය">
-<input id="lname" placeholder="සාමාජිකයාගේ නම">
-<input id="lno" placeholder="සාමාජික අංකය">
-<input id="ltotal" type="number" placeholder="ණය මුදල">
-<input id="lpaid" type="number" placeholder="ගෙවූ මුදල">
-<input id="llast" type="date" placeholder="අවසාන ගෙවීම් කළ දිනය">
-<textarea id="lnotes" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="saveLoan()">💾 Save</button>
-`);
-}
-
-function saveLoan(){
-let total=Number(document.getElementById("ltotal").value||0);
-let paid=Number(document.getElementById("lpaid").value||0);
-data.loans.push({
-date:document.getElementById("ldate").value,
-name:document.getElementById("lname").value,
-no:document.getElementById("lno").value,
-total,paid,
-remaining:total-paid,
-last:document.getElementById("llast").value,
-notes:document.getElementById("lnotes").value
-});
-save();closeModal();
-}
-
-function deleteLoan(i){
-if(confirm("Delete කරන්නද?")){data.loans.splice(i,1);save()}
-}
-
-function newPayment(){
-openModal(`
-<h2>ගෙවීම් වාර්තාව</h2>
-<input id="pdate" type="date">
-<input id="pname" placeholder="සාමාජිකයාගේ නම">
-<input id="ptype" placeholder="ගෙවීම් වර්ගය">
-<input id="pamount" type="number" placeholder="මුදල">
-<textarea id="pnote" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="savePayment()">Save</button>
-`);
-}
-function savePayment(){
-data.payments.push({
-date:pdate.value,name:pname.value,type:ptype.value,
-amount:pamount.value,note:pnote.value
-});
-save();closeModal();
-}
-
-function deletePayment(i){
-if(confirm("Delete කරන්නද?")){data.payments.splice(i,1);save()}
-}
-
-function newMeeting(){
-openModal(`
-<h2>සුහද හමුව</h2>
-<select id="month">
-${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} මාසය</option>`).join("")}
-</select>
-<input id="mtitle" placeholder="වැඩසටහන">
-<input id="mdate" type="date">
-<textarea id="mmembers" placeholder="දායකත්වය දක්වන සාමාජිකයන් 3 දෙනා"></textarea>
-<textarea id="mnotes" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="saveMeeting()">Save</button>
-`);
-}
-
-function saveMeeting(){
-let i=Number(month.value)-1;
-data.meetings[i]={
-month:Number(month.value),
-title:mtitle.value,date:mdate.value,
-members:mmembers.value,notes:mnotes.value
-};
-save();closeModal();
-}
-
-function newReport(){
-openModal(`
-<h2>මාසික වාර්තාව</h2>
-<input id="rmonth" placeholder="මාසය">
-<input id="rdate" type="date">
-<textarea id="rtext" placeholder="වාර්තාවේ විස්තර"></textarea>
-<button class="btn blue" onclick="data.reports.push({month:rmonth.value,date:rdate.value,text:rtext.value});save();closeModal()">Save</button>
-`);
-}
-
-function deleteReport(i){
-if(confirm("Delete කරන්නද?")){data.reports.splice(i,1);save()}
-}
-
-function newAccount(){
-openModal(`
-<h2>මාසික ගිණුම් වාර්තාව</h2>
-<input id="amonth" placeholder="මාසය">
-<input id="income" type="number" placeholder="ආදායම">
-<input id="expense" type="number" placeholder="වියදම">
-<textarea id="anote" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="data.accounts.push({month:amonth.value,income:income.value,expense:expense.value,note:anote.value});save();closeModal()">Save</button>
-`);
-}
-
-function deleteAccount(i){
-if(confirm("Delete කරන්නද?")){data.accounts.splice(i,1);save()}
-}
-
-function newMemory(){
-openModal(`
-<h2>📸 අපේ මතකයක්</h2>
-<input id="memtitle" placeholder="මාතෘකාව">
-<textarea id="memtext" placeholder="විස්තර"></textarea>
-<input id="memphoto" type="file" accept="image/*">
-<button class="btn blue" onclick="saveMemory()">Upload & Save</button>
-`);
-}
-
-function saveMemory(){
-let f=document.getElementById("memphoto").files[0];
-let obj={title:memtitle.value,text:memtext.value,photo:""};
-if(f){
-let r=new FileReader();
-r.onload=()=>{
-obj.photo=r.result;
-data.memories.push(obj);
-save();closeModal();
-};
-r.readAsDataURL(f);
-}else{
-data.memories.push(obj);save();closeModal();
-}
-}
-
-function deleteMemory(i){
-if(confirm("Delete කරන්නද?")){data.memories.splice(i,1);save()}
-}
-
-function newNotice(){
-openModal(`
-<h2>📢 විශේෂ නිවේදනය</h2>
-<input id="ntitle" placeholder="මාතෘකාව">
-<textarea id="ntext" placeholder="නිවේදනය"></textarea>
-<input id="nphoto" type="file" accept="image/*">
-<button class="btn blue" onclick="saveNotice()">Upload & Save</button>
-`);
-}
-
-function saveNotice(){
-let f=document.getElementById("nphoto").files[0];
-let obj={title:ntitle.value,text:ntext.value,photo:""};
-if(f){
-let r=new FileReader();
-r.onload=()=>{
-obj.photo=r.result;
-data.notices.push(obj);
-save();closeModal();
-};
-r.readAsDataURL(f);
-}else{
-data.notices.push(obj);save();closeModal();
-}
-}
-
-function deleteNotice(i){
-if(confirm("Delete කරන්නද?")){data.notices.splice(i,1);save()}
-}
-
-function newAttendance(){
-openModal(`
-<h2>✅ Online Attendance</h2>
-<input id="adate" type="date">
-<textarea id="alist" placeholder="පැමිණි සාමාජිකයන්ගේ නම් / අංක"></textarea>
-<textarea id="anotes" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="data.attendance.push({date:adate.value,list:alist.value,notes:anotes.value});save();closeModal()">Save</button>
-`);
-}
-
-function deleteAttendance(i){
-if(confirm("Delete කරන්නද?")){data.attendance.splice(i,1);save()}
-}
-
-function newNextMeeting(){
-openModal(`
-<h2>🗓️ ඉදිරි සමිති වාරය</h2>
-<input id="nxplace" placeholder="ස්ථානය">
-<input id="nxdate" type="date">
-<textarea id="nxmembers" placeholder="දායකත්වය දක්වන සාමාජිකයන්"></textarea>
-<textarea id="nxnotes" placeholder="විශේෂ සටහන්"></textarea>
-<button class="btn blue" onclick="data.next.push({place:nxplace.value,date:nxdate.value,members:nxmembers.value,notes:nxnotes.value});save();closeModal()">Save</button>
-`);
-}
-
-function deleteNext(i){
-if(confirm("Delete කරන්නද?")){data.next.splice(i,1);save()}
-}
-
-function exportData(){
-let blob=new Blob([JSON.stringify(data)],{type:"application/json"});
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="strength-of-friendship-backup.json";
-a.click();
-}
-
-function restoreData(file){
-if(!file)return;
-let r=new FileReader();
-r.onload=()=>{
-try{
-data=JSON.parse(r.result);
-save();
-alert("Backup Restore කළා.");
-}catch(e){alert("Backup file එක නිවැරදි නැහැ.")}
-};
-r.readAsText(file);
-}
-
-function render(){
-
-document.getElementById("statMembers").textContent=
-data.members.filter(x=>x.name).length+"/30";
-
-document.getElementById("statLoans").textContent=data.loans.length;
-document.getElementById("statPayments").textContent=data.payments.length;
-
-document.getElementById("homeNotices").innerHTML=
-data.notices.length?
-data.notices.map(x=>`<div class="card notice"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div>`).join(""):
-data.settings.notice||"දැනට නිවේදන නැත.";
-
-document.getElementById("membersList").innerHTML=
-data.members.map((m,i)=>`
-<div class="card member-card">
-<div class="photo">${m.photo?`<img src="${m.photo}">`:"📷 Photo"}</div>
-<span class="badge">සාමාජික අංකය ${m.no}</span>
-<h3>${esc(m.name)||"නම ඇතුළත් කර නැත"}</h3>
-<p>📞 ${esc(m.phone)||"දුරකථන අංකය ඇතුළත් කර නැත"}</p>
-<button class="btn blue" onclick="editMember(${i})">Edit</button>
-<button class="btn red" onclick="deleteMember(${i})">Delete</button>
-</div>
-`).join("");
-
-document.getElementById("constitutionDisplay").innerHTML=
-(data.settings.constitution||"ව්‍යවස්ථාව ඇතුළත් කර නැත.")
-.replace(/\n/g,"<br>")+
-(data.settings.constitutionFile?
-`<br><a href="${data.settings.constitutionFile}" target="_blank">📄 PDF බලන්න</a>`:"");
-
-document.getElementById("bankDisplay").innerHTML=
-(data.settings.bank||"").replace(/\n/g,"<br>");
-
-document.getElementById("qrDisplay").innerHTML=
-data.settings.qr?`<img class="preview" src="${data.settings.qr}">`:"QR Code එකක් Upload කර නැත.";
-
-document.getElementById("supportDisplay").innerHTML=
-(data.settings.support||"").replace(/\n/g,"<br>");
-
-document.getElementById("joinFee").textContent=
-data.settings.joinFee||"ඇතුළත් කර නැත";
-
-document.getElementById("onlineDisplay").innerHTML=
-data.settings.online||"Online payment විස්තර ඇතුළත් කර නැත.";
-
-document.getElementById("loanFormDisplay").innerHTML=
-data.settings.loanForm?
-`<a href="${esc(data.settings.loanForm)}" target="_blank" class="btn blue">Google Form Open කරන්න</a>`:
-"Google Form link එක ඇතුළත් කර නැත.";
-
-document.getElementById("loanTable").innerHTML=
-data.loans.map((x,i)=>`
-<tr>
-<td>${esc(x.date)}</td>
-<td>${esc(x.name)}</td>
-<td>${esc(x.no)}</td>
-<td>රු. ${esc(x.total)}</td>
-<td>රු. ${esc(x.paid)}</td>
-<td>රු. ${esc(x.remaining)}</td>
-<td>${esc(x.last)}</td>
-<td>${esc(x.notes)}</td>
-<td><button class="btn red" onclick="deleteLoan(${i})">Delete</button></td>
-</tr>
-`).join("");
-
-document.getElementById("paymentsList").innerHTML=
-data.payments.length?
-data.payments.map((x,i)=>`
-<div class="card">
-<b>${esc(x.name)}</b><br>
-${esc(x.date)} | ${esc(x.type)} | රු. ${esc(x.amount)}
-<p>${esc(x.note)}</p>
-<button class="btn red" onclick="deletePayment(${i})">Delete</button>
-</div>`).join(""):
-`<div class="empty">ගෙවීම් වාර්තා නැත.</div>`;
-
-document.getElementById("calendarGrid").innerHTML=
-data.meetings.map((x,i)=>`
-<div class="card">
-<h3>${i+1}. මාසය</h3>
-<p><b>${esc(x.title)||"වැඩසටහනක් නැත"}</b></p>
-<p>📅 ${esc(x.date)}</p>
-<p>👥 ${esc(x.members)}</p>
-<p>${esc(x.notes)}</p>
-<button class="btn blue" onclick="newMeeting()">Edit</button>
-</div>
-`).join("");
-
-document.getElementById("reportsList").innerHTML=
-data.reports.map((x,i)=>`
-<div class="card">
-<h3>${esc(x.month)}</h3>
-<p>${esc(x.date)}</p>
-<p>${esc(x.text)}</p>
-<button class="btn red" onclick="deleteReport(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">වාර්තා නැත.</div>`;
-
-document.getElementById("accountsList").innerHTML=
-data.accounts.map((x,i)=>`
-<div class="card">
-<h3>${esc(x.month)}</h3>
-<p>ආදායම: රු. ${esc(x.income)}</p>
-<p>වියදම: රු. ${esc(x.expense)}</p>
-<p>${esc(x.note)}</p>
-<button class="btn red" onclick="deleteAccount(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">ගිණුම් වාර්තා නැත.</div>`;
-
-document.getElementById("memoriesGrid").innerHTML=
-data.memories.map((x,i)=>`
-<div class="card">
-${x.photo?`<img src="${x.photo}" style="width:100%;border-radius:12px">`:""}
-<h3>${esc(x.title)}</h3>
-<p>${esc(x.text)}</p>
-<button class="btn red" onclick="deleteMemory(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">මතකයන් නැත.</div>`;
-
-document.getElementById("noticesList").innerHTML=
-data.notices.map((x,i)=>`
-<div class="card notice">
-${x.photo?`<img src="${x.photo}" class="preview">`:""}
-<h3>${esc(x.title)}</h3>
-<p>${esc(x.text)}</p>
-<button class="btn red" onclick="deleteNotice(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">නිවේදන නැත.</div>`;
-
-document.getElementById("attendanceList").innerHTML=
-data.attendance.map((x,i)=>`
-<div class="card">
-<h3>${esc(x.date)}</h3>
-<p>${esc(x.list)}</p>
-<p>${esc(x.notes)}</p>
-<button class="btn red" onclick="deleteAttendance(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">Attendance වාර්තා නැත.</div>`;
-
-document.getElementById("nextList").innerHTML=
-data.next.map((x,i)=>`
-<div class="card">
-<h3>ඉදිරි සමිති වාරය</h3>
-<p>📍 ${esc(x.place)}</p>
-<p>📅 ${esc(x.date)}</p>
-<p>👥 ${esc(x.members)}</p>
-<p>${esc(x.notes)}</p>
-<button class="btn red" onclick="deleteNext(${i})">Delete</button>
-</div>
-`).join("")||`<div class="empty">තොරතුරු ඇතුළත් කර නැත.</div>`;
-
-document.getElementById("nextMeeting").textContent=
-data.next.length?data.next[0].date:"නැත";
-}
+function del(a,i){if(!need())return;if(confirm("Delete කරන්නද?")){if(a==="report")a="reports";if(a==="account")a="accounts";if(a==="attendance")a="attendance";if(a==="next")a="next";D[a].splice(i,1);save()}}
+function backup(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:"application/json"}));a.download="strength-of-friendship-backup.json";a.click()}
 
 render();
-</scr/* ===== ADMIN SECURITY ===== */
+</script>
+</body>
+</html>
 
-let adminLoggedIn = false;
 
-function requireAdmin() {
-    if (!adminLoggedIn) {
-        login();
-        return false;
-    }
-    return true;
-}
 
-/* Login successful නම් Admin access ලබා දෙන්න */
-const oldCheckLogin = checkLogin;
-
-checkLogin = function () {
-    const pinBox = document.getElementById("pin");
-
-    if (pinBox && pinBox.value === data.settings.adminPin) {
-        adminLoggedIn = true;
-        closeModal();
-        alert("✅ Admin Login සාර්ථකයි.");
-        render();
-        return;
-    }
-
-    alert("❌ Admin Password වැරදියි.");
-};
-
-/* Admin නොවන කෙනෙක්ට data-changing buttons ක්‍රියා නොකරවීම */
-document.addEventListener("click", function (e) {
-
-    const btn = e.target.closest("button");
-    if (!btn) return;
-
-    const action = btn.getAttribute("onclick") || "";
-
-    const protectedActions = [
-        "newMember",
-        "editMember",
-        "deleteMember",
-        "saveMember",
-        "newLoan",
-        "saveLoan",
-        "deleteLoan",
-        "newPayment",
-        "savePayment",
-        "deletePayment",
-        "newMeeting",
-        "saveMeeting",
-        "newReport",
-        "newAccount",
-        "deleteReport",
-        "deleteAccount",
-        "newMemory",
-        "saveMemory",
-        "deleteMemory",
-        "newNotice",
-        "saveNotice",
-        "deleteNotice",
-        "newAttendance",
-        "deleteAttendance",
-        "newNextMeeting",
-        "deleteNext",
-        "adminSettings",
-        "saveSettings",
-        "restoreData"
-    ];
-
-    const isProtected = protectedActions.some(x => action.includes(x));
-
-    if (isProtected && !adminLoggedIn) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        login();
-    }
-
-}, true);
-</bod
 
