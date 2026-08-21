@@ -1,0 +1,14 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Strength of friendship",
+  "orientation": "any",
+  "scope": "https://vipulabandara59.github.io/strength-of-friendship-app/",
+  "short_name": "Strength",
+  "start_url": "https://vipulabandara59.github.io/strength-of-friendship-app/",
+  "theme_color": "#1565c0",
+  "id": "strength-of-friendship",
+  "description": "Strength of friendship සංගමයේ නිල තොරතුරු පද්ධතිය",
+  "lang": "si"
+}
