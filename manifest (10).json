@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Strength of friendship",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Strength",
+  "start_url": "/",
+  "theme_color": "rgb(21, 101, 192)",
+  "id": "strength-of-friendship",
+  "description": "Strength of friendship සංගමයේ නිල තොරතුරු පද්ධතිය"
+}
