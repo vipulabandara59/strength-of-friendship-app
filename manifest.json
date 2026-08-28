@@ -10,5 +10,25 @@
   "theme_color": "#1565c0",
   "id": "strength-of-friendship",
   "description": "Strength of friendship සංගමයේ නිල තොරතුරු පද්ධතිය",
-  "lang": "si"
+  "lang": "si",
+  "icons": [
+    {
+      "src": "strength-of-friendship-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "strength-of-friendship-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "strength-of-friendship-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
