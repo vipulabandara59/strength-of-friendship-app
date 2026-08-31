@@ -170,10 +170,12 @@ footer{text-align:center;padding:25px;color:#777}
 <!-- Firebase -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 import {
   getFirestore,
-  collection,
-  getDocs
+  doc,
+  getDoc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -189,39 +191,16 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
+window.firebaseDB = db;
+window.firebaseDoc = doc;
+window.firebaseGetDoc = getDoc;
+window.firebaseSetDoc = setDoc;
+
 console.log("Firebase connected");
 
-async function loadFirebaseMembers(){
-  try {
-    const snapshot = await getDocs(collection(db, "members"));
-
-    const members = [];
-
-    snapshot.forEach(doc => {
-      const x = doc.data();
-
-      members.push({
-        no: x.no || members.length + 1,
-        name: x.name || "",
-        phone: x.phone || "",
-        photo: x.photo || ""
-      });
-    });
-
-    console.log("Firebase members loaded:", members);
-
-    window.dispatchEvent(
-      new CustomEvent("firebaseMembersLoaded", {
-        detail: members
-      })
-    );
-
-  } catch(error) {
-    console.error("Firebase members error:", error);
-  }
-}
-
-loadFirebaseMembers();
+window.dispatchEvent(
+  new Event("firebaseReady")
+);
 </script>
 
 /* =========================
@@ -323,23 +302,78 @@ window.addEventListener("firebaseMembersLoaded", function(e){
 let ADMIN=false;
 let current='home';
 
-function loadData(){
- try{
-   const saved=JSON.parse(localStorage.getItem(KEY));
+async function loadFirebaseData(){
 
-   if(!saved) return JSON.parse(JSON.stringify(base));
+  try{
 
-   const data=JSON.parse(JSON.stringify(base));
+    // Firebase document
+    const ref =
+      window.firebaseDoc(
+        window.firebaseDB,
+        "appData",
+        "main"
+      );
 
-   Object.keys(saved).forEach(k=>{
-      data[k]=saved[k];
-   });
+    const snap =
+      await window.firebaseGetDoc(ref);
 
-   return data;
+    if(snap.exists()){
 
- }catch(err){
-   return JSON.parse(JSON.stringify(base));
- }
+      const cloudData = snap.data();
+
+      const newData =
+        JSON.parse(
+          JSON.stringify(base)
+        );
+
+      Object.keys(cloudData).forEach(k=>{
+        newData[k]=cloudData[k];
+      });
+
+      D = newData;
+
+      // Local backup එකත් update කරන්න
+      localStorage.setItem(
+        KEY,
+        JSON.stringify(D)
+      );
+
+      console.log(
+        "✅ Firebase data loaded"
+      );
+
+      render();
+
+    }else{
+
+      // Firebase හි data නැත්නම්
+      // දැනට phone එකේ තිබෙන data upload කරන්න
+
+      await window.firebaseSetDoc(
+        window.firebaseDoc(
+          window.firebaseDB,
+          "appData",
+          "main"
+        ),
+        D
+      );
+
+      console.log(
+        "✅ Initial data uploaded to Firebase"
+      );
+    }
+
+  }catch(error){
+
+    console.error(
+      "❌ Firebase load error:",
+      error
+    );
+
+    console.log(
+      "Local data will be used."
+    );
+  }
 }
 
 /* =========================
@@ -388,9 +422,41 @@ function e(x){
  );
 }
 
-function save(){
- localStorage.setItem(KEY,JSON.stringify(D));
- render();
+async function save(){
+
+  // Phone එකේ backup එකක්
+  localStorage.setItem(KEY,JSON.stringify(D));
+
+  // Firebase එකට save කිරීම
+  if(window.firebaseDB){
+
+    try{
+
+      await window.firebaseSetDoc(
+        window.firebaseDoc(
+          window.firebaseDB,
+          "appData",
+          "main"
+        ),
+        D
+      );
+
+      console.log("✅ Data saved to Firebase");
+
+    }catch(error){
+
+      console.error(
+        "❌ Firebase save error:",
+        error
+      );
+
+      alert(
+        "Firebase වෙත Save කිරීමට නොහැකි විය."
+      );
+    }
+  }
+
+  render();
 }
 
 function go(p){
@@ -2112,6 +2178,13 @@ function p(id){
 ========================= */
 
 render();
+
+window.addEventListener(
+  "firebaseReady",
+  function(){
+    loadFirebaseData();
+  }
+);
 
 </script>
 
