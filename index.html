@@ -2,6 +2,7 @@
 <html lang="si">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="manifest" href="manifest.json">
 <title>Strength of friendship</title>
 
@@ -36,7 +37,8 @@ nav button{
  border:0;
  border-radius:20px;
  padding:10px 14px;
- white-space:nowrap
+ white-space:nowrap;
+ cursor:pointer
 }
 nav button.a{background:#1565c0;color:#fff}
 main{max-width:1200px;margin:auto;padding:14px}
@@ -119,7 +121,8 @@ th,td{
  border:0;
  border-radius:50%;
  width:34px;
- height:34px
+ height:34px;
+ cursor:pointer
 }
 .preview{
  max-width:280px;
@@ -136,7 +139,6 @@ th,td{
 }
 .notice{border-left:5px solid #e53935}
 footer{text-align:center;padding:25px;color:#777}
-
 .viewonly{
  background:#fff3cd;
  color:#856404;
@@ -166,46 +168,94 @@ footer{text-align:center;padding:25px;color:#777}
  </div>
 </div>
 
-<script>
-<!-- Firebase -->
+<!-- =========================
+     FIREBASE
+========================= -->
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+ getFirestore,
+ collection,
+ getDocs,
+ doc,
+ getDoc,
+ setDoc
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDm_RUNJFb3i5pitv5L8w2Tq7gG7asuDoQ",
-  authDomain: "strength-of-friendship.firebaseapp.com",
-  projectId: "strength-of-friendship",
-  storageBucket: "strength-of-friendship.firebasestorage.app",
-  messagingSenderId: "334450796614",
-  appId: "1:334450796614:web:213ce757438caaa2bb4247",
-  measurementId: "G-X3FBGPQLSZ"
+ apiKey:"AIzaSyDm_RUNJFb3i5pitv5L8w2Tq7gG7asuDoQ",
+ authDomain:"strength-of-friendship.firebaseapp.com",
+ projectId:"strength-of-friendship",
+ storageBucket:"strength-of-friendship.firebasestorage.app",
+ messagingSenderId:"334450796614",
+ appId:"1:334450796614:web:213ce757438caaa2bb4247",
+ measurementId:"G-X3FBGPQLSZ"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
 
-window.firebaseDB = db;
-window.firebaseDoc = doc;
-window.firebaseGetDoc = getDoc;
-window.firebaseSetDoc = setDoc;
+window.firebaseDB=db;
+window.firebaseDoc=doc;
+window.firebaseGetDoc=getDoc;
+window.firebaseSetDoc=setDoc;
+window.firebaseCollection=collection;
+window.firebaseGetDocs=getDocs;
 
-console.log("Firebase connected");
+console.log("✅ Firebase connected");
 
-window.dispatchEvent(
-  new Event("firebaseReady")
-);
+window.dispatchEvent(new Event("firebaseReady"));
+
+try{
+
+ const snapshot=await getDocs(
+   collection(db,"members")
+ );
+
+ const members=[];
+
+ snapshot.forEach(d=>{
+
+   const x=d.data();
+
+   members.push({
+     no:x.no || members.length+1,
+     name:x.name || "",
+     phone:x.phone || "",
+     photo:x.photo || ""
+   });
+
+ });
+
+ if(members.length){
+
+   window.dispatchEvent(
+     new CustomEvent("firebaseMembersLoaded",{
+       detail:members
+     })
+   );
+
+ }
+
+}catch(error){
+
+ console.error("Firebase members error:",error);
+
+}
+
 </script>
 
-/* =========================
-   MAIN DATA
-========================= */
+<!-- =========================
+     MAIN APP
+========================= -->
+
+<script>
+'use strict';
 
 const KEY='sof_final_app_1';
 
@@ -219,7 +269,7 @@ const base={
  logo:'',
  constitution:'',
  pdf:'',
- bank:'මහජන බැංකුව\n00293 දෙහිඕවිට ශාඛාව\nගිණුම් අංකය 293-2-001-7-0031758',
+ bank:'',
  qr:'',
  memberFee:'රු. 2,000',
  deathFee:'රු. 1,000',
@@ -233,26 +283,26 @@ const base={
  password:'1234',
 
  members:Array.from(
-   {length:30},
-   (_,i)=>({
-      no:i+1,
-      name:'',
-      phone:'',
-      photo:''
-   })
+  {length:30},
+  (_,i)=>({
+   no:i+1,
+   name:'',
+   phone:'',
+   photo:''
+  })
  ),
 
  loans:[],
  payments:[],
 
  calendar:Array.from(
-   {length:12},
-   ()=>({
-      title:'',
-      date:'',
-      members:'',
-      notes:''
-   })
+  {length:12},
+  ()=>({
+   title:'',
+   date:'',
+   members:'',
+   notes:''
+  })
  ),
 
  reports:[],
@@ -263,118 +313,141 @@ const base={
  next:[]
 };
 
-/* =========================
-   LOAD DATA
-========================= */
-
 let D=loadData();
-
-window.addEventListener("firebaseMembersLoaded", function(e){
-
-  const firebaseMembers = e.detail;
-
-  if(Array.isArray(firebaseMembers) && firebaseMembers.length){
-
-    firebaseMembers.forEach((member, index) => {
-
-      if(index < D.members.length){
-
-        D.members[index] = {
-          no: member.no || index + 1,
-          name: member.name || '',
-          phone: member.phone || '',
-          photo: member.photo || ''
-        };
-
-      }
-
-    });
-
-    render();
-  }
-
-});
-/*
-   VERY IMPORTANT:
-   Every page refresh starts as View Only.
-   Admin must login again.
-*/
 let ADMIN=false;
 let current='home';
 
+function loadData(){
+
+ try{
+
+  const saved=JSON.parse(
+   localStorage.getItem(KEY)
+  );
+
+  if(!saved)
+   return JSON.parse(JSON.stringify(base));
+
+  const data=JSON.parse(
+   JSON.stringify(base)
+  );
+
+  Object.keys(saved).forEach(k=>{
+   data[k]=saved[k];
+  });
+
+  return data;
+
+ }catch(err){
+
+  return JSON.parse(JSON.stringify(base));
+
+ }
+
+}
+
+/* =========================
+   FIREBASE LOAD
+========================= */
+
 async function loadFirebaseData(){
 
-  try{
+ if(!window.firebaseDB)
+   return;
 
-    // Firebase document
-    const ref =
-      window.firebaseDoc(
-        window.firebaseDB,
-        "appData",
-        "main"
-      );
+ try{
 
-    const snap =
-      await window.firebaseGetDoc(ref);
+  const ref=window.firebaseDoc(
+   window.firebaseDB,
+   "appData",
+   "main"
+  );
 
-    if(snap.exists()){
+  const snap=await window.firebaseGetDoc(ref);
 
-      const cloudData = snap.data();
+  if(snap.exists()){
 
-      const newData =
-        JSON.parse(
-          JSON.stringify(base)
-        );
+   const cloudData=snap.data();
 
-      Object.keys(cloudData).forEach(k=>{
-        newData[k]=cloudData[k];
-      });
+   const newData=
+    JSON.parse(JSON.stringify(base));
 
-      D = newData;
+   Object.keys(cloudData).forEach(k=>{
+    newData[k]=cloudData[k];
+   });
 
-      // Local backup එකත් update කරන්න
-      localStorage.setItem(
-        KEY,
-        JSON.stringify(D)
-      );
+   D=newData;
 
-      console.log(
-        "✅ Firebase data loaded"
-      );
+   localStorage.setItem(
+    KEY,
+    JSON.stringify(D)
+   );
 
-      render();
+   console.log("✅ Firebase data loaded");
 
-    }else{
+   render();
 
-      // Firebase හි data නැත්නම්
-      // දැනට phone එකේ තිබෙන data upload කරන්න
+  }else{
 
-      await window.firebaseSetDoc(
-        window.firebaseDoc(
-          window.firebaseDB,
-          "appData",
-          "main"
-        ),
-        D
-      );
+   await window.firebaseSetDoc(
+    ref,
+    D
+   );
 
-      console.log(
-        "✅ Initial data uploaded to Firebase"
-      );
-    }
+   console.log(
+    "✅ Initial data uploaded to Firebase"
+   );
 
-  }catch(error){
-
-    console.error(
-      "❌ Firebase load error:",
-      error
-    );
-
-    console.log(
-      "Local data will be used."
-    );
   }
+
+ }catch(error){
+
+  console.error(
+   "❌ Firebase load error:",
+   error
+  );
+
+ }
+
 }
+
+window.addEventListener(
+ "firebaseReady",
+ function(){
+
+  loadFirebaseData();
+
+ }
+);
+
+window.addEventListener(
+ "firebaseMembersLoaded",
+ function(e){
+
+  const list=e.detail;
+
+  if(!Array.isArray(list))
+   return;
+
+  list.forEach((member,index)=>{
+
+   if(index<D.members.length){
+
+    D.members[index]={
+     no:member.no || index+1,
+     name:member.name || '',
+     phone:member.phone || '',
+     photo:member.photo || ''
+    };
+
+   }
+
+  });
+
+  render();
+
+ }
+);
 
 /* =========================
    PAGES
@@ -406,10 +479,11 @@ ${p[1]}
 `).join('');
 
 /* =========================
-   BASIC FUNCTIONS
+   BASIC
 ========================= */
 
 function e(x){
+
  return String(x??'').replace(
   /[&<>"']/g,
   m=>({
@@ -420,190 +494,197 @@ function e(x){
    "'":'&#039;'
   }[m])
  );
+
 }
 
-async function save(){
+function save(){
 
-  // Phone එකේ backup එකක්
-  localStorage.setItem(KEY,JSON.stringify(D));
+ localStorage.setItem(
+  KEY,
+  JSON.stringify(D)
+ );
 
-  // Firebase එකට save කිරීම
-  if(window.firebaseDB){
+ if(window.firebaseDB){
 
-    try{
+  window.firebaseSetDoc(
+   window.firebaseDoc(
+    window.firebaseDB,
+    "appData",
+    "main"
+   ),
+   D
+  )
+  .then(()=>{
+   console.log(
+    "✅ Data saved to Firebase"
+   );
+  })
+  .catch(error=>{
+   console.error(
+    "❌ Firebase save error:",
+    error
+   );
+  });
 
-      await window.firebaseSetDoc(
-        window.firebaseDoc(
-          window.firebaseDB,
-          "appData",
-          "main"
-        ),
-        D
-      );
+ }
 
-      console.log("✅ Data saved to Firebase");
+ render();
 
-    }catch(error){
-
-      console.error(
-        "❌ Firebase save error:",
-        error
-      );
-
-      alert(
-        "Firebase වෙත Save කිරීමට නොහැකි විය."
-      );
-    }
-  }
-
-  render();
 }
 
 function go(p){
+
  current=p;
  render();
  window.scrollTo(0,0);
+
 }
 
 function openM(x){
+
  mb.innerHTML=x;
  modal.classList.add('a');
+
 }
 
 function closeM(){
+
  modal.classList.remove('a');
+
 }
 
 /* =========================
-   ADMIN SECURITY
+   ADMIN
 ========================= */
 
 function req(){
 
- if(ADMIN===true){
-   return true;
- }
+ if(ADMIN===true)
+  return true;
 
  login();
  return false;
+
 }
 
 function login(){
 
  openM(`
+
  <h2>🔐 Admin Login</h2>
 
- <p>
- <b>Admin password එක ඇතුළත් කරන්න.</b>
- </p>
+ <p><b>
+ Admin password එක ඇතුළත් කරන්න.
+ </b></p>
 
  <input
-   id="pin"
-   type="password"
-   placeholder="Admin Password"
-   autocomplete="off"
+  id="pin"
+  type="password"
+  placeholder="Admin Password"
+  autocomplete="off"
  >
 
  <button
-   class="btn blue"
-   onclick="doLogin()">
-   🔓 Login
+  class="btn blue"
+  onclick="doLogin()">
+  🔓 Login
  </button>
+
  `);
 
  setTimeout(()=>{
-   const el=document.getElementById('pin');
-   if(el) el.focus();
+
+  const el=document.getElementById('pin');
+
+  if(el) el.focus();
+
  },100);
+
 }
 
 function doLogin(){
 
- const entered=document.getElementById('pin').value;
+ const entered=
+  document.getElementById('pin').value;
 
  if(entered===String(D.password)){
 
-   ADMIN=true;
+  ADMIN=true;
 
-   closeM();
-   render();
+  closeM();
+  render();
 
-   alert('✅ Admin Mode සක්‍රීයයි.');
+  alert('✅ Admin Mode සක්‍රීයයි.');
 
  }else{
 
-   alert('❌ Password වැරදියි.');
+  alert('❌ Password වැරදියි.');
 
-   const el=document.getElementById('pin');
-   if(el){
-     el.value='';
-     el.focus();
-   }
+  const el=
+   document.getElementById('pin');
+
+  if(el){
+
+   el.value='';
+   el.focus();
+
+  }
+
  }
+
 }
 
-/*
-  This function displays editing controls
-  ONLY when ADMIN is true.
-*/
 function A(x){
 
- if(ADMIN===true){
-   return x;
- }
+ return ADMIN===true ? x : '';
 
- return '';
 }
 
-/*
-  Delete function is ALWAYS protected.
-*/
 function del(a,i){
 
  if(!req()) return;
 
- if(!Array.isArray(D[a])) return;
+ if(!Array.isArray(D[a]))
+  return;
 
  if(confirm('Delete කරන්නද?')){
 
-   D[a].splice(i,1);
+  D[a].splice(i,1);
+  save();
 
-   save();
  }
+
 }
 
-/*
-  Logout immediately removes admin mode.
-*/
 function logout(){
 
  ADMIN=false;
-
  closeM();
-
- render();
-
  go('home');
+
 }
 
 /* =========================
-   FILE READER
+   FILE
 ========================= */
 
 function fd(file,cb){
 
  if(!file){
-   cb('');
-   return;
+
+  cb('');
+  return;
+
  }
 
  const r=new FileReader();
 
  r.onload=()=>{
-   cb(r.result);
+  cb(r.result);
  };
 
  r.readAsDataURL(file);
+
 }
 
 /* =========================
@@ -615,17 +696,21 @@ function render(){
  document
  .querySelectorAll('#nav button')
  .forEach(x=>{
-   x.classList.toggle(
-     'a',
-     x.dataset.p===current
-   );
+
+  x.classList.toggle(
+   'a',
+   x.dataset.p===current
+  );
+
  });
 
  main.innerHTML=pages.map(p=>`
+
  <section
-   id="p-${p[0]}"
-   class="page ${p[0]===current?'a':''}">
+  id="p-${p[0]}"
+  class="page ${p[0]===current?'a':''}">
  </section>
+
  `).join('');
 
  home();
@@ -637,8 +722,17 @@ function render(){
  fees();
  calendar();
 
- list('reports','📊 මාසික වාර්තා',D.reports);
- list('accounts','🧾 මාසික ගිණුම් වාර්තා',D.accounts);
+ list(
+  'reports',
+  '📊 මාසික වාර්තා',
+  D.reports
+ );
+
+ list(
+  'accounts',
+  '🧾 මාසික ගිණුම් වාර්තා',
+  D.accounts
+ );
 
  memories();
  notices();
@@ -646,6 +740,7 @@ function render(){
  online();
  next();
  admin();
+
 }
 
 /* =========================
@@ -657,44 +752,50 @@ function home(){
  p('home').innerHTML=`
 
  <div class="card">
-   <h2>🏠 Strength of friendship</h2>
 
-   <p>
-    <b>ලිපිනය:</b>
-    ${e(D.address)}
-   </p>
+  <h2>🏠 Strength of friendship</h2>
 
-   ${
-    D.logo
-    ? `<img class="preview" src="${D.logo}">`
-    : ''
-   }
+  <p>
+   <b>ලිපිනය:</b>
+   ${e(D.address)}
+  </p>
+
+  ${
+   D.logo
+   ? `<img class="preview" src="${D.logo}">`
+   : ''
+  }
+
  </div>
 
  <div class="grid">
 
- <div class="card">
-  <h3>සාමාජිකයන්</h3>
-  <b>${D.members.filter(x=>x.name).length}/30</b>
+  <div class="card">
+   <h3>සාමාජිකයන්</h3>
+   <b>
+    ${D.members.filter(x=>x.name).length}/30
+   </b>
+  </div>
+
+  <div class="card">
+   <h3>ණය</h3>
+   <b>${D.loans.length}</b>
+  </div>
+
+  <div class="card">
+   <h3>මාසික වාර්තා</h3>
+   <b>${D.reports.length}</b>
+  </div>
+
  </div>
 
  <div class="card">
-  <h3>ණය</h3>
-  <b>${D.loans.length}</b>
- </div>
 
- <div class="card">
-  <h3>මාසික වාර්තා</h3>
-  <b>${D.reports.length}</b>
- </div>
-
- </div>
-
- <div class="card">
   <h2>📢 විශේෂ නිවේදන</h2>
 
   ${
    D.notices.map(x=>`
+
     <div class="card notice">
 
      ${
@@ -708,12 +809,14 @@ function home(){
      <p>${e(x.text)}</p>
 
     </div>
-   `).join('')
-   || 'නිවේදන නැත.'
+
+   `).join('') || 'නිවේදන නැත.'
   }
 
  </div>
+
  `;
+
 }
 
 /* =========================
@@ -752,49 +855,51 @@ function members(){
  ${
   D.members.map((x,i)=>`
 
-  <div class="card">
+   <div class="card">
 
-   <div class="photo">
+    <div class="photo">
 
-    ${
-     x.photo
-     ? `<img src="${x.photo}">`
-     : '📷'
-    }
+     ${
+      x.photo
+      ? `<img src="${x.photo}">`
+      : '📷'
+     }
+
+    </div>
+
+    <span class="tag">
+     අංකය ${e(x.no)}
+    </span>
+
+    <h3>
+     ${e(x.name)||'නම ඇතුළත් කර නැත'}
+    </h3>
+
+    <p>📞 ${e(x.phone)}</p>
+
+    ${A(`
+     <button
+      class="btn blue"
+      onclick="member(${i})">
+      Edit
+     </button>
+
+     <button
+      class="btn red"
+      onclick="del('members',${i})">
+      Delete
+     </button>
+    `)}
 
    </div>
 
-   <span class="tag">
-    අංකය ${x.no}
-   </span>
-
-   <h3>
-    ${e(x.name)||'නම ඇතුළත් කර නැත'}
-   </h3>
-
-   <p>📞 ${e(x.phone)}</p>
-
-   ${A(`
-    <button
-     class="btn blue"
-     onclick="member(${i})">
-     Edit
-    </button>
-
-    <button
-     class="btn red"
-     onclick="del('members',${i})">
-     Delete
-    </button>
-   `)}
-
-  </div>
-
-  `).join('')
+ `).join('')
  }
 
  </div>
+
  `;
+
 }
 
 function member(i){
@@ -802,14 +907,21 @@ function member(i){
  if(!req()) return;
 
  if(i<0){
-   i=D.members.findIndex(
-     x=>!x.name&&!x.phone
-   );
+
+  i=D.members.findIndex(
+   x=>!x.name&&!x.phone
+  );
+
  }
 
  if(i<0){
-   alert('සාමාජිකයන් 30 දෙනාම භාවිතා කර ඇත');
-   return;
+
+  alert(
+   'සාමාජිකයන් 30 දෙනාම භාවිතා කර ඇත'
+  );
+
+  return;
+
  }
 
  const x=D.members[i];
@@ -844,7 +956,9 @@ function member(i){
   onclick="sm(${i})">
   💾 Save
  </button>
+
  `);
+
 }
 
 function sm(i){
@@ -857,12 +971,16 @@ function sm(i){
  fd(
   mf.files[0],
   s=>{
-   if(s) D.members[i].photo=s;
+
+   if(s)
+    D.members[i].photo=s;
 
    save();
    closeM();
+
   }
  );
+
 }
 
 /* =========================
@@ -888,12 +1006,10 @@ function constitution(){
   ${
    D.pdf
    ? `<p>
-       <a
-        href="${D.pdf}"
-        target="_blank">
-        📄 PDF
-       </a>
-      </p>`
+      <a href="${D.pdf}" target="_blank">
+       📄 PDF
+      </a>
+     </p>`
    : ''
   }
 
@@ -906,7 +1022,9 @@ function constitution(){
   `)}
 
  </div>
+
  `;
+
 }
 
 /* =========================
@@ -940,7 +1058,9 @@ function bank(){
   `)}
 
  </div>
+
  `;
+
 }
 
 /* =========================
@@ -1017,8 +1137,11 @@ function loans(){
  }
 
  </table>
+
  </div>
+
  `;
+
 }
 
 function loan(i){
@@ -1066,6 +1189,7 @@ function loan(i){
  </button>
 
  `);
+
 }
 
 function sl(i){
@@ -1089,6 +1213,7 @@ function sl(i){
 
  save();
  closeM();
+
 }
 
 /* =========================
@@ -1148,7 +1273,9 @@ function payments(){
 
   `).join('')
  }
+
  `;
+
 }
 
 function payment(i){
@@ -1184,6 +1311,7 @@ function payment(i){
  </button>
 
  `);
+
 }
 
 function spay(i){
@@ -1204,6 +1332,7 @@ function spay(i){
 
  save();
  closeM();
+
 }
 
 /* =========================
@@ -1257,7 +1386,9 @@ function fees(){
  `)}
 
  </div>
+
  `;
+
 }
 
 /* =========================
@@ -1307,7 +1438,9 @@ function calendar(){
  }
 
  </div>
+
  `;
+
 }
 
 function cal(i){
@@ -1332,10 +1465,11 @@ function cal(i){
 
  <textarea
   id="cm"
-  placeholder="සාමාජිකයන් තුනක්">${e(x.members)}</textarea>
+  placeholder="සාමාජිකයන්">${e(x.members)}</textarea>
 
  <textarea
-  id="cx">${e(x.notes)}</textarea>
+  id="cx"
+  placeholder="විශේෂ සටහන්">${e(x.notes)}</textarea>
 
  <button
   class="btn blue"
@@ -1353,10 +1487,11 @@ function cal(i){
  </button>
 
  `);
+
 }
 
 /* =========================
-   REPORTS / ACCOUNTS
+   REPORTS
 ========================= */
 
 function list(id,title,arr){
@@ -1402,7 +1537,9 @@ function list(id,title,arr){
 
   `).join('')
  }
+
  `;
+
 }
 
 function addText(type){
@@ -1440,6 +1577,7 @@ function addText(type){
  </button>
 
  `);
+
 }
 
 /* =========================
@@ -1501,7 +1639,9 @@ function memories(){
  }
 
  </div>
+
  `;
+
 }
 
 /* =========================
@@ -1553,7 +1693,9 @@ function notices(){
 
   `).join('')
  }
+
  `;
+
 }
 
 function media(i,type){
@@ -1598,6 +1740,7 @@ function media(i,type){
  </button>
 
  `);
+
 }
 
 function sm2(i,t){
@@ -1615,15 +1758,18 @@ function sm2(i,t){
   mf.files[0],
   s=>{
 
-   if(s) x.photo=s;
+   if(s)
+    x.photo=s;
 
    if(i<0)
     D[t].push(x);
 
    save();
    closeM();
+
   }
  );
+
 }
 
 /* =========================
@@ -1671,7 +1817,9 @@ function attendance(){
 
   `).join('')
  }
+
  `;
+
 }
 
 function att(i){
@@ -1707,6 +1855,7 @@ function att(i){
  </button>
 
  `);
+
 }
 
 /* =========================
@@ -1753,11 +1902,11 @@ function online(){
   ${
    D.loanForm
    ? `<a
-       class="btn blue"
-       href="${e(D.loanForm)}"
-       target="_blank">
-       Loan Google Form
-      </a>`
+      class="btn blue"
+      href="${e(D.loanForm)}"
+      target="_blank">
+      Loan Google Form
+     </a>`
    : 'Form link එක නැත'
   }
 
@@ -1771,11 +1920,13 @@ function online(){
   `)}
 
  </div>
+
  `;
+
 }
 
 /* =========================
-   NEXT MEETING
+   NEXT
 ========================= */
 
 function next(){
@@ -1823,7 +1974,9 @@ function next(){
 
   `).join('')
  }
+
  `;
+
 }
 
 function nx(i){
@@ -1866,6 +2019,7 @@ function nx(i){
  </button>
 
  `);
+
 }
 
 /* =========================
@@ -1944,11 +2098,13 @@ function admin(){
   }
 
  </div>
+
  `;
+
 }
 
 /* =========================
-   ADMIN SETTINGS
+   SETTINGS
 ========================= */
 
 function settings(){
@@ -1963,18 +2119,15 @@ function settings(){
 
  <input
   id="ga"
-  value="${e(D.address)}"
-  placeholder="ලිපිනය">
+  value="${e(D.address)}">
 
  <label>බැංකු විස්තර</label>
 
- <textarea
-  id="gb">${e(D.bank)}</textarea>
+ <textarea id="gb">${e(D.bank)}</textarea>
 
  <label>ව්‍යවස්ථාව</label>
 
- <textarea
-  id="gc">${e(D.constitution)}</textarea>
+ <textarea id="gc">${e(D.constitution)}</textarea>
 
  <label>ව්‍යවස්ථා PDF</label>
 
@@ -1994,64 +2147,54 @@ function settings(){
 
  <input
   id="gm"
-  value="${e(D.memberFee)}"
-  placeholder="සාමාජික ගාස්තුව">
+  value="${e(D.memberFee)}">
 
  <label>මරණාධාර ගාස්තුව</label>
 
  <input
   id="gd"
-  value="${e(D.deathFee)}"
-  placeholder="මරණාධාර ගාස්තුව">
+  value="${e(D.deathFee)}">
 
  <label>ඇතුළත් වීමේ ගාස්තුව</label>
 
  <input
   id="gj"
-  value="${e(D.joinFee)}"
-  placeholder="ඇතුළත් වීමේ ගාස්තුව">
+  value="${e(D.joinFee)}">
 
  <label>සාමාජිකයෙකු අසනීප වූ විට</label>
 
- <textarea
-  id="gs">${e(D.sick)}</textarea>
+ <textarea id="gs">${e(D.sick)}</textarea>
 
  <label>බිරිඳ / දරුවන් අසනීප වූ විට</label>
 
- <textarea
-  id="gf">${e(D.familySick)}</textarea>
+ <textarea id="gf">${e(D.familySick)}</textarea>
 
  <label>විශේෂ සටහන්</label>
 
- <textarea
-  id="gx">${e(D.special)}</textarea>
+ <textarea id="gx">${e(D.special)}</textarea>
 
  <label>Online Payment විස්තර</label>
 
- <textarea
-  id="gpay">${e(D.paymentInfo)}</textarea>
+ <textarea id="gpay">${e(D.paymentInfo)}</textarea>
 
  <label>Payment Google Form</label>
 
  <input
   id="gform"
-  value="${e(D.paymentForm)}"
-  placeholder="Payment Google Form URL">
+  value="${e(D.paymentForm)}">
 
  <label>Loan Google Form</label>
 
  <input
   id="gloan"
-  value="${e(D.loanForm)}"
-  placeholder="Loan Google Form URL">
+  value="${e(D.loanForm)}">
 
  <label>Admin Password</label>
 
  <input
   id="gp"
   type="password"
-  value="${e(D.password)}"
-  placeholder="Admin Password">
+  value="${e(D.password)}">
 
  <button
   class="btn blue"
@@ -2060,6 +2203,7 @@ function settings(){
  </button>
 
  `);
+
 }
 
 function saveSettings(){
@@ -2092,14 +2236,11 @@ function saveSettings(){
 
   if(n===0){
 
-   localStorage.setItem(
-    KEY,
-    JSON.stringify(D)
-   );
-
+   save();
    closeM();
-   render();
+
   }
+
  }
 
  if(gpdf.files[0]){
@@ -2113,6 +2254,7 @@ function saveSettings(){
     done();
    }
   );
+
  }
 
  if(gqr.files[0]){
@@ -2126,18 +2268,16 @@ function saveSettings(){
     done();
    }
   );
+
  }
 
  if(n===0){
 
-  localStorage.setItem(
-   KEY,
-   JSON.stringify(D)
-  );
-
+  save();
   closeM();
-  render();
+
  }
+
 }
 
 /* =========================
@@ -2157,9 +2297,11 @@ function backup(){
   )
  );
 
- a.download='strength-of-friendship-backup.json';
+ a.download=
+  'strength-of-friendship-backup.json';
 
  a.click();
+
 }
 
 /* =========================
@@ -2171,6 +2313,7 @@ function p(id){
  return document.getElementById(
   'p-'+id
  );
+
 }
 
 /* =========================
@@ -2178,13 +2321,6 @@ function p(id){
 ========================= */
 
 render();
-
-window.addEventListener(
-  "firebaseReady",
-  function(){
-    loadFirebaseData();
-  }
-);
 
 </script>
 
