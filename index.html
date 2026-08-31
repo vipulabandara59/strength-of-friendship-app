@@ -167,6 +167,64 @@ footer{text-align:center;padding:25px;color:#777}
 </div>
 
 <script>
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDm_RUNJFb3i5pitv5L8w2Tq7gG7asuDoQ",
+  authDomain: "strength-of-friendship.firebaseapp.com",
+  projectId: "strength-of-friendship",
+  storageBucket: "strength-of-friendship.firebasestorage.app",
+  messagingSenderId: "334450796614",
+  appId: "1:334450796614:web:213ce757438caaa2bb4247",
+  measurementId: "G-X3FBGPQLSZ"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+console.log("Firebase connected");
+
+async function loadFirebaseMembers(){
+  try {
+    const snapshot = await getDocs(collection(db, "members"));
+
+    const members = [];
+
+    snapshot.forEach(doc => {
+      const x = doc.data();
+
+      members.push({
+        no: x.no || members.length + 1,
+        name: x.name || "",
+        phone: x.phone || "",
+        photo: x.photo || ""
+      });
+    });
+
+    console.log("Firebase members loaded:", members);
+
+    window.dispatchEvent(
+      new CustomEvent("firebaseMembersLoaded", {
+        detail: members
+      })
+    );
+
+  } catch(error) {
+    console.error("Firebase members error:", error);
+  }
+}
+
+loadFirebaseMembers();
+</script>
+
+<script>
 'use strict';
 
 /* =========================
@@ -235,6 +293,31 @@ const base={
 
 let D=loadData();
 
+window.addEventListener("firebaseMembersLoaded", function(e){
+
+  const firebaseMembers = e.detail;
+
+  if(Array.isArray(firebaseMembers) && firebaseMembers.length){
+
+    firebaseMembers.forEach((member, index) => {
+
+      if(index < D.members.length){
+
+        D.members[index] = {
+          no: member.no || index + 1,
+          name: member.name || '',
+          phone: member.phone || '',
+          photo: member.photo || ''
+        };
+
+      }
+
+    });
+
+    render();
+  }
+
+});
 /*
    VERY IMPORTANT:
    Every page refresh starts as View Only.
