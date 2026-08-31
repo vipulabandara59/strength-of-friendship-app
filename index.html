@@ -2319,8 +2319,11 @@ function p(id){
 /* =========================
    START
 ========================= */
-
 render();
+
+if (window.firebaseDB) {
+  loadFirebaseData();
+}
 
 </script>
 
