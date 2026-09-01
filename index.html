@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="si">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1565c0">
+<link rel="manifest" href="manifest.json">
 <title>Strength of friendship</title>
 
 <style>
@@ -11,193 +12,208 @@
 body{
  margin:0;
  font-family:Arial,"Noto Sans Sinhala",sans-serif;
- background:#f4f6fb;
- color:#202124
+ background:#f5f7fb;
+ color:#172033
 }
 header{
- background:linear-gradient(110deg,#e53935,#1565c0,#fbc02d);
- color:white;
+ padding:25px 12px;
  text-align:center;
- padding:25px 12px
+ color:white;
+ background:linear-gradient(120deg,#e53935,#1565c0,#fbc02d)
 }
 header h1{margin:0;font-size:30px}
-header p{margin:8px 0 0;font-size:17px}
-#status{
- margin-top:8px;
- font-size:13px
-}
+header p{margin:8px 0 0;font-size:16px}
+
 nav{
  display:flex;
- gap:8px;
+ gap:7px;
+ overflow-x:auto;
  padding:10px;
  background:white;
- overflow-x:auto;
  position:sticky;
  top:0;
  z-index:10;
- box-shadow:0 2px 8px #0002
+ box-shadow:0 2px 10px #0002
 }
 nav button{
  border:0;
- padding:11px 16px;
- border-radius:25px;
+ border-radius:22px;
+ padding:10px 15px;
  white-space:nowrap;
  background:#eee;
  cursor:pointer;
- font-size:15px
+ font:inherit
 }
 nav button.active{
  background:#1565c0;
  color:white
 }
-main{padding:18px}
+
+main{
+ max-width:1200px;
+ margin:auto;
+ padding:14px
+}
 .page{display:none}
 .page.active{display:block}
+
 .card{
  background:white;
- border-radius:18px;
- padding:18px;
- margin-bottom:16px;
+ border-radius:17px;
+ padding:17px;
+ margin:12px 0;
  box-shadow:0 3px 15px #0001
 }
+
 .grid{
  display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:16px
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:12px
 }
-h2,h3{margin-top:0}
+
 input,textarea,select{
  width:100%;
  padding:11px;
- margin:6px 0 12px;
- border:1px solid #ccc;
- border-radius:10px;
- font-size:15px
+ margin:5px 0 12px;
+ border:1px solid #ccd3df;
+ border-radius:9px;
+ font:inherit;
+ background:white
 }
-textarea{min-height:100px;resize:vertical}
-button.btn{
+textarea{min-height:95px}
+
+.btn{
  border:0;
- border-radius:10px;
+ border-radius:9px;
  padding:10px 15px;
- margin:4px;
+ margin:3px;
  cursor:pointer;
- color:white;
- font-size:14px
+ font:inherit
 }
-.blue{background:#1565c0}
-.red{background:#d32f2f}
-.green{background:#2e7d32}
-.yellow{background:#f9a825;color:#111!important}
-.gray{background:#666}
+.blue{background:#1565c0;color:white}
+.red{background:#d32f2f;color:white}
+.yellow{background:#fbc02d;color:#111}
+.green{background:#2e7d32;color:white}
+.gray{background:#777;color:white}
+
 .photo{
- width:100%;
- height:190px;
+ height:180px;
+ background:#edf1f7;
+ border-radius:12px;
  display:flex;
  align-items:center;
  justify-content:center;
- background:#eee;
- border-radius:14px;
  overflow:hidden;
- margin-bottom:10px
+ font-size:45px
 }
 .photo img{
  width:100%;
  height:100%;
  object-fit:cover
 }
+
 .preview{
- max-width:100%;
- max-height:300px;
+ max-width:300px;
+ max-height:250px;
  border-radius:12px;
- margin:8px 0
+ margin:5px
 }
+
 .gallery{
  display:grid;
- grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
- gap:10px
+ grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+ gap:8px;
+ margin-top:10px
 }
 .gallery img{
  width:100%;
- height:150px;
+ height:125px;
  object-fit:cover;
- border-radius:12px
+ border-radius:10px
 }
-.tag{
- display:inline-block;
- background:#e3f2fd;
- color:#1565c0;
- padding:5px 10px;
- border-radius:20px;
- font-size:13px
-}
-.notice{
- border-left:5px solid #e53935
-}
-.info{
- background:#fff8e1;
- padding:12px;
- border-radius:10px;
- margin:10px 0
-}
-.modal{
- display:none;
- position:fixed;
- inset:0;
- background:#0008;
- z-index:100;
- align-items:center;
- justify-content:center;
- padding:15px
-}
-.modal.show{display:flex}
-.modalbox{
- background:white;
- width:min(700px,100%);
- max-height:92vh;
- overflow:auto;
- border-radius:18px;
- padding:20px
-}
-.close{
- float:right;
- border:0;
- background:#eee;
- border-radius:50%;
- width:35px;
- height:35px;
- font-size:20px;
- cursor:pointer
-}
-.empty{
- text-align:center;
- padding:25px;
- color:#777
-}
-.qr{
- max-width:300px;
- max-height:300px;
- display:block;
- margin:10px auto;
- border-radius:12px
-}
+
+.wrap{overflow:auto}
 table{
  width:100%;
- border-collapse:collapse
+ border-collapse:collapse;
+ min-width:850px
 }
 th,td{
  padding:9px;
  border-bottom:1px solid #ddd;
  text-align:left
 }
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#0008;
+ z-index:50;
+ align-items:center;
+ justify-content:center;
+ padding:12px
+}
+.modal.show{display:flex}
+.box{
+ background:white;
+ border-radius:18px;
+ padding:20px;
+ width:min(800px,100%);
+ max-height:93vh;
+ overflow:auto
+}
+.close{
+ float:right;
+ border:0;
+ border-radius:50%;
+ width:35px;
+ height:35px;
+ cursor:pointer
+}
+
+.status{
+ padding:12px;
+ border-radius:10px;
+ margin:10px 0;
+ background:#fff3cd;
+ color:#856404
+}
+.status.ok{
+ background:#e8f5e9;
+ color:#1b5e20
+}
+.status.error{
+ background:#ffebee;
+ color:#b71c1c
+}
+
+.tag{
+ display:inline-block;
+ background:#e8f0fe;
+ color:#1565c0;
+ padding:4px 9px;
+ border-radius:20px;
+ font-size:12px
+}
+
+.small{
+ font-size:13px;
+ color:#666
+}
+
 footer{
  text-align:center;
  padding:30px;
  color:#777
 }
-@media(max-width:600px){
- header h1{font-size:25px}
- main{padding:10px}
- .card{padding:14px}
+
+a{text-decoration:none}
+
+.empty{
+ text-align:center;
+ padding:25px;
+ color:#777
 }
 </style>
 </head>
@@ -205,20 +221,23 @@ footer{
 <body>
 
 <header>
-<h1>Strength of friendship</h1>
-<p>සංගමයේ නිල තොරතුරු පද්ධතිය</p>
-<div id="status">Firebase සම්බන්ධ වෙමින් පවතී...</div>
+ <h1>Strength of friendship</h1>
+ <p>සංගමයේ නිල තොරතුරු පද්ධතිය</p>
 </header>
 
 <nav id="nav"></nav>
+
 <main id="main"></main>
 
-<footer>Strength of friendship</footer>
+<footer>
+ <b>Strength of friendship</b><br>
+ A 1/10 මැදගොඩ අමිතිරිගල
+</footer>
 
 <div id="modal" class="modal">
- <div class="modalbox">
+ <div class="box">
   <button class="close" onclick="closeModal()">×</button>
-  <div id="modalContent"></div>
+  <div id="modalBody"></div>
  </div>
 </div>
 
@@ -230,20 +249,22 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import {
  getFirestore,
  collection,
+ getDocs,
  doc,
  getDoc,
- getDocs,
  setDoc,
+ addDoc,
  deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-/* ==============================
+
+/* =====================================================
    FIREBASE
-============================== */
+===================================================== */
 
 const firebaseConfig={
- apiKey:"AIzaSyDm_RUNJFb3i5pitv5L8wT2Q7qG7asuDOQ",
+ apiKey:"AIzaSyDm_RUNJFb3i5pitv5L8w2Tq7gG7asuDoQ",
  authDomain:"strength-of-friendship.firebaseapp.com",
  projectId:"strength-of-friendship",
  storageBucket:"strength-of-friendship.firebasestorage.app",
@@ -255,320 +276,18 @@ const firebaseConfig={
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 
-window.db=db;
+window.FIREBASE_READY=true;
 
-let ADMIN=false;
-let current="home";
 
-let settings={
- address:"A 1/10 මැදගොඩ අමිතිරිගල",
- memberFee:"රු. 2,000",
- deathFee:"රු. 1,000",
- password:"1234",
- paymentInfo:"",
- paymentForm:"",
- loanForm:"",
- constitution:"",
- logo:"",
- next:""
-};
+/* =====================================================
+   BASIC DATA
+===================================================== */
 
-let members=[];
-let banks=[];
-let loans=[];
-let payments=[];
-let calendar=[];
-let reports=[];
-let accounts=[];
-let memories=[];
-let memoryPhotos=[];
-let notices=[];
-let attendance=[];
-
-/* ==============================
-   HELPERS
-============================== */
-
-const $=id=>document.getElementById(id);
-
-function esc(v){
- return String(v??"").replace(/[&<>"']/g,m=>({
- "&":"&amp;",
- "<":"&lt;",
- ">":"&gt;",
- '"':"&quot;",
- "'":"&#039;"
- }[m]));
-}
-
-function uid(){
- return Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-}
-
-function today(){
- return new Date().toISOString().slice(0,10);
-}
-
-function openModal(html){
- $("modalContent").innerHTML=html;
- $("modal").classList.add("show");
-}
-
-window.closeModal=()=>{
- $("modal").classList.remove("show");
-};
-
-function adminRequired(){
- if(ADMIN)return true;
- login();
- return false;
-}
-
-function setStatus(text){
- $("status").innerText=text;
-}
-
-/* ==============================
-   IMAGE COMPRESS
-============================== */
-
-function compressImage(file,max=900,quality=.65){
- return new Promise((resolve,reject)=>{
-  if(!file){
-   resolve("");
-   return;
-  }
-
-  const reader=new FileReader();
-
-  reader.onload=e=>{
-   const img=new Image();
-
-   img.onload=()=>{
-    let w=img.width;
-    let h=img.height;
-
-    if(w>max || h>max){
-     if(w>h){
-      h=Math.round(h*max/w);
-      w=max;
-     }else{
-      w=Math.round(w*max/h);
-      h=max;
-     }
-    }
-
-    const canvas=document.createElement("canvas");
-    canvas.width=w;
-    canvas.height=h;
-
-    const ctx=canvas.getContext("2d");
-    ctx.drawImage(img,0,0,w,h);
-
-    resolve(canvas.toDataURL("image/jpeg",quality));
-   };
-
-   img.onerror=reject;
-   img.src=e.target.result;
-  };
-
-  reader.onerror=reject;
-  reader.readAsDataURL(file);
- });
-}
-
-/* ==============================
-   FIRESTORE LOAD
-============================== */
-
-async function loadCollection(name){
- const snap=await getDocs(collection(db,name));
- return snap.docs.map(x=>({
-  id:x.id,
-  ...x.data()
- }));
-}
-
-async function loadAll(){
-
- try{
-
-  setStatus("Firebase දත්ත ලබාගනිමින් පවතී...");
-
-  const s=await getDoc(doc(db,"settings","main"));
-
-  if(s.exists()){
-   settings={...settings,...s.data()};
-  }
-
-  members=await loadCollection("members");
-  banks=await loadCollection("banks");
-  loans=await loadCollection("loans");
-  payments=await loadCollection("payments");
-  calendar=await loadCollection("calendar");
-  reports=await loadCollection("reports");
-  accounts=await loadCollection("accounts");
-  memories=await loadCollection("memories");
-  memoryPhotos=await loadCollection("memoryPhotos");
-  notices=await loadCollection("notices");
-  attendance=await loadCollection("attendance");
-
-  /*
-     පැරණි appData/main එකේ data තිබේ නම්
-     අවශ්‍ය මූලික දත්ත අලුත් system එකට
-     එකවර ගෙන එයි.
-  */
-
-  const old=await getDoc(doc(db,"appData","main"));
-
-  if(old.exists()){
-
-   const x=old.data();
-
-   if(!s.exists()){
-
-    settings={
-     ...settings,
-     address:x.address||settings.address,
-     memberFee:x.memberFee||settings.memberFee,
-     deathFee:x.deathFee||settings.deathFee,
-     password:x.password||settings.password,
-     paymentInfo:x.paymentInfo||"",
-     paymentForm:x.paymentForm||"",
-     loanForm:x.loanForm||"",
-     constitution:x.constitution||"",
-     logo:x.logo||"",
-     next:""
-    };
-
-    await setDoc(
-     doc(db,"settings","main"),
-     settings
-    );
-   }
-
-   if(!members.length && Array.isArray(x.members)){
-
-    for(const m of x.members){
-
-     if(m.name || m.phone){
-
-      await setDoc(
-       doc(db,"members",m.id||uid()),
-       {
-        no:m.no||"",
-        name:m.name||"",
-        phone:m.phone||"",
-        photo:m.photo||""
-       }
-      );
-     }
-    }
-
-    members=await loadCollection("members");
-   }
-
-  }
-
-  setStatus("🟢 Firebase සම්බන්ධයි");
-
-  render();
-
- }catch(err){
-
-  console.error(err);
-  setStatus("🔴 Firebase සම්බන්ධ කිරීමේ ගැටලුවක්");
-
-  alert(
-   "Firebase දත්ත ලබාගැනීමේදී ගැටලුවක් ඇතිවිය."
-  );
- }
-}
-
-/* ==============================
-   SETTINGS SAVE
-============================== */
-
-async function saveSettings(){
-
- if(!adminRequired())return;
-
- try{
-
-  await setDoc(
-   doc(db,"settings","main"),
-   settings
-  );
-
-  setStatus("🟢 Firebase වෙත සේව් විය");
-
- }catch(e){
-
-  console.error(e);
-
-  setStatus("🔴 Firebase Save ගැටලුව");
-
-  alert("Firebase එකට සේව් කිරීමේදී ගැටලුවක් පවතී.");
- }
-}
-
-/* ==============================
-   GENERIC SAVE / DELETE
-============================== */
-
-async function saveDoc(col,id,data){
-
- try{
-
-  await setDoc(
-   doc(db,col,id),
-   data
-  );
-
-  setStatus("🟢 Firebase වෙත සේව් විය");
-
-  return true;
-
- }catch(e){
-
-  console.error(e);
-
-  setStatus("🔴 Firebase Save ගැටලුව");
-
-  alert("Firebase එකට සේව් කිරීමේදී ගැටලුවක් පවතී.");
-
-  return false;
- }
-}
-
-async function deleteDocSafe(col,id){
-
- if(!adminRequired())return;
-
- if(!confirm("Delete කරන්නද?"))return;
-
- try{
-
-  await deleteDoc(
-   doc(db,col,id)
-  );
-
-  await refresh();
-
- }catch(e){
-
-  console.error(e);
-  alert("Delete කිරීමේදී ගැටලුවක් ඇතිවිය.");
- }
-}
-
-async function refresh(){
- await loadAll();
-}
-
-/* ==============================
-   NAVIGATION
-============================== */
+const months=[
+ "ජනවාරි","පෙබරවාරි","මාර්තු","අප්‍රේල්",
+ "මැයි","ජූනි","ජූලි","අගෝස්තු",
+ "සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්"
+];
 
 const pages=[
  ["home","මුල් පිටුව"],
@@ -589,1421 +308,2358 @@ const pages=[
  ["admin","Admin / Edit"]
 ];
 
-$("nav").innerHTML=pages.map(x=>`
-<button id="nav-${x[0]}"
-onclick="go('${x[0]}')">
+const defaultData={
+ address:"A 1/10 මැදගොඩ අමිතිරිගල",
+ logo:"",
+ constitution:"",
+ pdf:"",
+ memberFee:"රු. 2,000",
+ deathFee:"රු. 1,000",
+ joinFee:"",
+ sick:"",
+ familySick:"",
+ special:"",
+ paymentInfo:"",
+ paymentForm:"",
+ loanForm:"",
+ qr:"",
+ password:"1234",
+ calendar:Array.from({length:12},()=>({
+  title:"",
+  date:"",
+  members:"",
+  notes:""
+ }))
+};
+
+let D=JSON.parse(JSON.stringify(defaultData));
+let ADMIN=false;
+let current="home";
+let loading=true;
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,m=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#039;"
+ }[m]));
+}
+
+function nl(v){
+ return esc(v).replace(/\n/g,"<br>");
+}
+
+function page(id){
+ return document.getElementById("p-"+id);
+}
+
+function today(){
+ return new Date().toISOString().slice(0,10);
+}
+
+function openModal(html){
+ document.getElementById("modalBody").innerHTML=html;
+ document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+ document.getElementById("modal").classList.remove("show");
+}
+
+function requireAdmin(){
+ if(ADMIN)return true;
+ login();
+ return false;
+}
+
+function adminControls(html){
+ return ADMIN?html:"";
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+document.getElementById("nav").innerHTML=
+pages.map(x=>`
+<button data-page="${x[0]}" onclick="go('${x[0]}')">
 ${x[1]}
 </button>
 `).join("");
 
-window.go=function(page){
- current=page;
+window.go=function(id){
+ current=id;
  render();
  window.scrollTo(0,0);
 };
 
-/* ==============================
-   LOGIN
-============================== */
 
-window.login=function(){
+/* =====================================================
+   FIRESTORE HELPERS
+===================================================== */
 
- openModal(`
+async function getCollection(name){
 
- <h2>🔐 Admin Login</h2>
+ const snap=await getDocs(
+  collection(db,name)
+ );
 
- <p>Admin password එක ඇතුළත් කරන්න.</p>
+ return snap.docs.map(d=>({
+  id:d.id,
+  ...d.data()
+ }));
 
- <input
- id="adminPassword"
- type="password"
- placeholder="Admin Password">
+}
 
- <button
- class="btn blue"
- onclick="doLogin()">
- 🔓 Login
- </button>
+async function saveDocument(collectionName,id,data){
 
- `);
+ await setDoc(
+  doc(db,collectionName,id),
+  data,
+  {merge:true}
+ );
 
- setTimeout(()=>{
-  if($("adminPassword"))
-   $("adminPassword").focus();
- },100);
-};
+}
 
-window.doLogin=function(){
+async function deleteDocument(collectionName,id){
 
- const p=$("adminPassword").value;
+ await deleteDoc(
+  doc(db,collectionName,id)
+ );
 
- if(p===String(settings.password)){
+}
 
-  ADMIN=true;
-  closeModal();
+
+/* =====================================================
+   IMAGE COMPRESSION
+   IMPORTANT:
+   Images are compressed before Firestore saving.
+===================================================== */
+
+function imageToDataURL(file,maxSize=650,quality=.45){
+
+ return new Promise((resolve,reject)=>{
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+
+   const img=new Image();
+
+   img.onload=()=>{
+
+    let scale=Math.min(
+     1,
+     maxSize/Math.max(img.width,img.height)
+    );
+
+    const canvas=document.createElement("canvas");
+
+    canvas.width=Math.max(1,
+     Math.round(img.width*scale)
+    );
+
+    canvas.height=Math.max(1,
+     Math.round(img.height*scale)
+    );
+
+    const ctx=canvas.getContext("2d");
+
+    ctx.drawImage(
+     img,
+     0,
+     0,
+     canvas.width,
+     canvas.height
+    );
+
+    resolve(
+     canvas.toDataURL(
+      "image/jpeg",
+      quality
+     )
+    );
+
+   };
+
+   img.onerror=reject;
+   img.src=reader.result;
+
+  };
+
+  reader.onerror=reject;
+  reader.readAsDataURL(file);
+
+ });
+
+}
+
+
+/* =====================================================
+   LOAD SETTINGS
+   MAIN DOCUMENT = appData/main
+   Also checks old settings document.
+===================================================== */
+
+async function loadSettings(){
+
+ try{
+
+  const mainRef=doc(db,"appData","main");
+  const mainSnap=await getDoc(mainRef);
+
+  if(mainSnap.exists()){
+   D={
+    ...D,
+    ...mainSnap.data()
+   };
+  }else{
+
+   const oldRef=doc(db,"appData","settings");
+   const oldSnap=await getDoc(oldRef);
+
+   if(oldSnap.exists()){
+    D={
+     ...D,
+     ...oldSnap.data()
+    };
+   }
+
+  }
+
+  if(!Array.isArray(D.calendar) ||
+     D.calendar.length!==12){
+
+   D.calendar=
+    JSON.parse(
+     JSON.stringify(defaultData.calendar)
+    );
+
+  }
+
+  loading=false;
+
   render();
 
-  alert("✅ Admin Mode සක්‍රීයයි.");
+ }catch(error){
 
- }else{
+  console.error(error);
 
-  alert("❌ Password වැරදියි.");
+  loading=false;
+
+  render();
+
+  showStatus(
+   "❌ Firebase දත්ත ලබාගැනීමේදී ගැටලුවක් ඇත.",
+   false
+  );
+
  }
-};
 
-window.logout=function(){
+}
 
- ADMIN=false;
- current="home";
- render();
 
-};
+/* =====================================================
+   SAVE MAIN SETTINGS
+===================================================== */
 
-/* ==============================
+async function saveMainSettings(){
+
+ if(!ADMIN)return;
+
+ try{
+
+  D.address=document.getElementById("setAddress").value;
+  D.constitution=document.getElementById("setConstitution").value;
+
+  D.memberFee=document.getElementById("setMemberFee").value;
+  D.deathFee=document.getElementById("setDeathFee").value;
+  D.joinFee=document.getElementById("setJoinFee").value;
+
+  D.sick=document.getElementById("setSick").value;
+  D.familySick=document.getElementById("setFamilySick").value;
+  D.special=document.getElementById("setSpecial").value;
+
+  D.paymentInfo=document.getElementById("setPaymentInfo").value;
+  D.paymentForm=document.getElementById("setPaymentForm").value;
+  D.loanForm=document.getElementById("setLoanForm").value;
+
+  D.password=
+   document.getElementById("setPassword").value || "1234";
+
+  const logoFile=
+   document.getElementById("setLogo").files[0];
+
+  if(logoFile){
+   D.logo=
+    await imageToDataURL(
+     logoFile,
+     500,
+     .4
+    );
+  }
+
+  const qrFile=
+   document.getElementById("setQR").files[0];
+
+  if(qrFile){
+   D.qr=
+    await imageToDataURL(
+     qrFile,
+     600,
+     .45
+    );
+  }
+
+  /*
+    IMPORTANT:
+    Save to appData/main
+  */
+
+  await saveDocument(
+   "appData",
+   "main",
+   D
+  );
+
+  closeModal();
+
+  alert("✅ Firebase වෙත සාර්ථකව Save විය.");
+
+  render();
+
+ }catch(error){
+
+  console.error(error);
+
+  alert(
+   "❌ Firebase Save Error\n\n"+
+   error.message
+  );
+
+ }
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+ document
+ .querySelectorAll("#nav button")
+ .forEach(btn=>{
+  btn.classList.toggle(
+   "active",
+   btn.dataset.page===current
+  );
+ });
+
+ document.getElementById("main").innerHTML=
+ pages.map(x=>`
+  <section id="p-${x[0]}"
+   class="page ${x[0]===current?"active":""}">
+  </section>
+ `).join("");
+
+ if(loading){
+
+  page("home").innerHTML=`
+   <div class="card">
+    <h2>⏳ Firebase සමඟ සම්බන්ධ වෙමින් පවතී...</h2>
+    <p>කරුණාකර මොහොතක් රැඳී සිටින්න.</p>
+   </div>
+  `;
+
+  return;
+ }
+
+ home();
+members();
+constitution();
+bank();
+loans();
+payments();
+fees();
+calendar();
+reports();
+accounts();
+memories();
+notices();
+attendance();
+online();
+next();
+admin();
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function showStatus(text,ok=true){
+
+ const el=document.getElementById("firebaseStatus");
+
+ if(el){
+
+  el.className=
+   "status "+(ok?"ok":"error");
+
+  el.textContent=text;
+
+ }
+
+}
+
+
+/* =====================================================
    HOME
-============================== */
+===================================================== */
 
-function home(){
+async function home(){
 
- $("p-home").innerHTML=`
+ page("home").innerHTML=`
 
  <div class="card">
 
- <h2>🏠 Strength of friendship</h2>
+  <h2>🏠 Strength of friendship</h2>
 
- <p>
- <b>ලිපිනය:</b>
- ${esc(settings.address)}
- </p>
+  <p>
+   <b>ලිපිනය:</b>
+   ${esc(D.address)}
+  </p>
 
- ${
- settings.logo
- ? `<img class="preview" src="${settings.logo}">`
- : ""
- }
+  ${D.logo?
+   `<img class="preview" src="${D.logo}">`
+   :""
+  }
 
  </div>
 
  <div class="grid">
 
- <div class="card">
- <h3>👥 සාමාජිකයන්</h3>
- <h2>${members.length}</h2>
+  <div class="card">
+   <h3>👥 සාමාජිකයන්</h3>
+   <b id="countMembers">...</b>
+  </div>
+
+  <div class="card">
+   <h3>💰 ණය</h3>
+   <b id="countLoans">...</b>
+  </div>
+
+  <div class="card">
+   <h3>📊 වාර්තා</h3>
+   <b id="countReports">...</b>
+  </div>
+
+ </div>
+
+ <div id="firebaseStatus"
+ class="status">
+ Firebase පරීක්ෂා කරමින්...
  </div>
 
  <div class="card">
- <h3>💰 ණය</h3>
- <h2>${loans.length}</h2>
+  <h2>📢 විශේෂ නිවේදන</h2>
+  <div id="homeNotices">Loading...</div>
  </div>
 
- <div class="card">
- <h3>📄 වාර්තා</h3>
- <h2>${reports.length}</h2>
- </div>
-
- <div class="card">
- <h3>📸 මතකයන්</h3>
- <h2>${memories.length}</h2>
- </div>
-
- </div>
-
- <div class="card">
-
- <h2>📢 විශේෂ නිවේදන</h2>
-
- ${
- notices.length
- ? notices.map(n=>`
-
- <div class="card notice">
-
- ${
- n.photo
- ? `<img class="preview" src="${n.photo}">`
- : ""
- }
-
- <h3>${esc(n.title)}</h3>
- <p>${esc(n.text)}</p>
-
- </div>
-
- `).join("")
- : `<div class="empty">නිවේදන නැත.</div>`
- }
-
- </div>
  `;
+
+ try{
+
+  const [
+   membersList,
+   loansList,
+   reportsList,
+   noticesList
+  ]=await Promise.all([
+   getCollection("members"),
+   getCollection("loans"),
+   getCollection("reports"),
+   getCollection("notices")
+  ]);
+
+  document.getElementById("countMembers")
+   .textContent=
+   membersList.filter(x=>x.name).length+
+   "/30";
+
+  document.getElementById("countLoans")
+   .textContent=loansList.length;
+
+  document.getElementById("countReports")
+   .textContent=reportsList.length;
+
+  document.getElementById("homeNotices")
+   .innerHTML=
+   noticesList.length?
+
+   noticesList.map(x=>`
+    <div class="card">
+     ${x.photo?
+      `<img class="preview" src="${x.photo}">`
+      :""
+     }
+     <h3>${esc(x.title)}</h3>
+     <p>${nl(x.text)}</p>
+    </div>
+   `).join("")
+
+   :
+
+   `<div class="empty">නිවේදන නැත.</div>`;
+
+  showStatus(
+   "🟢 Firebase සම්බන්ධ වී ඇත.",
+   true
+  );
+
+ }catch(error){
+
+  console.error(error);
+
+  showStatus(
+   "🔴 Firebase දත්ත ලබාගැනීමේදී ගැටලුවක්.",
+   false
+  );
+
+ }
+
 }
 
-/* ==============================
+
+/* =====================================================
    MEMBERS
-============================== */
+===================================================== */
 
-function membersPage(){
+async function members(){
 
- $("p-members").innerHTML=`
-
- <div class="card">
-
- <h2>👥 සාමාජිකයන්</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editMember('')">
- + සාමාජිකයෙක් Add කරන්න
- </button>`
- : ""
- }
-
- </div>
-
- <div class="grid">
-
- ${
- members.length
- ? members.map(m=>`
+ page("members").innerHTML=`
 
  <div class="card">
 
- <div class="photo">
+  <h2>👥 සාමාජිකයන් 30</h2>
 
- ${
- m.photo
- ? `<img src="${m.photo}">`
- : "📷"
- }
-
- </div>
-
- <span class="tag">
- අංකය ${esc(m.no)}
- </span>
-
- <h3>${esc(m.name)}</h3>
-
- <p>📞 ${esc(m.phone)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editMember('${m.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('members','${m.id}')">
- Delete
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="memberEdit(null)">
+   + සාමාජිකයෙකු Add කරන්න
+   </button>
+  `)}
 
  </div>
 
- `).join("")
- : `<div class="empty">සාමාජිකයන් ඇතුළත් කර නැත.</div>`
- }
+ <div id="memberGrid"
+ class="grid">
+
+  <div class="card">
+   Loading...
+  </div>
 
  </div>
+
  `;
+
+ try{
+
+  const list=
+   await getCollection("members");
+
+  list.sort(
+   (a,b)=>
+   (Number(a.no)||999)-
+   (Number(b.no)||999)
+  );
+
+  document.getElementById("memberGrid")
+  .innerHTML=
+
+  Array.from({length:30},(_,i)=>{
+
+   const x=
+    list.find(
+     z=>Number(z.no)===i+1
+    ) ||
+    {
+     id:String(i+1),
+     no:i+1,
+     name:"",
+     phone:"",
+     photo:""
+    };
+
+   return `
+
+   <div class="card">
+
+    <div class="photo">
+     ${x.photo?
+      `<img src="${x.photo}">`
+      :"📷"
+     }
+    </div>
+
+    <span class="tag">
+     සාමාජික අංකය ${esc(x.no)}
+    </span>
+
+    <h3>
+     ${esc(x.name)||
+      "නම ඇතුළත් කර නැත"}
+    </h3>
+
+    <p>
+     📞 ${esc(x.phone)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='memberEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+    `)}
+
+   </div>
+
+   `;
+
+  }).join("");
+
+ }catch(error){
+
+  document.getElementById("memberGrid")
+   .innerHTML=
+   `<div class="card">
+    ❌ Firebase members load error
+   </div>`;
+
+ }
 
 }
 
-window.editMember=function(id){
 
- if(!adminRequired())return;
+window.memberEdit=function(x){
 
- const m=members.find(x=>x.id===id)||{
-  id:uid(),
-  no:members.length+1,
-  name:"",
-  phone:"",
-  photo:""
- };
+ if(!requireAdmin())return;
+
+ if(!x){
+
+  const used=
+   prompt(
+    "සාමාජික අංකය ඇතුළත් කරන්න (1-30)"
+   );
+
+  if(!used)return;
+
+  const no=
+   Number(used);
+
+  if(no<1||no>30){
+
+   alert("සාමාජික අංකය 1 - 30 අතර විය යුතුයි.");
+   return;
+
+  }
+
+  x={
+   id:String(no),
+   no:no,
+   name:"",
+   phone:"",
+   photo:""
+  };
+
+ }
 
  openModal(`
 
  <h2>👤 සාමාජික විස්තර</h2>
 
- <input id="mno"
- value="${esc(m.no)}"
- placeholder="සාමාජික අංකය">
+ <label>සාමාජික අංකය</label>
+ <input id="memNo"
+ value="${esc(x.no)}"
+ readonly>
 
- <input id="mname"
- value="${esc(m.name)}"
- placeholder="නම">
+ <label>නම</label>
+ <input id="memName"
+ value="${esc(x.name)}">
 
- <input id="mphone"
- value="${esc(m.phone)}"
- placeholder="දුරකථන අංකය">
+ <label>දුරකථන අංකය</label>
+ <input id="memPhone"
+ value="${esc(x.phone)}">
 
- <input id="mphoto"
+ <label>ඡායාරූපය</label>
+ <input id="memPhoto"
  type="file"
  accept="image/*">
 
- ${
- m.photo
- ? `<img class="preview" src="${m.photo}">`
- : ""
+ ${x.photo?
+  `<img class="preview"
+   src="${x.photo}">`
+  :""
  }
 
+ <br>
+
  <button class="btn blue"
- onclick="saveMember('${m.id}')">
+ onclick='saveMember(${JSON.stringify(x)})'>
  💾 Save
  </button>
 
  `);
+
 };
 
-window.saveMember=async function(id){
 
- if(!ADMIN)return;
+window.saveMember=async function(x){
 
- const old=members.find(x=>x.id===id)||{
-  id:id,
-  photo:""
- };
+ try{
 
- let photo=old.photo||"";
+  let photo=x.photo||"";
 
- if($("mphoto").files[0]){
-  photo=await compressImage(
-   $("mphoto").files[0]
+  const file=
+   document.getElementById("memPhoto").files[0];
+
+  if(file){
+
+   photo=
+    await imageToDataURL(
+     file,
+     550,
+     .4
+    );
+
+  }
+
+  await saveDocument(
+   "members",
+   x.id||String(x.no),
+   {
+    no:Number(x.no),
+    name:document.getElementById("memName").value.trim(),
+    phone:document.getElementById("memPhone").value.trim(),
+    photo:photo
+   }
   );
- }
-
- const data={
-  no:$("mno").value.trim(),
-  name:$("mname").value.trim(),
-  phone:$("mphone").value.trim(),
-  photo:photo
- };
-
- if(await saveDoc("members",id,data)){
 
   closeModal();
-  await refresh();
+
+  alert("✅ සාමාජික විස්තර Save විය.");
+
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ Firebase Save Error\n\n"+
+   error.message
+  );
+
  }
+
 };
 
-/* ==============================
+
+/* =====================================================
    CONSTITUTION
-============================== */
+===================================================== */
 
-function constitutionPage(){
+function constitution(){
 
- $("p-constitution").innerHTML=`
+ page("constitution").innerHTML=`
 
  <div class="card">
 
- <h2>📜 ව්‍යවස්ථාව</h2>
+  <h2>📜 ව්‍යවස්ථාව</h2>
 
- ${
- settings.constitution
- ? `
+  <div>
+   ${nl(D.constitution)||
+    "ව්‍යවස්ථා විස්තර ඇතුළත් කර නැත."}
+  </div>
 
- <iframe
- src="${settings.constitution}"
- style="width:100%;height:600px;border:0">
- </iframe>
+  ${D.pdf?
+   `<p>
+    <a href="${D.pdf}"
+    target="_blank">
+    📄 PDF බලන්න
+    </a>
+   </p>`
+   :""
+  }
 
- `
- : `<div class="empty">ව්‍යවස්ථාව ඇතුළත් කර නැත.</div>`
- }
-
- ${
- ADMIN
- ? `
-
- <p>PDF එකක් upload කිරීම සඳහා:</p>
-
- <input
- id="constitutionFile"
- type="file"
- accept="application/pdf">
-
- <button
- class="btn blue"
- onclick="saveConstitution()">
- 💾 Save PDF
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="settings()">
+   ⚙️ Edit
+   </button>
+  `)}
 
  </div>
+
  `;
+
 }
 
-window.saveConstitution=async function(){
 
- if(!adminRequired())return;
+/* =====================================================
+   ADMIN SETTINGS
+===================================================== */
 
- const file=$("constitutionFile").files[0];
+window.settings=function(){
 
- if(!file)return;
+ if(!requireAdmin())return;
 
- const reader=new FileReader();
+ openModal(`
 
- reader.onload=async()=>{
-  settings.constitution=reader.result;
-  await saveSettings();
+ <h2>⚙️ Admin Settings</h2>
+
+ <label>ලිපිනය</label>
+ <input id="setAddress"
+ value="${esc(D.address)}">
+
+ <label>ව්‍යවස්ථාව</label>
+ <textarea id="setConstitution">${esc(D.constitution)}</textarea>
+
+ <label>Logo</label>
+ <input id="setLogo"
+ type="file"
+ accept="image/*">
+
+ <label>සාමාජික ගාස්තුව</label>
+ <input id="setMemberFee"
+ value="${esc(D.memberFee)}">
+
+ <label>මරණාධාර ගාස්තුව</label>
+ <input id="setDeathFee"
+ value="${esc(D.deathFee)}">
+
+ <label>ඇතුළත් වීමේ ගාස්තුව</label>
+ <input id="setJoinFee"
+ value="${esc(D.joinFee)}">
+
+ <label>සාමාජිකයෙකු අසනීප වූ විට</label>
+ <textarea id="setSick">${esc(D.sick)}</textarea>
+
+ <label>බිරිඳ / දරුවන් අසනීප වූ විට</label>
+ <textarea id="setFamilySick">${esc(D.familySick)}</textarea>
+
+ <label>විශේෂ සටහන්</label>
+ <textarea id="setSpecial">${esc(D.special)}</textarea>
+
+ <hr>
+
+ <h3>🌐 Online</h3>
+
+ <label>Online Payment විස්තර</label>
+ <textarea id="setPaymentInfo">${esc(D.paymentInfo)}</textarea>
+
+ <label>QR Code</label>
+ <input id="setQR"
+ type="file"
+ accept="image/*">
+
+ ${D.qr?
+  `<img class="preview"
+   src="${D.qr}">`
+  :""
+ }
+
+ <label>Payment Google Form</label>
+ <input id="setPaymentForm"
+ value="${esc(D.paymentForm)}">
+
+ <label>Loan Google Form</label>
+ <input id="setLoanForm"
+ value="${esc(D.loanForm)}">
+
+ <hr>
+
+ <label>Admin Password</label>
+ <input id="setPassword"
+ type="password"
+ value="${esc(D.password)}">
+
+ <br>
+
+ <button class="btn blue"
+ onclick="saveMainSettings()">
+ 💾 සියල්ල Save කරන්න
+ </button>
+
+ `);
+
+};
+
+
+/* =====================================================
+   BANK
+===================================================== */
+
+async function bank(){
+
+ page("bank").innerHTML=`
+
+ <div class="card">
+
+  <h2>🏦 බැංකු විස්තර</h2>
+
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="bankEdit(null)">
+   + නව බැංකු විස්තර
+   </button>
+  `)}
+
+ </div>
+
+ <div id="bankList">
+  Loading...
+ </div>
+
+ `;
+
+ try{
+
+  const list=
+   await getCollection("banks");
+
+  document.getElementById("bankList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    <h3>${esc(x.name)}</h3>
+
+    <p>${nl(x.details)}</p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='bankEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('banks','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   බැංකු විස්තර නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("bankList")
+   .innerHTML=
+   `<div class="card">
+    ❌ Bank load error
+   </div>`;
+
+ }
+
+}
+
+
+window.bankEdit=function(x){
+
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
+  name:"",
+  details:""
+ };
+
+ openModal(`
+
+ <h2>🏦 බැංකු විස්තර</h2>
+
+ <label>බැංකුව</label>
+ <input id="bankName"
+ value="${esc(x.name)}">
+
+ <label>ගිණුම් / ශාඛා / අනෙකුත් විස්තර</label>
+ <textarea id="bankDetails">${esc(x.details)}</textarea>
+
+ <button class="btn blue"
+ onclick='saveBank(${JSON.stringify(x)})'>
+ 💾 Save
+ </button>
+
+ `);
+
+};
+
+
+window.saveBank=async function(x){
+
+ try{
+
+  const data={
+   name:document.getElementById("bankName").value.trim(),
+   details:document.getElementById("bankDetails").value.trim()
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "banks",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"banks"),
+    data
+   );
+
+  }
+
   closeModal();
   render();
- };
 
- reader.readAsDataURL(file);
+ }catch(error){
+
+  alert("❌ "+error.message);
+
+ }
+
 };
 
-/* ==============================
-   BANK
-============================== */
 
-function bankPage(){
-
- $("p-bank").innerHTML=`
-
- <div class="card">
-
- <h2>🏦 බැංකු විස්තර</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editBank('')">
- + නව බැංකු විස්තර
- </button>`
- : ""
- }
-
- </div>
-
- <div class="grid">
-
- ${
- banks.length
- ? banks.map(b=>`
-
- <div class="card">
-
- <h3>${esc(b.name)}</h3>
-
- <p><b>ගිණුම් නම:</b> ${esc(b.accountName)}</p>
-
- <p><b>ගිණුම් අංකය:</b> ${esc(b.accountNo)}</p>
-
- <p><b>ශාඛාව:</b> ${esc(b.branch)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editBank('${b.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('banks','${b.id}')">
- Delete
- </button>
-
- `
- : ""
- }
-
- </div>
-
- `).join("")
- : `<div class="empty">බැංකු විස්තර නැත.</div>`
- }
-
- </div>
- `;
-}
-
-window.editBank=function(id){
-
- if(!adminRequired())return;
-
- const b=banks.find(x=>x.id===id)||{
-  id:uid(),
-  name:"",
-  accountName:"",
-  accountNo:"",
-  branch:""
- };
-
- openModal(`
-
- <h2>🏦 බැංකු විස්තර</h2>
-
- <input id="bankName"
- value="${esc(b.name)}"
- placeholder="බැංකුව">
-
- <input id="accountName"
- value="${esc(b.accountName)}"
- placeholder="ගිණුම් නම">
-
- <input id="accountNo"
- value="${esc(b.accountNo)}"
- placeholder="ගිණුම් අංකය">
-
- <input id="branch"
- value="${esc(b.branch)}"
- placeholder="ශාඛාව">
-
- <button class="btn blue"
- onclick="saveBank('${b.id}')">
- 💾 Save
- </button>
-
- `);
-};
-
-window.saveBank=async function(id){
-
- const data={
-  name:$("bankName").value,
-  accountName:$("accountName").value,
-  accountNo:$("accountNo").value,
-  branch:$("branch").value
- };
-
- if(await saveDoc("banks",id,data)){
-  closeModal();
-  await refresh();
- }
-};
-
-/* ==============================
+/* =====================================================
    LOANS
-============================== */
+===================================================== */
 
-function loansPage(){
+async function loans(){
 
- $("p-loans").innerHTML=`
-
- <div class="card">
-
- <h2>💰 ණය</h2>
-
- <p>
- ණය තොරතුරු Firebase Firestore හරහා
- සියලුම දුරකථනවල එකම ලෙස පෙන්වයි.
- </p>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editLoan('')">
- + ණයක් Add කරන්න
- </button>`
- : ""
- }
-
- </div>
-
- <div class="grid">
-
- ${
- loans.length
- ? loans.map(l=>`
+ page("loans").innerHTML=`
 
  <div class="card">
 
- <h3>${esc(l.memberName)}</h3>
+  <h2>💰 ණය</h2>
 
- <p>📅 ${esc(l.date)}</p>
- <p>💵 මුදල: ${esc(l.amount)}</p>
- <p>${esc(l.description)}</p>
+  <p>
+   ණය තොරතුරු Firestore
+   <b>loans</b> collection එකේ Save වේ.
+  </p>
 
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editLoan('${l.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('loans','${l.id}')">
- Delete
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="loanEdit(null)">
+   + නව ණය වාර්තාව
+   </button>
+  `)}
 
  </div>
 
- `).join("")
- : `<div class="empty">ණය තොරතුරු නැත.</div>`
- }
+ <div class="wrap">
+
+ <table>
+
+ <thead>
+ <tr>
+  <th>දිනය</th>
+  <th>නම</th>
+  <th>අංකය</th>
+  <th>ණය මුදල</th>
+  <th>ගෙවූ</th>
+  <th>ඉතිරි</th>
+  <th>අවසාන දිනය</th>
+  <th>සටහන්</th>
+  <th></th>
+ </tr>
+ </thead>
+
+ <tbody id="loanBody">
+  <tr>
+   <td colspan="9">Loading...</td>
+  </tr>
+ </tbody>
+
+ </table>
 
  </div>
+
  `;
+
+ try{
+
+  const list=
+   await getCollection("loans");
+
+  document.getElementById("loanBody")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <tr>
+
+    <td>${esc(x.date)}</td>
+    <td>${esc(x.name)}</td>
+    <td>${esc(x.no)}</td>
+    <td>${esc(x.amount)}</td>
+    <td>${esc(x.paid)}</td>
+    <td>${esc(x.balance)}</td>
+    <td>${esc(x.last)}</td>
+    <td>${esc(x.note)}</td>
+
+    <td>
+
+     ${adminControls(`
+      <button class="btn blue"
+      onclick='loanEdit(${JSON.stringify(x)})'>
+      Edit
+      </button>
+
+      <button class="btn red"
+      onclick="removeItem('loans','${x.id}')">
+      Delete
+      </button>
+     `)}
+
+    </td>
+
+   </tr>
+
+  `).join("")
+
+  :
+
+  `<tr>
+   <td colspan="9">
+    ණය වාර්තා නැත.
+   </td>
+  </tr>`;
+
+ }catch(error){
+
+  document.getElementById("loanBody")
+   .innerHTML=
+   `<tr>
+    <td colspan="9">
+     ❌ Loan load error
+    </td>
+   </tr>`;
+
+ }
+
 }
 
-window.editLoan=function(id){
 
- if(!adminRequired())return;
+window.loanEdit=function(x){
 
- const l=loans.find(x=>x.id===id)||{
-  id:uid(),
-  memberName:"",
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
   date:today(),
+  name:"",
+  no:"",
   amount:"",
-  description:""
+  paid:"",
+  balance:"",
+  last:"",
+  note:""
  };
 
  openModal(`
 
- <h2>💰 ණය</h2>
+ <h2>💰 ණය වාර්තාව</h2>
 
- <input id="loanMember"
- value="${esc(l.memberName)}"
- placeholder="සාමාජිකයා">
-
+ <label>දිනය</label>
  <input id="loanDate"
  type="date"
- value="${esc(l.date)}">
+ value="${esc(x.date)}">
 
+ <label>නම</label>
+ <input id="loanName"
+ value="${esc(x.name)}">
+
+ <label>සාමාජික අංකය</label>
+ <input id="loanNo"
+ value="${esc(x.no)}">
+
+ <label>ණය මුදල</label>
  <input id="loanAmount"
- value="${esc(l.amount)}"
- placeholder="ණය මුදල">
+ value="${esc(x.amount)}">
 
- <textarea id="loanDescription"
- placeholder="විස්තර">${esc(l.description)}</textarea>
+ <label>ගෙවූ මුදල</label>
+ <input id="loanPaid"
+ value="${esc(x.paid)}">
+
+ <label>ඉතිරි මුදල</label>
+ <input id="loanBalance"
+ value="${esc(x.balance)}">
+
+ <label>අවසාන දිනය</label>
+ <input id="loanLast"
+ type="date"
+ value="${esc(x.last)}">
+
+ <label>සටහන්</label>
+ <textarea id="loanNote">${esc(x.note)}</textarea>
 
  <button class="btn blue"
- onclick="saveLoan('${l.id}')">
+ onclick='saveLoan(${JSON.stringify(x)})'>
  💾 Save
  </button>
 
  `);
+
 };
 
-window.saveLoan=async function(id){
 
- const data={
-  memberName:$("loanMember").value,
-  date:$("loanDate").value,
-  amount:$("loanAmount").value,
-  description:$("loanDescription").value
- };
+window.saveLoan=async function(x){
 
- if(await saveDoc("loans",id,data)){
+ try{
+
+  const data={
+   date:document.getElementById("loanDate").value,
+   name:document.getElementById("loanName").value.trim(),
+   no:document.getElementById("loanNo").value.trim(),
+   amount:document.getElementById("loanAmount").value.trim(),
+   paid:document.getElementById("loanPaid").value.trim(),
+   balance:document.getElementById("loanBalance").value.trim(),
+   last:document.getElementById("loanLast").value,
+   note:document.getElementById("loanNote").value.trim()
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "loans",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"loans"),
+    data
+   );
+
+  }
+
   closeModal();
-  await refresh();
+  alert("✅ ණය වාර්තාව Save විය.");
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ ණය Save කිරීමේදී ගැටලුවක්.\n\n"+
+   error.message
+  );
+
  }
+
 };
 
-/* ==============================
+
+/* =====================================================
    PAYMENTS
-============================== */
+===================================================== */
 
-function paymentsPage(){
+async function payments(){
 
- $("p-payments").innerHTML=`
+ page("payments").innerHTML=`
 
  <div class="card">
 
- <h2>💳 ගෙවීම්</h2>
+  <h2>💳 ගෙවීම්</h2>
 
- <p>${esc(settings.paymentInfo)}</p>
+  <p>
+   සාමාජික ගාස්තුව:
+   ${esc(D.memberFee)}
+   <br>
+   මරණාධාර:
+   ${esc(D.deathFee)}
+  </p>
 
- ${
- settings.paymentForm
- ? `<a href="${settings.paymentForm}"
- target="_blank">
- <button class="btn blue">
- 💳 Payment Google Form
- </button>
- </a>`
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="paymentEdit(null)">
+   + ගෙවීම Add කරන්න
+   </button>
+  `)}
 
  </div>
 
- ${
- ADMIN
- ? `<div class="card">
- <h3>Admin</h3>
- <input id="paymentInfo"
- value="${esc(settings.paymentInfo)}"
- placeholder="ගෙවීම් විස්තර">
-
- <input id="paymentForm"
- value="${esc(settings.paymentForm)}"
- placeholder="Payment Google Form Link">
-
- <button class="btn blue"
- onclick="savePaymentSettings()">
- Save
- </button>
- </div>`
- : ""
- }
+ <div id="paymentList">
+  Loading...
+ </div>
 
  `;
+
+ try{
+
+  const list=
+   await getCollection("payments");
+
+  document.getElementById("paymentList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    <b>${esc(x.name)}</b>
+
+    <p>
+     📅 ${esc(x.date)}
+     <br>
+     වර්ගය: ${esc(x.type)}
+     <br>
+     මුදල: රු. ${esc(x.amount)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn red"
+     onclick="removeItem('payments','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   ගෙවීම් නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("paymentList")
+   .innerHTML="❌ Payment load error";
+
+ }
+
 }
 
-window.savePaymentSettings=async function(){
 
- settings.paymentInfo=$("paymentInfo").value;
- settings.paymentForm=$("paymentForm").value;
+window.paymentEdit=function(x){
 
- await saveSettings();
- render();
-};
+ if(!requireAdmin())return;
 
-/* ==============================
-   FEES
-============================== */
-
-function feesPage(){
-
- $("p-fees").innerHTML=`
-
- <div class="card">
-
- <h2>💵 ගාස්තු</h2>
-
- <p>මාසික සාමාජික ගාස්තුව:
- <b>${esc(settings.memberFee)}</b></p>
-
- <p>මරණාධාර ගාස්තුව:
- <b>${esc(settings.deathFee)}</b></p>
-
- </div>
-
- ${
- ADMIN
- ? `<div class="card">
-
- <input id="memberFee"
- value="${esc(settings.memberFee)}"
- placeholder="මාසික ගාස්තුව">
-
- <input id="deathFee"
- value="${esc(settings.deathFee)}"
- placeholder="මරණාධාර ගාස්තුව">
-
- <button class="btn blue"
- onclick="saveFees()">
- Save
- </button>
-
- </div>`
- : ""
- }
-
- `;
-}
-
-window.saveFees=async function(){
-
- settings.memberFee=$("memberFee").value;
- settings.deathFee=$("deathFee").value;
-
- await saveSettings();
- render();
-};
-
-/* ==============================
-   CALENDAR
-============================== */
-
-function calendarPage(){
-
- $("p-calendar").innerHTML=`
-
- <div class="card">
-
- <h2>🤝 සුහද හමුව</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editCalendar('')">
- + Add
- </button>`
- : ""
- }
-
- </div>
-
- <div class="grid">
-
- ${
- calendar.length
- ? calendar.map(c=>`
-
- <div class="card">
-
- <h3>${esc(c.title)}</h3>
- <p>📅 ${esc(c.date)}</p>
- <p>${esc(c.members)}</p>
- <p>${esc(c.notes)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editCalendar('${c.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('calendar','${c.id}')">
- Delete
- </button>
-
- `
- : ""
- }
-
- </div>
-
- `).join("")
- : `<div class="empty">හමුවීම් නැත.</div>`
- }
-
- </div>
- `;
-}
-
-window.editCalendar=function(id){
-
- if(!adminRequired())return;
-
- const c=calendar.find(x=>x.id===id)||{
-  id:uid(),
-  title:"",
+ x=x||{
+  id:null,
   date:today(),
-  members:"",
-  notes:""
+  name:"",
+  type:"",
+  amount:""
  };
 
  openModal(`
 
- <h2>🤝 සුහද හමුව</h2>
+ <h2>💳 ගෙවීම</h2>
+
+ <input id="payDate"
+ type="date"
+ value="${esc(x.date)}">
+
+ <input id="payName"
+ value="${esc(x.name)}"
+ placeholder="නම">
+
+ <input id="payType"
+ value="${esc(x.type)}"
+ placeholder="වර්ගය">
+
+ <input id="payAmount"
+ value="${esc(x.amount)}"
+ placeholder="මුදල">
+
+ <button class="btn blue"
+ onclick='savePayment(${JSON.stringify(x)})'>
+ 💾 Save
+ </button>
+
+ `);
+
+};
+
+
+window.savePayment=async function(x){
+
+ try{
+
+  const data={
+   date:document.getElementById("payDate").value,
+   name:document.getElementById("payName").value.trim(),
+   type:document.getElementById("payType").value.trim(),
+   amount:document.getElementById("payAmount").value.trim()
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "payments",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"payments"),
+    data
+   );
+
+  }
+
+  closeModal();
+  render();
+
+ }catch(error){
+
+  alert("❌ "+error.message);
+
+ }
+
+};
+
+
+/* =====================================================
+   FEES
+===================================================== */
+
+function fees(){
+
+ page("fees").innerHTML=`
+
+ <div class="card">
+
+  <h2>🤝 වෙනත් විස්තර</h2>
+
+  <p>
+   <b>සාමාජික ගාස්තුව:</b>
+   ${esc(D.memberFee)}
+  </p>
+
+  <p>
+   <b>මරණාධාර:</b>
+   ${esc(D.deathFee)}
+  </p>
+
+  <p>
+   <b>ඇතුළත් වීම:</b>
+   ${esc(D.joinFee)}
+  </p>
+
+  <p>
+   <b>සාමාජිකයෙකු අසනීප වූ විට:</b><br>
+   ${nl(D.sick)}
+  </p>
+
+  <p>
+   <b>බිරිඳ/දරුවන් අසනීප වූ විට:</b><br>
+   ${nl(D.familySick)}
+  </p>
+
+  <p>
+   <b>විශේෂ සටහන්:</b><br>
+   ${nl(D.special)}
+  </p>
+
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="settings()">
+   Edit
+   </button>
+  `)}
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   CALENDAR
+===================================================== */
+
+function calendar(){
+
+ page("calendar").innerHTML=`
+
+ <div class="card">
+  <h2>📅 සුහද හමුව — මාස 12</h2>
+ </div>
+
+ <div class="grid">
+
+ ${D.calendar.map((x,i)=>`
+
+  <div class="card">
+
+   <h3>${months[i]}</h3>
+
+   <b>
+    ${esc(x.title)||"වැඩසටහන නැත"}
+   </b>
+
+   <p>
+    📅 ${esc(x.date)}
+   </p>
+
+   <p>
+    ${nl(x.members)}
+   </p>
+
+   <p>
+    ${nl(x.notes)}
+   </p>
+
+   ${adminControls(`
+    <button class="btn blue"
+    onclick="calendarEdit(${i})">
+    Edit
+    </button>
+   `)}
+
+  </div>
+
+ `).join("")}
+
+ </div>
+
+ `;
+
+}
+
+
+window.calendarEdit=function(i){
+
+ if(!requireAdmin())return;
+
+ const x=D.calendar[i];
+
+ openModal(`
+
+ <h2>${months[i]}</h2>
 
  <input id="calTitle"
- value="${esc(c.title)}"
- placeholder="මාතෘකාව">
+ value="${esc(x.title)}"
+ placeholder="වැඩසටහන / මාතෘකාව">
 
  <input id="calDate"
  type="date"
- value="${esc(c.date)}">
+ value="${esc(x.date)}">
 
- <input id="calMembers"
- value="${esc(c.members)}"
- placeholder="සහභාගී වන සාමාජිකයන්">
+ <textarea id="calMembers"
+ placeholder="සාමාජිකයන්">${esc(x.members)}</textarea>
 
  <textarea id="calNotes"
- placeholder="විස්තර">${esc(c.notes)}</textarea>
+ placeholder="සටහන්">${esc(x.notes)}</textarea>
 
  <button class="btn blue"
- onclick="saveCalendar('${c.id}')">
- Save
+ onclick="saveCalendar(${i})">
+ 💾 Save
  </button>
 
  `);
+
 };
 
-window.saveCalendar=async function(id){
 
- const data={
-  title:$("calTitle").value,
-  date:$("calDate").value,
-  members:$("calMembers").value,
-  notes:$("calNotes").value
- };
+window.saveCalendar=async function(i){
 
- if(await saveDoc("calendar",id,data)){
+ try{
+
+  D.calendar[i]={
+   title:document.getElementById("calTitle").value,
+   date:document.getElementById("calDate").value,
+   members:document.getElementById("calMembers").value,
+   notes:document.getElementById("calNotes").value
+  };
+
+  await saveDocument(
+   "appData",
+   "main",
+   {
+    calendar:D.calendar
+   }
+  );
+
   closeModal();
-  await refresh();
+  render();
+
+ }catch(error){
+
+  alert("❌ "+error.message);
+
  }
+
 };
 
-/* ==============================
+
+/* =====================================================
    REPORTS
-============================== */
+===================================================== */
 
-function reportsPage(){
+async function reports(){
 
- $("p-reports").innerHTML=`
-
- <div class="card">
-
- <h2>📄 වාර්තා</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editReport('')">
- + වාර්තාවක් Add කරන්න
- </button>`
- : ""
- }
-
- <p class="info">
- දිනය + මාතෘකාව + විස්තර + ඡායාරූප
- </p>
-
- </div>
-
- <div class="grid">
-
- ${
- reports.length
- ? reports.map(r=>`
+ page("reports").innerHTML=`
 
  <div class="card">
 
- ${
- r.photo
- ? `<img class="preview" src="${r.photo}">`
- : ""
- }
+  <h2>📊 වාර්තා</h2>
 
- <span class="tag">${esc(r.date)}</span>
+  <p>
+   දිනය + මාතෘකාව + විස්තර + ඡායාරූප
+  </p>
 
- <h3>${esc(r.title)}</h3>
-
- <p>${esc(r.description)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editReport('${r.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('reports','${r.id}')">
- Delete
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="reportEdit(null)">
+   + වාර්තාව Add කරන්න
+   </button>
+  `)}
 
  </div>
 
- `).join("")
- : `<div class="empty">වාර්තා නැත.</div>`
- }
-
+ <div id="reportList">
+  Loading...
  </div>
+
  `;
+
+ try{
+
+  const list=
+   await getCollection("reports");
+
+  document.getElementById("reportList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    ${x.photo?
+     `<img class="preview"
+      src="${x.photo}">`
+     :""
+    }
+
+    <h3>
+     ${esc(x.title)}
+    </h3>
+
+    <p>
+     📅 ${esc(x.date)}
+    </p>
+
+    <p>
+     ${nl(x.text)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='reportEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('reports','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   වාර්තා නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("reportList")
+   .innerHTML="❌ Report load error";
+
+ }
+
 }
 
-window.editReport=function(id){
 
- if(!adminRequired())return;
+window.reportEdit=function(x){
 
- const r=reports.find(x=>x.id===id)||{
-  id:uid(),
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
   date:today(),
   title:"",
-  description:"",
+  text:"",
   photo:""
  };
 
  openModal(`
 
- <h2>📄 වාර්තාව</h2>
+ <h2>📊 වාර්තාව</h2>
 
+ <label>දිනය</label>
  <input id="reportDate"
  type="date"
- value="${esc(r.date)}">
+ value="${esc(x.date)}">
 
+ <label>මාතෘකාව</label>
  <input id="reportTitle"
- value="${esc(r.title)}"
- placeholder="මාතෘකාව">
+ value="${esc(x.title)}">
 
- <textarea id="reportDescription"
- placeholder="විස්තර">${esc(r.description)}</textarea>
+ <label>විස්තර</label>
+ <textarea id="reportText">${esc(x.text)}</textarea>
 
+ <label>ඡායාරූපය</label>
  <input id="reportPhoto"
  type="file"
  accept="image/*">
 
- ${
- r.photo
- ? `<img class="preview" src="${r.photo}">`
- : ""
+ ${x.photo?
+  `<img class="preview"
+   src="${x.photo}">`
+  :""
  }
 
  <button class="btn blue"
- onclick="saveReport('${r.id}')">
+ onclick='saveReport(${JSON.stringify(x)})'>
  💾 Save
  </button>
 
  `);
+
 };
 
-window.saveReport=async function(id){
 
- const old=reports.find(x=>x.id===id);
- let photo=old?.photo||"";
+window.saveReport=async function(x){
 
- if($("reportPhoto").files[0]){
-  photo=await compressImage(
-   $("reportPhoto").files[0]
-  );
- }
+ try{
 
- const data={
-  date:$("reportDate").value,
-  title:$("reportTitle").value,
-  description:$("reportDescription").value,
-  photo
- };
+  let photo=x.photo||"";
 
- if(await saveDoc("reports",id,data)){
+  const file=
+   document.getElementById("reportPhoto").files[0];
+
+  if(file){
+
+   photo=
+    await imageToDataURL(
+     file,
+     600,
+     .4
+    );
+
+  }
+
+  const data={
+   date:document.getElementById("reportDate").value,
+   title:document.getElementById("reportTitle").value.trim(),
+   text:document.getElementById("reportText").value.trim(),
+   photo:photo
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "reports",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"reports"),
+    data
+   );
+
+  }
+
   closeModal();
-  await refresh();
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ Report Save Error\n\n"+
+   error.message
+  );
+
  }
+
 };
 
-/* ==============================
+
+/* =====================================================
    ACCOUNTS
-============================== */
+===================================================== */
 
-function accountsPage(){
+async function accounts(){
 
- $("p-accounts").innerHTML=`
-
- <div class="card">
-
- <h2>📊 ගිණුම්</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editAccount('')">
- + ගිණුම් වාර්තාවක් Add කරන්න
- </button>`
- : ""
- }
-
- <p class="info">
- දිනය + මාතෘකාව + විස්තර + ඡායාරූප
- </p>
-
- </div>
-
- <div class="grid">
-
- ${
- accounts.length
- ? accounts.map(a=>`
+ page("accounts").innerHTML=`
 
  <div class="card">
 
- ${
- a.photo
- ? `<img class="preview" src="${a.photo}">`
- : ""
- }
+  <h2>🧾 ගිණුම්</h2>
 
- <span class="tag">${esc(a.date)}</span>
+  <p>
+   දිනය + මාතෘකාව + විස්තර + ඡායාරූප
+  </p>
 
- <h3>${esc(a.title)}</h3>
-
- <p>${esc(a.description)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editAccount('${a.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('accounts','${a.id}')">
- Delete
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="accountEdit(null)">
+   + ගිණුම් වාර්තාව Add කරන්න
+   </button>
+  `)}
 
  </div>
 
- `).join("")
- : `<div class="empty">ගිණුම් වාර්තා නැත.</div>`
- }
-
+ <div id="accountList">
+  Loading...
  </div>
+
  `;
+
+ try{
+
+  const list=
+   await getCollection("accounts");
+
+  document.getElementById("accountList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    ${x.photo?
+     `<img class="preview"
+      src="${x.photo}">`
+     :""
+    }
+
+    <h3>${esc(x.title)}</h3>
+
+    <p>
+     📅 ${esc(x.date)}
+    </p>
+
+    <p>
+     ${nl(x.text)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='accountEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('accounts','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   ගිණුම් වාර්තා නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("accountList")
+   .innerHTML="❌ Accounts load error";
+
+ }
+
 }
 
-window.editAccount=function(id){
 
- if(!adminRequired())return;
+window.accountEdit=function(x){
 
- const a=accounts.find(x=>x.id===id)||{
-  id:uid(),
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
   date:today(),
   title:"",
-  description:"",
+  text:"",
   photo:""
  };
 
  openModal(`
 
- <h2>📊 ගිණුම් වාර්තාව</h2>
+ <h2>🧾 ගිණුම් වාර්තාව</h2>
 
  <input id="accountDate"
  type="date"
- value="${esc(a.date)}">
+ value="${esc(x.date)}">
 
  <input id="accountTitle"
- value="${esc(a.title)}"
+ value="${esc(x.title)}"
  placeholder="මාතෘකාව">
 
- <textarea id="accountDescription"
- placeholder="විස්තර">${esc(a.description)}</textarea>
+ <textarea id="accountText"
+ placeholder="විස්තර">${esc(x.text)}</textarea>
 
  <input id="accountPhoto"
  type="file"
  accept="image/*">
 
- ${
- a.photo
- ? `<img class="preview" src="${a.photo}">`
- : ""
+ ${x.photo?
+  `<img class="preview"
+   src="${x.photo}">`
+  :""
  }
 
  <button class="btn blue"
- onclick="saveAccount('${a.id}')">
+ onclick='saveAccount(${JSON.stringify(x)})'>
  💾 Save
  </button>
 
  `);
+
 };
 
-window.saveAccount=async function(id){
 
- const old=accounts.find(x=>x.id===id);
- let photo=old?.photo||"";
-
- if($("accountPhoto").files[0]){
-  photo=await compressImage(
-   $("accountPhoto").files[0]
-  );
- }
-
- const data={
-  date:$("accountDate").value,
-  title:$("accountTitle").value,
-  description:$("accountDescription").value,
-  photo
- };
-
- if(await saveDoc("accounts",id,data)){
-  closeModal();
-  await refresh();
- }
-};
-
-/* ==============================
-   MEMORIES
-============================== */
-
-function memoriesPage(){
-
- $("p-memories").innerHTML=`
-
- <div class="card">
-
- <h2>📸 අපේ මතකයන්</h2>
-
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editMemory('')">
- + නව මතකයක්
- </button>`
- : ""
- }
-
- <p class="info">
- එක මාතෘකාවකට ඡායාරූප කිහිපයක්
- ඇතුළත් කළ හැක.
- </p>
-
- </div>
-
- ${
- memories.length
- ? memories.map(m=>{
-
-  const photos=memoryPhotos.filter(
-   p=>p.memoryId===m.id
-  );
-
-  return `
-
-  <div class="card">
-
-  <span class="tag">${esc(m.date)}</span>
-
-  <h2>${esc(m.title)}</h2>
-
-  <p>${esc(m.description)}</p>
-
-  ${
-   photos.length
-   ? `<div class="gallery">
-
-   ${photos.map(p=>`
-    <img src="${p.data}">
-   `).join("")}
-
-   </div>`
-   : `<div class="empty">ඡායාරූප නැත.</div>`
-  }
-
-  ${
-   ADMIN
-   ? `
-
-   <button class="btn blue"
-   onclick="editMemory('${m.id}')">
-   Edit / Photos
-   </button>
-
-   <button class="btn red"
-   onclick="deleteMemory('${m.id}')">
-   Delete
-   </button>
-
-   `
-   : ""
-  }
-
-  </div>
-
-  `;
- }).join("")
- : `<div class="empty">මතකයන් නැත.</div>`
- }
-
- `;
-}
-
-window.editMemory=function(id){
-
- if(!adminRequired())return;
-
- const m=memories.find(x=>x.id===id)||{
-  id:uid(),
-  title:"",
-  date:today(),
-  description:""
- };
-
- openModal(`
-
- <h2>📸 අපේ මතකයන්</h2>
-
- <input id="memoryTitle"
- value="${esc(m.title)}"
- placeholder="මාතෘකාව">
-
- <input id="memoryDate"
- type="date"
- value="${esc(m.date)}">
-
- <textarea id="memoryDescription"
- placeholder="විස්තර">${esc(m.description)}</textarea>
-
- <input id="memoryFiles"
- type="file"
- accept="image/*"
- multiple>
-
- <p>
- එකවර ඡායාරූප කිහිපයක් තෝරාගන්න පුළුවන්.
- </p>
-
- <button class="btn blue"
- onclick="saveMemory('${m.id}')">
- 💾 Save
- </button>
-
- `);
-};
-
-window.saveMemory=async function(id){
-
- if(!ADMIN)return;
-
- const data={
-  title:$("memoryTitle").value,
-  date:$("memoryDate").value,
-  description:$("memoryDescription").value
- };
-
- if(!await saveDoc("memories",id,data))
-  return;
-
- const files=[
-  ...$("memoryFiles").files
- ];
-
- for(let i=0;i<files.length;i++){
-
-  const photo=await compressImage(
-   files[i],
-   850,
-   .60
-  );
-
-  await saveDoc(
-   "memoryPhotos",
-   uid(),
-   {
-    memoryId:id,
-    data:photo,
-    order:i
-   }
-  );
- }
-
- closeModal();
- await refresh();
-};
-
-window.deleteMemory=async function(id){
-
- if(!adminRequired())return;
-
- if(!confirm("මෙම මතකය Delete කරන්නද?"))
-  return;
+window.saveAccount=async function(x){
 
  try{
 
-  await deleteDoc(
-   doc(db,"memories",id)
-  );
+  let photo=x.photo||"";
 
-  const photos=memoryPhotos.filter(
-   x=>x.memoryId===id
-  );
+  const file=
+   document.getElementById("accountPhoto").files[0];
 
-  for(const p of photos){
+  if(file){
 
-   await deleteDoc(
-    doc(db,"memoryPhotos",p.id)
+   photo=
+    await imageToDataURL(
+     file,
+     600,
+     .4
+    );
+
+  }
+
+  const data={
+   date:document.getElementById("accountDate").value,
+   title:document.getElementById("accountTitle").value.trim(),
+   text:document.getElementById("accountText").value.trim(),
+   photo:photo
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "accounts",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"accounts"),
+    data
    );
 
   }
 
-  await refresh();
+  closeModal();
+  render();
 
- }catch(e){
+ }catch(error){
 
-  console.error(e);
-  alert("Delete කිරීමේදී ගැටලුවක් ඇතිවිය.");
+  alert("❌ "+error.message);
+
  }
+
 };
 
-/* ==============================
-   NOTICES
-============================== */
 
-function noticesPage(){
+/* =====================================================
+   MEMORIES
+   ONE TITLE + MANY PHOTOS
+===================================================== */
 
- $("p-notices").innerHTML=`
+async function memories(){
+
+ page("memories").innerHTML=`
 
  <div class="card">
 
- <h2>📢 විශේෂ නිවේදන</h2>
+  <h2>📸 අපේ මතකයන්</h2>
 
- ${
- ADMIN
- ? `<button class="btn blue"
- onclick="editNotice('')">
- + නිවේදනයක් Add කරන්න
- </button>`
- : ""
- }
+  <p>
+   එක මාතෘකාවකට ඡායාරූප කිහිපයක්
+   එකවර ඇතුළත් කළ හැක.
+  </p>
 
- </div>
-
- <div class="grid">
-
- ${
- notices.length
- ? notices.map(n=>`
-
- <div class="card notice">
-
- ${
- n.photo
- ? `<img class="preview" src="${n.photo}">`
- : ""
- }
-
- <h3>${esc(n.title)}</h3>
-
- <p>${esc(n.text)}</p>
-
- ${
- ADMIN
- ? `
-
- <button class="btn blue"
- onclick="editNotice('${n.id}')">
- Edit
- </button>
-
- <button class="btn red"
- onclick="deleteDocSafe('notices','${n.id}')">
- Delete
- </button>
-
- `
- : ""
- }
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="memoryEdit(null)">
+   + මතකයක් Add කරන්න
+   </button>
+  `)}
 
  </div>
 
- `).join("")
- : `<div class="empty">නිවේදන නැත.</div>`
- }
-
+ <div id="memoryList">
+  Loading...
  </div>
+
  `;
+
+ try{
+
+  const list=
+   await getCollection("memories");
+
+  document.getElementById("memoryList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    <h3>
+     ${esc(x.title)}
+    </h3>
+
+    <p>
+     ${nl(x.text)}
+    </p>
+
+    <div class="gallery">
+
+     ${(x.photos||[])
+      .map(photo=>`
+       <img src="${photo}">
+      `).join("")
+     }
+
+    </div>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='memoryEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('memories','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   අපේ මතකයන් නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("memoryList")
+   .innerHTML="❌ Memories load error";
+
+ }
+
 }
 
-window.editNotice=function(id){
 
- if(!adminRequired())return;
+window.memoryEdit=function(x){
 
- const n=notices.find(x=>x.id===id)||{
-  id:uid(),
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
+  title:"",
+  text:"",
+  photos:[]
+ };
+
+ openModal(`
+
+ <h2>📸 අපේ මතකයක්</h2>
+
+ <label>මාතෘකාව</label>
+ <input id="memoryTitle"
+ value="${esc(x.title)}">
+
+ <label>විස්තර</label>
+ <textarea id="memoryText">${esc(x.text)}</textarea>
+
+ <label>
+  එකවර ඡායාරූප කිහිපයක් තෝරන්න
+ </label>
+
+ <input id="memoryPhotos"
+ type="file"
+ accept="image/*"
+ multiple>
+
+ ${x.photos?.length?
+  `<div class="gallery">
+   ${x.photos.map(p=>
+    `<img src="${p}">`
+   ).join("")}
+  </div>`
+  :""
+ }
+
+ <p class="small">
+  ඡායාරූප කිහිපයක් එකවර තෝරාගත හැක.
+ </p>
+
+ <button class="btn blue"
+ onclick='saveMemory(${JSON.stringify(x)})'>
+ 💾 Save
+ </button>
+
+ `);
+
+};
+
+
+window.saveMemory=async function(x){
+
+ try{
+
+  let photos=
+   Array.isArray(x.photos)?
+   [...x.photos]:
+   [];
+
+  const files=
+   Array.from(
+    document.getElementById("memoryPhotos").files
+   );
+
+  for(const file of files){
+
+   const compressed=
+    await imageToDataURL(
+     file,
+     550,
+     .35
+    );
+
+   photos.push(compressed);
+
+  }
+
+  const data={
+   title:document.getElementById("memoryTitle").value.trim(),
+   text:document.getElementById("memoryText").value.trim(),
+   photos:photos
+  };
+
+  /*
+    Check approximate size.
+    Prevents Firestore 1MB document errors.
+  */
+
+  const bytes=
+   new Blob([JSON.stringify(data)]).size;
+
+  if(bytes>850000){
+
+   alert(
+    "❌ ඡායාරූප ගොඩක් නිසා මෙම මතකය විශාල වැඩියි.\n\n"+
+    "ඡායාරූප අඩු ගණනකින් නැවත Save කරන්න."
+   );
+
+   return;
+
+  }
+
+  if(x.id){
+
+   await saveDocument(
+    "memories",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"memories"),
+    data
+   );
+
+  }
+
+  closeModal();
+
+  alert("✅ අපේ මතකය Firebase වෙත Save විය.");
+
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ Memory Save Error\n\n"+
+   error.message
+  );
+
+ }
+
+};
+
+
+/* =====================================================
+   NOTICES
+===================================================== */
+
+async function notices(){
+
+ page("notices").innerHTML=`
+
+ <div class="card">
+
+  <h2>📢 විශේෂ නිවේදන</h2>
+
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="noticeEdit(null)">
+   + Add
+   </button>
+  `)}
+
+ </div>
+
+ <div id="noticeList">
+  Loading...
+ </div>
+
+ `;
+
+ try{
+
+  const list=
+   await getCollection("notices");
+
+  document.getElementById("noticeList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    ${x.photo?
+     `<img class="preview"
+      src="${x.photo}">`
+     :""
+    }
+
+    <h3>
+     ${esc(x.title)}
+    </h3>
+
+    <p>
+     ${nl(x.text)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='noticeEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('notices','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   නිවේදන නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("noticeList")
+   .innerHTML="❌ Notice load error";
+
+ }
+
+}
+
+
+window.noticeEdit=function(x){
+
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
   title:"",
   text:"",
   photo:""
@@ -2014,510 +2670,714 @@ window.editNotice=function(id){
  <h2>📢 නිවේදනය</h2>
 
  <input id="noticeTitle"
- value="${esc(n.title)}"
+ value="${esc(x.title)}"
  placeholder="මාතෘකාව">
 
- <textarea id="noticeText"
- placeholder="විස්තර">${esc(n.text)}</textarea>
+ <textarea id="noticeText">${esc(x.text)}</textarea>
 
  <input id="noticePhoto"
  type="file"
  accept="image/*">
 
- <button class="btn blue"
- onclick="saveNotice('${n.id}')">
- Save
- </button>
-
- `);
-};
-
-window.saveNotice=async function(id){
-
- const old=notices.find(x=>x.id===id);
- let photo=old?.photo||"";
-
- if($("noticePhoto").files[0]){
-  photo=await compressImage(
-   $("noticePhoto").files[0]
-  );
+ ${x.photo?
+  `<img class="preview"
+   src="${x.photo}">`
+  :""
  }
-
- const data={
-  title:$("noticeTitle").value,
-  text:$("noticeText").value,
-  photo
- };
-
- if(await saveDoc("notices",id,data)){
-  closeModal();
-  await refresh();
- }
-};
-
-/* ==============================
-   ATTENDANCE
-============================== */
-
-function attendancePage(){
-
- const already=attendance.find(
-  x=>x.date===today()
- );
-
- $("p-attendance").innerHTML=`
-
- <div class="card">
-
- <h2>✅ පැමිණීම</h2>
-
- <p>
- සාමාජිකයෙකුට තමන්ගේ App එකෙන්
- තම පැමිණීම Mark කළ හැක.
- </p>
-
- <h3>අද: ${today()}</h3>
-
- <select id="attendanceMember">
-
- <option value="">
- සාමාජිකයා තෝරන්න
- </option>
-
- ${
- members.map(m=>`
-
- <option value="${m.id}">
- ${esc(m.no)} - ${esc(m.name)}
- </option>
-
- `).join("")
- }
-
- </select>
-
- <button
- class="btn green"
- onclick="markAttendance()">
- ✅ අද පැමිණීම Mark කරන්න
- </button>
-
- </div>
-
- <div class="card">
-
- <h3>අද පැමිණි සාමාජිකයන්</h3>
-
- ${
- attendance.filter(x=>x.date===today()).length
- ? `<table>
-
- <tr>
- <th>අංකය</th>
- <th>නම</th>
- <th>දිනය</th>
- </tr>
-
- ${
- attendance
- .filter(x=>x.date===today())
- .map(x=>`
-
- <tr>
- <td>${esc(x.no)}</td>
- <td>${esc(x.name)}</td>
- <td>${esc(x.date)}</td>
- </tr>
-
- `).join("")
- }
-
- </table>`
- : `<div class="empty">අද පැමිණීමක් Mark කර නැත.</div>`
- }
-
- </div>
- `;
-}
-
-window.markAttendance=async function(){
-
- const memberId=$("attendanceMember").value;
-
- if(!memberId){
-
-  alert("සාමාජිකයෙකු තෝරන්න.");
-  return;
- }
-
- const m=members.find(x=>x.id===memberId);
-
- const id=today()+"_"+memberId;
-
- const exists=attendance.find(
-  x=>x.id===id
- );
-
- if(exists){
-
-  alert("මෙම සාමාජිකයා අද පැමිණීම Mark කර ඇත.");
-  return;
- }
-
- const data={
-  memberId:memberId,
-  no:m?.no||"",
-  name:m?.name||"",
-  date:today(),
-  markedAt:new Date().toISOString()
- };
-
- if(await saveDoc("attendance",id,data)){
-
-  alert("✅ පැමිණීම Mark විය.");
-
-  await refresh();
- }
-};
-
-/* ==============================
-   ONLINE
-============================== */
-
-function onlinePage(){
-
- $("p-online").innerHTML=`
-
- <div class="card">
-
- <h2>🌐 Online</h2>
-
- <h3>💳 Online Payment</h3>
-
- ${
- settings.paymentInfo
- ? `<p>${esc(settings.paymentInfo)}</p>`
- : ""
- }
-
- ${
- settings.qr
- ? `<img class="qr" src="${settings.qr}">`
- : `<div class="empty">QR එක ඇතුළත් කර නැත.</div>`
- }
-
- ${
- settings.paymentForm
- ? `
-
- <a href="${settings.paymentForm}"
- target="_blank">
-
- <button class="btn blue">
- 💳 Payment Google Form
- </button>
-
- </a>
-
- `
- : ""
- }
-
- <hr>
-
- <h3>💰 Online Loan</h3>
-
- ${
- settings.loanForm
- ? `
-
- <a href="${settings.loanForm}"
- target="_blank">
-
- <button class="btn green">
- 💰 Loan Google Form
- </button>
-
- </a>
-
- `
- : `<div class="empty">Loan Google Form එක ඇතුළත් කර නැත.</div>`
- }
-
- </div>
-
- ${
- ADMIN
- ? `
-
- <div class="card">
-
- <h3>Admin - Online Settings</h3>
-
- <input
- id="onlineInfo"
- value="${esc(settings.paymentInfo)}"
- placeholder="Payment විස්තර">
-
- <input
- id="onlinePaymentForm"
- value="${esc(settings.paymentForm)}"
- placeholder="Payment Google Form Link">
-
- <input
- id="onlineLoanForm"
- value="${esc(settings.loanForm)}"
- placeholder="Loan Google Form Link">
-
- <input
- id="qrFile"
- type="file"
- accept="image/*">
-
- ${
- settings.qr
- ? `<img class="qr" src="${settings.qr}">`
- : ""
- }
-
- <button
- class="btn blue"
- onclick="saveOnline()">
- 💾 Save Online Settings
- </button>
-
- </div>
-
- `
- : ""
- }
-
- `;
-}
-
-window.saveOnline=async function(){
-
- if(!adminRequired())return;
-
- settings.paymentInfo=$("onlineInfo").value;
- settings.paymentForm=$("onlinePaymentForm").value;
- settings.loanForm=$("onlineLoanForm").value;
-
- if($("qrFile").files[0]){
-
-  settings.qr=await compressImage(
-   $("qrFile").files[0],
-   700,
-   .70
-  );
- }
-
- await saveSettings();
-
- render();
-};
-
-/* ==============================
-   NEXT
-============================== */
-
-function nextPage(){
-
- $("p-next").innerHTML=`
-
- <div class="card">
-
- <h2>📅 ඉදිරි සමිති වාරය</h2>
-
- <p>${esc(settings.next)}</p>
-
- ${
- ADMIN
- ? `
-
- <textarea id="nextText"
- placeholder="ඉදිරි සමිති වාරයේ විස්තර">${esc(settings.next)}</textarea>
 
  <button class="btn blue"
- onclick="saveNext()">
- Save
- </button>
-
- `
- : ""
- }
-
- </div>
-
- `;
-}
-
-window.saveNext=async function(){
-
- settings.next=$("nextText").value;
-
- await saveSettings();
-
- render();
-};
-
-/* ==============================
-   ADMIN
-============================== */
-
-function adminPage(){
-
- $("p-admin").innerHTML=`
-
- <div class="card">
-
- <h2>🔐 Admin / Edit</h2>
-
- ${
- ADMIN
- ? `
-
- <p class="info">
- 🟢 Admin Mode සක්‍රීයයි.
- </p>
-
- <button class="btn red"
- onclick="logout()">
- Logout
- </button>
-
- `
- : `
-
- <p>
- සියලුම වෙනස්කම් කිරීම Admin Login
- හරහා පමණි.
- </p>
-
- <button class="btn blue"
- onclick="login()">
- 🔐 Admin Login
- </button>
-
- `
- }
-
- </div>
-
- ${
- ADMIN
- ? `
-
- <div class="card">
-
- <h3>⚙️ මූලික විස්තර</h3>
-
- <input id="adminAddress"
- value="${esc(settings.address)}"
- placeholder="ලිපිනය">
-
- <input id="adminPasswordNew"
- value="${esc(settings.password)}"
- placeholder="Admin Password">
-
- <input id="logoFile"
- type="file"
- accept="image/*">
-
- <button class="btn blue"
- onclick="saveAdminSettings()">
+ onclick='saveNotice(${JSON.stringify(x)})'>
  💾 Save
  </button>
 
- </div>
+ `);
 
- `
- : ""
- }
-
- `;
-}
-
-window.saveAdminSettings=async function(){
-
- if(!adminRequired())return;
-
- settings.address=$("adminAddress").value;
- settings.password=$("adminPasswordNew").value;
-
- if($("logoFile").files[0]){
-
-  settings.logo=await compressImage(
-   $("logoFile").files[0],
-   700,
-   .70
-  );
- }
-
- await saveSettings();
-
- render();
 };
 
-/* ==============================
-   RENDER
-============================== */
 
-function render(){
+window.saveNotice=async function(x){
 
- pages.forEach(x=>{
+ try{
 
-  const el=$("p-"+x[0]);
+  let photo=x.photo||"";
 
-  if(el)
-   el.classList.toggle(
-    "active",
-    x[0]===current
+  const file=
+   document.getElementById("noticePhoto").files[0];
+
+  if(file){
+
+   photo=
+    await imageToDataURL(
+     file,
+     600,
+     .4
+    );
+
+  }
+
+  const data={
+   title:document.getElementById("noticeTitle").value.trim(),
+   text:document.getElementById("noticeText").value.trim(),
+   photo:photo
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "notices",
+    x.id,
+    data
    );
 
-  const b=$("nav-"+x[0]);
+  }else{
 
-  if(b)
-   b.classList.toggle(
-    "active",
-    x[0]===current
+   await addDoc(
+    collection(db,"notices"),
+    data
    );
- });
 
- if(current==="home")home();
- if(current==="members")membersPage();
- if(current==="constitution")constitutionPage();
- if(current==="bank")bankPage();
- if(current==="loans")loansPage();
- if(current==="payments")paymentsPage();
- if(current==="fees")feesPage();
- if(current==="calendar")calendarPage();
- if(current==="reports")reportsPage();
- if(current==="accounts")accountsPage();
- if(current==="memories")memoriesPage();
- if(current==="notices")noticesPage();
- if(current==="attendance")attendancePage();
- if(current==="online")onlinePage();
- if(current==="next")nextPage();
- if(current==="admin")adminPage();
+  }
+
+  closeModal();
+  render();
+
+ }catch(error){
+
+  alert("❌ "+error.message);
+
+ }
+
+};
+
+
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+async function attendance(){
+
+ page("attendance").innerHTML=`
+
+ <div class="card">
+
+  <h2>✅ පැමිණීම</h2>
+
+  <p>
+   සාමාජිකයෙකුට තම App එකෙන්
+   තම පැමිණීම Mark කළ හැක.
+  </p>
+
+  <button class="btn green"
+  onclick="markAttendance()">
+  ✅ මගේ පැමිණීම Mark කරන්න
+  </button>
+
+ </div>
+
+ <div id="attendanceList">
+  Loading...
+ </div>
+
+ `;
+
+ try{
+
+  const list=
+   await getCollection("attendance");
+
+  list.sort(
+   (a,b)=>
+   String(b.date).localeCompare(
+    String(a.date)
+   )
+  );
+
+  document.getElementById("attendanceList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    <b>
+     ${esc(x.name)}
+    </b>
+
+    <p>
+     සාමාජික අංකය:
+     ${esc(x.memberNo)}
+     <br>
+     දිනය:
+     ${esc(x.date)}
+     <br>
+     ${esc(x.status)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn red"
+     onclick="removeItem('attendance','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   පැමිණීමේ වාර්තා නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("attendanceList")
+   .innerHTML="❌ Attendance load error";
+
+ }
+
 }
 
-/* ==============================
-   PAGE CONTAINERS
-============================== */
 
-$("main").innerHTML=pages.map(x=>`
-<section
- id="p-${x[0]}"
- class="page">
-</section>
-`).join("");
+window.markAttendance=async function(){
 
-/* ==============================
+ openModal(`
+
+ <h2>✅ මගේ පැමිණීම</h2>
+
+ <label>සාමාජිකයා</label>
+
+ <select id="attendanceMember">
+
+  <option value="">
+   -- ඔබගේ නම තෝරන්න --
+  </option>
+
+ </select>
+
+ <label>දිනය</label>
+
+ <input id="attendanceDate"
+ type="date"
+ value="${today()}">
+
+ <button class="btn green"
+ onclick="saveAttendance()">
+ ✅ පැමිණීම Mark කරන්න
+ </button>
+
+ `);
+
+ try{
+
+  const list=
+   await getCollection("members");
+
+  list
+  .filter(x=>x.name)
+  .sort(
+   (a,b)=>
+   (Number(a.no)||999)-
+   (Number(b.no)||999)
+  )
+  .forEach(x=>{
+
+   const option=
+    document.createElement("option");
+
+   option.value=
+    JSON.stringify({
+     no:x.no,
+     name:x.name
+    });
+
+   option.textContent=
+    "අංකය "+x.no+
+    " — "+x.name;
+
+   document
+    .getElementById("attendanceMember")
+    .appendChild(option);
+
+  });
+
+ }catch(error){
+
+  alert(
+   "❌ සාමාජික ලැයිස්තුව ලබාගත නොහැක."
+  );
+
+ }
+
+};
+
+
+window.saveAttendance=async function(){
+
+ try{
+
+  const value=
+   document.getElementById(
+    "attendanceMember"
+   ).value;
+
+  if(!value){
+
+   alert("කරුණාකර ඔබගේ නම තෝරන්න.");
+   return;
+
+  }
+
+  const member=
+   JSON.parse(value);
+
+  const date=
+   document.getElementById(
+    "attendanceDate"
+   ).value;
+
+  await addDoc(
+   collection(db,"attendance"),
+   {
+    memberNo:String(member.no),
+    name:String(member.name),
+    date:date,
+    status:"පැමිණ ඇත"
+   }
+  );
+
+  closeModal();
+
+  alert(
+   "✅ ඔබගේ පැමිණීම Mark විය."
+  );
+
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ Attendance Save Error\n\n"+
+   error.message
+  );
+
+ }
+
+};
+
+
+/* =====================================================
+   ONLINE
+===================================================== */
+
+function online(){
+
+ page("online").innerHTML=`
+
+ <div class="card">
+
+  <h2>🌐 Online ගෙවීම්</h2>
+
+  <p>
+   ${nl(D.paymentInfo)}
+  </p>
+
+  ${D.qr?
+   `<h3>📱 Payment QR</h3>
+    <img class="preview"
+    src="${D.qr}">`
+   :""
+  }
+
+  ${D.paymentForm?
+   `<p>
+    <a class="btn blue"
+    href="${esc(D.paymentForm)}"
+    target="_blank">
+    💳 Payment Google Form
+    </a>
+   </p>`
+   :
+   "<p>Payment Google Form එක ඇතුළත් කර නැත.</p>"
+  }
+
+ </div>
+
+ <div class="card">
+
+  <h2>💰 Online ණය අයදුම් කිරීම</h2>
+
+  ${D.loanForm?
+   `<a class="btn blue"
+   href="${esc(D.loanForm)}"
+   target="_blank">
+   💰 Loan Google Form
+   </a>`
+   :
+   "<p>Loan Google Form එක ඇතුළත් කර නැත.</p>"
+  }
+
+ </div>
+
+ ${adminControls(`
+ <div class="card">
+  <button class="btn yellow"
+  onclick="settings()">
+  ⚙️ Online Settings Edit
+  </button>
+ </div>
+ `)}
+
+ `;
+
+}
+
+
+/* =====================================================
+   NEXT MEETING
+===================================================== */
+
+async function next(){
+
+ page("next").innerHTML=`
+
+ <div class="card">
+
+  <h2>🗓️ ඉදිරි සමිති වාරය</h2>
+
+  ${adminControls(`
+   <button class="btn blue"
+   onclick="nextEdit(null)">
+   + Add
+   </button>
+  `)}
+
+ </div>
+
+ <div id="nextList">
+  Loading...
+ </div>
+
+ `;
+
+ try{
+
+  const list=
+   await getCollection("next");
+
+  document.getElementById("nextList")
+  .innerHTML=
+
+  list.length?
+
+  list.map(x=>`
+
+   <div class="card">
+
+    <h3>
+     📍 ${esc(x.place)}
+    </h3>
+
+    <p>
+     📅 ${esc(x.date)}
+    </p>
+
+    <p>
+     ${nl(x.members)}
+    </p>
+
+    <p>
+     ${nl(x.notes)}
+    </p>
+
+    ${adminControls(`
+     <button class="btn blue"
+     onclick='nextEdit(${JSON.stringify(x)})'>
+     Edit
+     </button>
+
+     <button class="btn red"
+     onclick="removeItem('next','${x.id}')">
+     Delete
+     </button>
+    `)}
+
+   </div>
+
+  `).join("")
+
+  :
+
+  `<div class="card empty">
+   ඉදිරි සමිති වාරයක් නැත.
+  </div>`;
+
+ }catch(error){
+
+  document.getElementById("nextList")
+   .innerHTML="❌ Next meeting load error";
+
+ }
+
+}
+
+
+window.nextEdit=function(x){
+
+ if(!requireAdmin())return;
+
+ x=x||{
+  id:null,
+  place:"",
+  date:today(),
+  members:"",
+  notes:""
+ };
+
+ openModal(`
+
+ <h2>🗓️ ඉදිරි සමිති වාරය</h2>
+
+ <input id="nextPlace"
+ value="${esc(x.place)}"
+ placeholder="ස්ථානය">
+
+ <input id="nextDate"
+ type="date"
+ value="${esc(x.date)}">
+
+ <textarea id="nextMembers"
+ placeholder="සාමාජිකයන්">${esc(x.members)}</textarea>
+
+ <textarea id="nextNotes"
+ placeholder="සටහන්">${esc(x.notes)}</textarea>
+
+ <button class="btn blue"
+ onclick='saveNext(${JSON.stringify(x)})'>
+ 💾 Save
+ </button>
+
+ `);
+
+};
+
+
+window.saveNext=async function(x){
+
+ try{
+
+  const data={
+   place:document.getElementById("nextPlace").value,
+   date:document.getElementById("nextDate").value,
+   members:document.getElementById("nextMembers").value,
+   notes:document.getElementById("nextNotes").value
+  };
+
+  if(x.id){
+
+   await saveDocument(
+    "next",
+    x.id,
+    data
+   );
+
+  }else{
+
+   await addDoc(
+    collection(db,"next"),
+    data
+   );
+
+  }
+
+  closeModal();
+  render();
+
+ }catch(error){
+
+  alert("❌ "+error.message);
+
+ }
+
+};
+
+
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
+
+function admin(){
+
+ page("admin").innerHTML=`
+
+ <div class="card">
+
+  <h2>⚙️ Admin / Edit</h2>
+
+  <p>
+   ${
+    ADMIN?
+    "🟢 Admin Mode — Editing Allowed":
+    "🔒 View Only — Editing Locked"
+   }
+  </p>
+
+  ${
+   ADMIN?
+
+   `
+   <button class="btn yellow"
+   onclick="settings()">
+   ⚙️ Settings
+   </button>
+
+   <button class="btn red"
+   onclick="logout()">
+   🔒 Logout
+   </button>
+   `
+
+   :
+
+   `
+   <button class="btn blue"
+   onclick="login()">
+   🔐 Admin Login
+   </button>
+   `
+  }
+
+ </div>
+
+ <div class="card">
+
+  <p>
+   Admin login එකෙන් පමණක්
+   Add / Edit / Delete controls
+   පෙන්වනු ලැබේ.
+  </p>
+
+ </div>
+
+ `;
+
+}
+
+
+window.login=function(){
+
+ openModal(`
+
+ <h2>🔐 Admin Login</h2>
+
+ <input id="adminPassword"
+ type="password"
+ placeholder="Admin Password">
+
+ <button class="btn blue"
+ onclick="doLogin()">
+ 🔓 Login
+ </button>
+
+ `);
+
+ setTimeout(()=>{
+  document
+   .getElementById("adminPassword")
+   ?.focus();
+ },100);
+
+};
+
+
+window.doLogin=function(){
+
+ const password=
+  document.getElementById(
+   "adminPassword"
+  ).value;
+
+ if(password===String(D.password)){
+
+  ADMIN=true;
+
+  closeModal();
+
+  alert(
+   "✅ Admin Mode සක්‍රීයයි."
+  );
+
+  render();
+
+ }else{
+
+  alert(
+   "❌ Password වැරදියි."
+  );
+
+  document
+   .getElementById("adminPassword")
+   .value="";
+
+ }
+
+};
+
+
+window.logout=function(){
+
+ ADMIN=false;
+
+ closeModal();
+
+ go("home");
+
+};
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+window.removeItem=async function(collectionName,id){
+
+ if(!requireAdmin())return;
+
+ if(!confirm("මෙය Delete කරන්නද?")){
+  return;
+ }
+
+ try{
+
+  await deleteDocument(
+   collectionName,
+   id
+  );
+
+  alert("✅ Delete විය.");
+
+  render();
+
+ }catch(error){
+
+  alert(
+   "❌ Delete Error\n\n"+
+   error.message
+  );
+
+ }
+
+};
+
+
+/* =====================================================
    START
-============================== */
+===================================================== */
 
-loadAll();
+loadSettings();
 
 </script>
 
