@@ -4,24 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1565c0">
 <title>Strength of friendship</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
  margin:0;
  font-family:Arial,"Noto Sans Sinhala",sans-serif;
  background:#f5f7fb;
  color:#172033
 }
+
 header{
  padding:24px 12px;
  text-align:center;
  color:#fff;
  background:linear-gradient(120deg,#e53935,#1565c0,#fbc02d)
 }
-header h1{margin:0;font-size:29px}
-header p{margin:7px 0}
+
+header h1{
+ margin:0;
+ font-size:29px
+}
+
+header p{
+ margin:7px 0
+}
+
 nav{
  display:flex;
  gap:7px;
@@ -33,17 +44,35 @@ nav{
  z-index:5;
  box-shadow:0 2px 10px #0002
 }
+
 nav button{
  border:0;
  border-radius:20px;
  padding:10px 14px;
  white-space:nowrap;
- cursor:pointer
+ cursor:pointer;
+ background:#eef2f7
 }
-nav button.a{background:#1565c0;color:#fff}
-main{max-width:1200px;margin:auto;padding:14px}
-.page{display:none}
-.page.a{display:block}
+
+nav button.a{
+ background:#1565c0;
+ color:#fff
+}
+
+main{
+ max-width:1200px;
+ margin:auto;
+ padding:14px
+}
+
+.page{
+ display:none
+}
+
+.page.a{
+ display:block
+}
+
 .card{
  background:#fff;
  border-radius:16px;
@@ -51,11 +80,13 @@ main{max-width:1200px;margin:auto;padding:14px}
  margin:12px 0;
  box-shadow:0 3px 14px #0001
 }
+
 .grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
  gap:12px
 }
+
 input,textarea,select{
  width:100%;
  padding:11px;
@@ -64,7 +95,11 @@ input,textarea,select{
  border-radius:9px;
  font:inherit
 }
-textarea{min-height:90px}
+
+textarea{
+ min-height:90px
+}
+
 .btn{
  border:0;
  border-radius:9px;
@@ -72,10 +107,30 @@ textarea{min-height:90px}
  margin:3px;
  cursor:pointer
 }
-.blue{background:#1565c0;color:#fff}
-.red{background:#d32f2f;color:#fff}
-.yellow{background:#fbc02d}
-.green{background:#2e7d32;color:#fff}
+
+.blue{
+ background:#1565c0;
+ color:#fff
+}
+
+.red{
+ background:#d32f2f;
+ color:#fff
+}
+
+.yellow{
+ background:#fbc02d
+}
+
+.green{
+ background:#2e7d32;
+ color:#fff
+}
+
+.gray{
+ background:#e0e0e0
+}
+
 .photo{
  height:170px;
  background:#edf1f7;
@@ -85,18 +140,29 @@ textarea{min-height:90px}
  justify-content:center;
  overflow:hidden
 }
-.photo img{width:100%;height:100%;object-fit:cover}
-.wrap{overflow:auto}
+
+.photo img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+.wrap{
+ overflow:auto
+}
+
 table{
  width:100%;
  border-collapse:collapse;
- min-width:720px
+ min-width:800px
 }
+
 th,td{
  padding:8px;
  border-bottom:1px solid #ddd;
  text-align:left
 }
+
 .modal{
  display:none;
  position:fixed;
@@ -107,28 +173,50 @@ th,td{
  justify-content:center;
  padding:12px
 }
-.modal.a{display:flex}
+
+.modal.a{
+ display:flex
+}
+
 .box{
  background:#fff;
  border-radius:18px;
  padding:20px;
- width:min(700px,100%);
+ width:min(750px,100%);
  max-height:92vh;
  overflow:auto
 }
+
 .close{
  float:right;
  border:0;
  border-radius:50%;
  width:34px;
  height:34px;
- cursor:pointer
+ cursor:pointer;
+ font-size:20px
 }
+
 .preview{
  max-width:280px;
  max-height:220px;
+ border-radius:12px;
+ margin:5px
+}
+
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:8px
+}
+
+.gallery img{
+ width:100%;
+ height:160px;
+ object-fit:cover;
  border-radius:12px
 }
+
 .tag{
  display:inline-block;
  background:#e8f0fe;
@@ -137,8 +225,27 @@ th,td{
  border-radius:20px;
  font-size:12px
 }
-.notice{border-left:5px solid #e53935}
-footer{text-align:center;padding:25px;color:#777}
+
+.notice{
+ border-left:5px solid #e53935
+}
+
+.success{
+ background:#e8f5e9;
+ color:#1b5e20;
+ padding:10px;
+ border-radius:10px;
+ margin:8px 0
+}
+
+.warning{
+ background:#fff3cd;
+ color:#856404;
+ padding:10px;
+ border-radius:10px;
+ margin:8px 0
+}
+
 .viewonly{
  background:#fff3cd;
  color:#856404;
@@ -146,12 +253,23 @@ footer{text-align:center;padding:25px;color:#777}
  border-radius:10px;
  margin-top:10px
 }
+
 .status{
  padding:10px;
+ background:#eef5ff;
  border-radius:10px;
- margin:10px 0;
- background:#e8f5e9;
- color:#2e7d32
+ margin:10px 0
+}
+
+footer{
+ text-align:center;
+ padding:25px;
+ color:#777
+}
+
+.small{
+ font-size:13px;
+ color:#666
 }
 </style>
 </head>
@@ -161,12 +279,18 @@ footer{text-align:center;padding:25px;color:#777}
 <header>
 <h1>Strength of friendship</h1>
 <p>සංගමයේ නිල තොරතුරු පද්ධතිය</p>
+<div id="firebaseStatus" class="status">
+Firebase සම්බන්ධ වෙමින් පවතී...
+</div>
 </header>
 
 <nav id="nav"></nav>
+
 <main id="main"></main>
 
-<footer>Strength of friendship</footer>
+<footer>
+Strength of friendship
+</footer>
 
 <div id="modal" class="modal">
  <div class="box">
@@ -186,12 +310,12 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
  getFirestore,
+ collection,
+ getDocs,
  doc,
  getDoc,
  setDoc,
- collection,
- getDocs,
- writeBatch
+ deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -216,9 +340,13 @@ try{
  window.firebaseSetDoc=setDoc;
  window.firebaseCollection=collection;
  window.firebaseGetDocs=getDocs;
- window.firebaseWriteBatch=writeBatch;
+ window.firebaseDeleteDoc=deleteDoc;
 
- console.log("✅ Firebase connected");
+ const status=document.getElementById("firebaseStatus");
+
+ status.textContent="🟢 Firebase සම්බන්ධ වී ඇත";
+ status.style.background="#e8f5e9";
+ status.style.color="#1b5e20";
 
  window.dispatchEvent(
   new Event("firebaseReady")
@@ -226,12 +354,17 @@ try{
 
 }catch(error){
 
- console.error("❌ Firebase connection error:",error);
+ console.error(error);
+
+ const status=document.getElementById("firebaseStatus");
+
+ status.textContent="🔴 Firebase සම්බන්ධ වීමේ ගැටලුවක් ඇත";
+ status.style.background="#ffebee";
+ status.style.color="#b71c1c";
 
 }
 
 </script>
-
 
 <!-- =====================================================
      MAIN APP
@@ -240,11 +373,12 @@ try{
 <script>
 'use strict';
 
-const KEY='sof_final_app_1';
+const KEY='sof_final_firebase_v2';
 
 const months=[
-'ජනවාරි','පෙබරවාරි','මාර්තු','අප්‍රේල්','මැයි','ජූනි',
-'ජූලි','අගෝස්තු','සැප්තැම්බර්','ඔක්තෝබර්','නොවැම්බර්','දෙසැම්බර්'
+'ජනවාරි','පෙබරවාරි','මාර්තු','අප්‍රේල්',
+'මැයි','ජූනි','ජූලි','අගෝස්තු',
+'සැප්තැම්බර්','ඔක්තෝබර්','නොවැම්බර්','දෙසැම්බර්'
 ];
 
 const base={
@@ -252,21 +386,32 @@ const base={
  address:'A 1/10 මැදගොඩ අමිතිරිගල',
 
  logo:'',
+
  constitution:'',
+
  pdf:'',
- bank:'',
- qr:'',
 
  memberFee:'රු. 2,000',
+
  deathFee:'රු. 1,000',
+
  joinFee:'',
+
  sick:'',
+
  familySick:'',
+
  special:'',
 
+ bankAccounts:[],
+
  paymentInfo:'',
+
  paymentForm:'',
+
  loanForm:'',
+
+ qr:'',
 
  password:'1234',
 
@@ -281,7 +426,18 @@ const base={
  ),
 
  loans:[],
+
  payments:[],
+
+ reports:[],
+
+ accounts:[],
+
+ memories:[],
+
+ notices:[],
+
+ attendance:[],
 
  calendar:Array.from(
   {length:12},
@@ -293,85 +449,57 @@ const base={
   })
  ),
 
- reports:[],
- accounts:[],
- memories:[],
- notices:[],
- attendance:[],
  next:[]
+
 };
 
-
 let D=loadData();
+
 let ADMIN=false;
+
 let current='home';
-let firebaseReady=false;
 
+function clone(x){
 
-/* =====================================================
-   LOCAL DATA
-===================================================== */
+ return JSON.parse(JSON.stringify(x));
+
+}
 
 function loadData(){
 
  try{
 
-  const saved=localStorage.getItem(KEY);
-
-  if(!saved){
-   return JSON.parse(JSON.stringify(base));
-  }
-
-  const old=JSON.parse(saved);
-
-  const data=JSON.parse(
-   JSON.stringify(base)
+  const saved=JSON.parse(
+   localStorage.getItem(KEY)
   );
 
-  Object.keys(old).forEach(k=>{
-   data[k]=old[k];
+  if(!saved)
+   return clone(base);
+
+  const data=clone(base);
+
+  Object.keys(saved).forEach(k=>{
+   data[k]=saved[k];
   });
 
   return data;
 
  }catch(error){
 
-  console.error(error);
-
-  return JSON.parse(JSON.stringify(base));
+  return clone(base);
 
  }
 
 }
 
-
 /* =====================================================
-   FIREBASE
+   FIREBASE MAIN DATA
 ===================================================== */
 
-window.addEventListener(
- "firebaseReady",
- async function(){
+async function loadFirebaseData(){
 
-  firebaseReady=true;
-
-  console.log("🔥 Firebase Ready");
-
-  await loadCloudData();
-
- }
-);
-
-
-async function loadCloudData(){
-
- if(!window.firebaseDB){
-
-  console.log("Firebase not ready");
-
+ if(!window.firebaseDB)
   return;
-
- }
 
  try{
 
@@ -381,14 +509,14 @@ async function loadCloudData(){
    "main"
   );
 
-  const snap=await window.firebaseGetDoc(ref);
+  const snap=
+   await window.firebaseGetDoc(ref);
 
   if(snap.exists()){
 
    const cloud=snap.data();
 
-   const newData=
-    JSON.parse(JSON.stringify(base));
+   const newData=clone(base);
 
    Object.keys(cloud).forEach(k=>{
     newData[k]=cloud[k];
@@ -402,25 +530,30 @@ async function loadCloudData(){
    );
 
    console.log(
-    "✅ Cloud data loaded"
+    "Firebase main data loaded"
    );
-
-   render();
 
   }else{
 
-   console.log(
-    "☁️ First setup: uploading current data"
+   await window.firebaseSetDoc(
+    ref,
+    D
    );
 
-   await saveCloudOnly();
+   console.log(
+    "Initial Firebase data created"
+   );
 
   }
+
+  await loadMembers();
+
+  render();
 
  }catch(error){
 
   console.error(
-   "❌ Cloud load error:",
+   "Firebase load error",
    error
   );
 
@@ -428,31 +561,100 @@ async function loadCloudData(){
 
 }
 
-
 /* =====================================================
-   SAVE EVERYTHING TO FIREBASE
+   FIREBASE MEMBERS
 ===================================================== */
 
-async function saveCloudOnly(){
+async function loadMembers(){
+
+ if(!window.firebaseDB)
+  return;
+
+ try{
+
+  const snap=
+   await window.firebaseGetDocs(
+    window.firebaseCollection(
+     window.firebaseDB,
+     "members"
+    )
+   );
+
+  const list=[];
+
+  snap.forEach(d=>{
+
+   const x=d.data();
+
+   list.push({
+    no:x.no || 0,
+    name:x.name || '',
+    phone:x.phone || '',
+    photo:x.photo || ''
+   });
+
+  });
+
+  list.sort(
+   (a,b)=>Number(a.no)-Number(b.no)
+  );
+
+  list.forEach(x=>{
+
+   const index=
+    Number(x.no)-1;
+
+   if(index>=0 && index<D.members.length){
+
+    D.members[index]={
+     no:x.no,
+     name:x.name,
+     phone:x.phone,
+     photo:x.photo
+    };
+
+   }
+
+  });
+
+  localStorage.setItem(
+   KEY,
+   JSON.stringify(D)
+  );
+
+ }catch(error){
+
+  console.error(
+   "Members load error",
+   error
+  );
+
+ }
+
+}
+
+/* =====================================================
+   FIREBASE SAVE MAIN
+===================================================== */
+
+async function firebaseSave(){
 
  if(!window.firebaseDB)
   return false;
 
  try{
 
-  const ref=window.firebaseDoc(
-   window.firebaseDB,
-   "appData",
-   "main"
-  );
-
   await window.firebaseSetDoc(
-   ref,
+   window.firebaseDoc(
+    window.firebaseDB,
+    "appData",
+    "main"
+   ),
    D
   );
 
   console.log(
-   "✅ Main data saved to Firebase"
+   "Firebase main data saved"
   );
 
   return true;
@@ -460,12 +662,12 @@ async function saveCloudOnly(){
  }catch(error){
 
   console.error(
-   "❌ Firebase save error:",
+   "Firebase save error",
    error
   );
 
   alert(
-   "Firebase Save කිරීමේදී ගැටලුවක් ඇති විය."
+   "❌ Firebase එකට Save කිරීමේදී ගැටලුවක් පවතී."
   );
 
   return false;
@@ -473,7 +675,6 @@ async function saveCloudOnly(){
  }
 
 }
-
 
 /* =====================================================
    SAVE
@@ -486,27 +687,14 @@ async function save(){
   JSON.stringify(D)
  );
 
- if(window.firebaseDB){
-
-  try{
-
-   await saveCloudOnly();
-
-  }catch(error){
-
-   console.error(error);
-
-  }
-
- }
+ await firebaseSave();
 
  render();
 
 }
 
-
 /* =====================================================
-   PAGES
+   NAV
 ===================================================== */
 
 const pages=[
@@ -540,9 +728,8 @@ nav.innerHTML=pages.map(p=>`
 
 `).join('');
 
-
 /* =====================================================
-   BASIC
+   HELPERS
 ===================================================== */
 
 function e(x){
@@ -560,17 +747,23 @@ function e(x){
 
 }
 
+function p(id){
 
-function go(p){
+ return document.getElementById(
+  'p-'+id
+ );
 
- current=p;
+}
+
+function go(x){
+
+ current=x;
 
  render();
 
  window.scrollTo(0,0);
 
 }
-
 
 function openM(x){
 
@@ -580,21 +773,15 @@ function openM(x){
 
 }
 
-
 function closeM(){
 
  modal.classList.remove('a');
 
 }
 
-
-/* =====================================================
-   ADMIN
-===================================================== */
-
 function req(){
 
- if(ADMIN===true)
+ if(ADMIN)
   return true;
 
  login();
@@ -603,6 +790,33 @@ function req(){
 
 }
 
+/* =====================================================
+   FILE READER
+===================================================== */
+
+function fd(file,callback){
+
+ if(!file){
+
+  callback('');
+
+  return;
+
+ }
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+  callback(reader.result);
+ };
+
+ reader.readAsDataURL(file);
+
+}
+
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
 function login(){
 
@@ -611,7 +825,7 @@ function login(){
  <h2>🔐 Admin Login</h2>
 
  <p>
- <b>Admin password එක ඇතුළත් කරන්න.</b>
+ Admin password එක ඇතුළත් කරන්න.
  </p>
 
  <input
@@ -628,33 +842,14 @@ function login(){
 
  `);
 
- setTimeout(()=>{
-
-  const el=
-   document.getElementById('pin');
-
-  if(el)
-   el.focus();
-
- },100);
-
 }
-
 
 function doLogin(){
 
- const el=
-  document.getElementById('pin');
+ const value=
+  document.getElementById('pin').value;
 
- if(!el)
-  return;
-
- const entered=el.value;
-
- if(
-  entered===
-  String(D.password)
- ){
+ if(value===String(D.password)){
 
   ADMIN=true;
 
@@ -672,21 +867,9 @@ function doLogin(){
    '❌ Password වැරදියි.'
   );
 
-  el.value='';
-
-  el.focus();
-
  }
 
 }
-
-
-function A(x){
-
- return ADMIN===true ? x : '';
-
-}
-
 
 function logout(){
 
@@ -694,66 +877,34 @@ function logout(){
 
  closeM();
 
- current='home';
-
- render();
+ go('home');
 
 }
-
 
 /* =====================================================
    DELETE
 ===================================================== */
 
-async function del(a,i){
+function del(type,index){
 
  if(!req())
   return;
 
- if(!Array.isArray(D[a]))
+ if(!confirm(
+  'මෙය Delete කරන්නද?'
+ ))
   return;
 
  if(
-  confirm('Delete කරන්නද?')
- ){
-
-  D[a].splice(i,1);
-
-  await save();
-
- }
-
-}
-
-
-/* =====================================================
-   FILE READER
-===================================================== */
-
-function fd(file,cb){
-
- if(!file){
-
-  cb('');
-
+  !Array.isArray(D[type])
+ )
   return;
 
- }
+ D[type].splice(index,1);
 
- const r=new FileReader();
-
- r.onload=()=>{
-  cb(r.result);
- };
-
- r.onerror=()=>{
-  cb('');
- };
-
- r.readAsDataURL(file);
+ save();
 
 }
-
 
 /* =====================================================
    RENDER
@@ -772,17 +923,16 @@ function render(){
 
  });
 
- main.innerHTML=
-  pages.map(p=>`
+ main.innerHTML=pages.map(x=>`
 
-   <section
-    id="p-${p[0]}"
-    class="page ${
-     p[0]===current?'a':''
-    }">
-   </section>
+ <section
+  id="p-${x[0]}"
+  class="page ${
+   x[0]===current?'a':''
+  }">
+ </section>
 
-  `).join('');
+ `).join('');
 
  home();
  members();
@@ -792,19 +942,8 @@ function render(){
  payments();
  fees();
  calendar();
-
- list(
-  'reports',
-  '📊 මාසික වාර්තා',
-  D.reports
- );
-
- list(
-  'accounts',
-  '🧾 මාසික ගිණුම් වාර්තා',
-  D.accounts
- );
-
+ reports();
+ accounts();
  memories();
  notices();
  attendance();
@@ -813,7 +952,6 @@ function render(){
  admin();
 
 }
-
 
 /* =====================================================
    HOME
@@ -840,51 +978,42 @@ function home(){
    : ''
   }
 
-  ${
-   firebaseReady
-   ? `<div class="status">
-       ☁️ Firebase Connected
-      </div>`
-   : `<div class="viewonly">
-       Firebase සම්බන්ධ වෙමින් පවතී...
-      </div>`
-  }
-
  </div>
-
 
  <div class="grid">
 
   <div class="card">
-   <h3>සාමාජිකයන්</h3>
+   <h3>👥 සාමාජිකයන්</h3>
    <b>
-    ${D.members.filter(
-     x=>x.name
-    ).length}/30
+    ${D.members.filter(x=>x.name).length}/30
    </b>
   </div>
 
   <div class="card">
-   <h3>ණය</h3>
+   <h3>💰 ණය</h3>
    <b>${D.loans.length}</b>
   </div>
 
   <div class="card">
-   <h3>මාසික වාර්තා</h3>
+   <h3>📊 වාර්තා</h3>
    <b>${D.reports.length}</b>
   </div>
 
  </div>
-
 
  <div class="card">
 
   <h2>📢 විශේෂ නිවේදන</h2>
 
   ${
-   D.notices.map(x=>`
+   D.notices.length
+   ? D.notices.map(x=>`
 
     <div class="card notice">
+
+     <h3>${e(x.title)}</h3>
+
+     <p>${e(x.text)}</p>
 
      ${
       x.photo
@@ -894,14 +1023,10 @@ function home(){
       : ''
      }
 
-     <h3>${e(x.title)}</h3>
-
-     <p>${e(x.text)}</p>
-
     </div>
 
-   `).join('') ||
-   'නිවේදන නැත.'
+   `).join('')
+   : 'නිවේදන නැත.'
   }
 
  </div>
@@ -909,7 +1034,6 @@ function home(){
  `;
 
 }
-
 
 /* =====================================================
    MEMBERS
@@ -923,19 +1047,11 @@ function members(){
 
   <h2>👥 සාමාජිකයන් 30</h2>
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="member(-1)">
-    + Add
-   </button>
-  `)}
-
   ${
    !ADMIN
    ? `<div class="viewonly">
-      🔒 සාමාන්‍ය පරිශීලකයන්ට
-      සාමාජික විස්තර වෙනස් කළ නොහැක.
+      🔒 සාමාන්‍ය පරිශීලකයන්ට Edit කිරීම
+      අවසර නැත.
      </div>`
    : ''
   }
@@ -947,34 +1063,35 @@ function members(){
  ${
   D.members.map((x,i)=>`
 
-   <div class="card">
+  <div class="card">
 
-    <div class="photo">
+   <div class="photo">
 
-     ${
-      x.photo
-      ? `<img src="${x.photo}">`
-      : '📷'
-     }
+    ${
+     x.photo
+     ? `<img src="${x.photo}">`
+     : '📷'
+    }
 
-    </div>
+   </div>
 
-    <span class="tag">
-     අංකය ${e(x.no)}
-    </span>
+   <span class="tag">
+    අංකය ${e(x.no)}
+   </span>
 
-    <h3>
-     ${
-      e(x.name) ||
-      'නම ඇතුළත් කර නැත'
-     }
-    </h3>
+   <h3>
+    ${e(x.name)||'නම ඇතුළත් කර නැත'}
+   </h3>
 
-    <p>
-     📞 ${e(x.phone)}
-    </p>
+   ${
+    x.phone
+    ? `<p>📞 ${e(x.phone)}</p>`
+    : ''
+   }
 
-    ${A(`
+   ${
+    ADMIN
+    ? `
 
      <button
       class="btn blue"
@@ -982,17 +1099,13 @@ function members(){
       Edit
      </button>
 
-     <button
-      class="btn red"
-      onclick="del('members',${i})">
-      Delete
-     </button>
+    `
+    : ''
+   }
 
-    `)}
+  </div>
 
-   </div>
-
- `).join('')
+  `).join('')
  }
 
  </div>
@@ -1001,42 +1114,21 @@ function members(){
 
 }
 
-
 function member(i){
 
  if(!req())
   return;
 
- if(i<0){
-
-  i=D.members.findIndex(
-   x=>!x.name&&!x.phone
-  );
-
- }
-
- if(i<0){
-
-  alert(
-   'සාමාජිකයන් 30 දෙනාම භාවිතා කර ඇත.'
-  );
-
-  return;
-
- }
-
  const x=D.members[i];
 
  openM(`
 
- <h2>
-  සාමාජික අංකය ${x.no}
- </h2>
+ <h2>සාමාජික අංකය ${x.no}</h2>
 
  <input
   id="mn"
   value="${e(x.name)}"
-  placeholder="සාමාජිකයාගේ නම">
+  placeholder="නම">
 
  <input
   id="mp"
@@ -1066,11 +1158,7 @@ function member(i){
 
 }
 
-
-async function sm(i){
-
- if(!ADMIN)
-  return;
+function sm(i){
 
  D.members[i].name=
   document.getElementById('mn').value;
@@ -1081,32 +1169,62 @@ async function sm(i){
  const file=
   document.getElementById('mf').files[0];
 
- if(file){
+ fd(file,s=>{
 
-  fd(
-   file,
-   async s=>{
+  if(s)
+   D.members[i].photo=s;
 
-    if(s)
-     D.members[i].photo=s;
+  saveMemberFirebase(i);
 
-    await save();
+ });
 
-    closeM();
+}
 
-   }
-  );
+async function saveMemberFirebase(i){
 
- }else{
+ if(!window.firebaseDB){
 
-  await save();
+  save();
 
   closeM();
+
+  return;
+
+ }
+
+ try{
+
+  await window.firebaseSetDoc(
+   window.firebaseDoc(
+    window.firebaseDB,
+    "members",
+    String(D.members[i].no)
+   ),
+   D.members[i]
+  );
+
+  localStorage.setItem(
+   KEY,
+   JSON.stringify(D)
+  );
+
+  render();
+
+  closeM();
+
+  alert('✅ සාමාජික විස්තර Save විය.');
+
+ }catch(error){
+
+  console.error(error);
+
+  alert(
+   '❌ Member Firebase Save error'
+  );
 
  }
 
 }
-
 
 /* =====================================================
    CONSTITUTION
@@ -1120,40 +1238,41 @@ function constitution(){
 
   <h2>📜 ව්‍යවස්ථාව</h2>
 
-  <div>
-   ${
-    e(D.constitution)
-    .replace(/\n/g,'<br>') ||
-    'ඇතුළත් කර නැත'
-   }
-  </div>
+  ${
+   D.constitution
+   ? `<p>
+      ${e(D.constitution)
+      .replace(/\n/g,'<br>')}
+     </p>`
+   : '<p>ඇතුළත් කර නැත.</p>'
+  }
 
   ${
    D.pdf
-   ? `<p>
-      <a
-       href="${D.pdf}"
-       target="_blank">
-       📄 PDF
-      </a>
-     </p>`
+   ? `<a
+      class="btn blue"
+      href="${D.pdf}"
+      target="_blank">
+      📄 ව්‍යවස්ථා PDF
+     </a>`
    : ''
   }
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="settings()">
-    Edit / Upload
-   </button>
-  `)}
+  ${
+   ADMIN
+   ? `<button
+       class="btn blue"
+       onclick="settings()">
+       Edit / Upload
+      </button>`
+   : ''
+  }
 
  </div>
 
  `;
 
 }
-
 
 /* =====================================================
    BANK
@@ -1167,36 +1286,133 @@ function bank(){
 
   <h2>🏦 බැංකු විස්තර</h2>
 
-  <p>
-   ${
-    e(D.bank)
-    .replace(/\n/g,'<br>') ||
-    'ඇතුළත් කර නැත'
-   }
-  </p>
-
   ${
-   D.qr
-   ? `<img
-       class="preview"
-       src="${D.qr}">`
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="bankEdit(-1)">
+      + Add Bank
+     </button>`
    : ''
   }
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="settings()">
-    Edit / QR Upload
-   </button>
-  `)}
-
  </div>
+
+ ${
+  D.bankAccounts.length
+  ? D.bankAccounts.map((x,i)=>`
+
+   <div class="card">
+
+    <h3>🏦 ${e(x.bank)}</h3>
+
+    <p>
+     <b>ගිණුම් නාමය:</b>
+     ${e(x.name)}
+    </p>
+
+    <p>
+     <b>ගිණුම් අංකය:</b>
+     ${e(x.number)}
+    </p>
+
+    <p>
+     <b>ශාඛාව:</b>
+     ${e(x.branch)}
+    </p>
+
+    ${
+     ADMIN
+     ? `
+
+      <button
+       class="btn blue"
+       onclick="bankEdit(${i})">
+       Edit
+      </button>
+
+      <button
+       class="btn red"
+       onclick="del('bankAccounts',${i})">
+       Delete
+      </button>
+
+     `
+     : ''
+    }
+
+   </div>
+
+  `).join('')
+  : '<div class="card">බැංකු විස්තර ඇතුළත් කර නැත.</div>'
+ }
 
  `;
 
 }
 
+function bankEdit(i){
+
+ if(!req())
+  return;
+
+ const x=i<0
+  ? {bank:'',name:'',number:'',branch:''}
+  : D.bankAccounts[i];
+
+ openM(`
+
+ <h2>🏦 බැංකු විස්තර</h2>
+
+ <input
+  id="bb"
+  value="${e(x.bank)}"
+  placeholder="බැංකුව">
+
+ <input
+  id="bn"
+  value="${e(x.name)}"
+  placeholder="ගිණුම් නාමය">
+
+ <input
+  id="ba"
+  value="${e(x.number)}"
+  placeholder="ගිණුම් අංකය">
+
+ <input
+  id="br"
+  value="${e(x.branch)}"
+  placeholder="ශාඛාව">
+
+ <button
+  class="btn blue"
+  onclick="saveBank(${i})">
+  💾 Save
+ </button>
+
+ `);
+
+}
+
+function saveBank(i){
+
+ const x={
+  bank:bb.value,
+  name:bn.value,
+  number:ba.value,
+  branch:br.value
+ };
+
+ if(i<0)
+  D.bankAccounts.push(x);
+ else
+  D.bankAccounts[i]=x;
+
+ save();
+
+ closeM();
+
+}
 
 /* =====================================================
    LOANS
@@ -1208,15 +1424,22 @@ function loans(){
 
  <div class="card">
 
-  <h2>💰 ණය — 50 දෙනෙකු සඳහා</h2>
+  <h2>💰 ණය</h2>
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="loan(-1)">
-    + Add
-   </button>
-  `)}
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="loan(-1)">
+      + Add Loan
+     </button>`
+   : ''
+  }
+
+  <div class="small">
+   ණය විස්තර Firebase Firestore තුළ
+   සියලු දුරකථන සඳහා එකම data ලෙස තබා ඇත.
+  </div>
 
  </div>
 
@@ -1228,6 +1451,7 @@ function loans(){
   <th>දිනය</th>
   <th>නම</th>
   <th>අංකය</th>
+  <th>මුදල</th>
   <th>ගෙවූ</th>
   <th>ඉතිරි</th>
   <th>අවසාන දිනය</th>
@@ -1243,6 +1467,7 @@ function loans(){
    <td>${e(x.date)}</td>
    <td>${e(x.name)}</td>
    <td>${e(x.no)}</td>
+   <td>${e(x.amount)}</td>
    <td>${e(x.paid)}</td>
    <td>${e(x.balance)}</td>
    <td>${e(x.last)}</td>
@@ -1250,21 +1475,25 @@ function loans(){
 
    <td>
 
-   ${A(`
+   ${
+    ADMIN
+    ? `
 
-    <button
-     class="btn blue"
-     onclick="loan(${i})">
-     Edit
-    </button>
+     <button
+      class="btn blue"
+      onclick="loan(${i})">
+      Edit
+     </button>
 
-    <button
-     class="btn red"
-     onclick="del('loans',${i})">
-     Delete
-    </button>
+     <button
+      class="btn red"
+      onclick="del('loans',${i})">
+      Delete
+     </button>
 
-   `)}
+    `
+    : ''
+   }
 
    </td>
 
@@ -1281,43 +1510,62 @@ function loans(){
 
 }
 
-
 function loan(i){
 
  if(!req())
   return;
 
- const x=
-  i<0 ? {} : D.loans[i];
+ const x=i<0
+  ? {}
+  : D.loans[i];
 
  openM(`
 
- <h2>ණය වාර්තාව</h2>
+ <h2>💰 ණය වාර්තාව</h2>
+
+ <label>දිනය</label>
 
  <input
   id="ld"
   type="date"
   value="${e(x.date)}">
 
+ <label>සාමාජිකයා</label>
+
  <input
   id="ln"
   value="${e(x.name)}"
-  placeholder="සාමාජිකයාගේ නම">
+  placeholder="නම">
+
+ <label>සාමාජික අංකය</label>
 
  <input
   id="lno"
   value="${e(x.no)}"
-  placeholder="සාමාජික අංකය">
+  placeholder="අංකය">
+
+ <label>ණය මුදල</label>
+
+ <input
+  id="lam"
+  value="${e(x.amount)}"
+  placeholder="ණය මුදල">
+
+ <label>ගෙවා ඇති මුදල</label>
 
  <input
   id="lp"
   value="${e(x.paid)}"
   placeholder="ගෙවූ මුදල">
 
+ <label>ඉතිරි මුදල</label>
+
  <input
   id="lb"
   value="${e(x.balance)}"
   placeholder="ඉතිරි මුදල">
+
+ <label>අවසාන ගෙවීම් දිනය</label>
 
  <input
   id="ll"
@@ -1330,7 +1578,7 @@ function loan(i){
 
  <button
   class="btn blue"
-  onclick="sl(${i})">
+  onclick="saveLoan(${i})">
   💾 Save
  </button>
 
@@ -1338,20 +1586,24 @@ function loan(i){
 
 }
 
-
-async function sl(i){
-
- if(!ADMIN)
-  return;
+function saveLoan(i){
 
  const x={
 
   date:ld.value,
+
   name:ln.value,
+
   no:lno.value,
+
+  amount:lam.value,
+
   paid:lp.value,
+
   balance:lb.value,
+
   last:ll.value,
+
   note:lx.value
 
  };
@@ -1361,12 +1613,11 @@ async function sl(i){
  else
   D.loans[i]=x;
 
- await save();
+ save();
 
  closeM();
 
 }
-
 
 /* =====================================================
    PAYMENTS
@@ -1378,23 +1629,27 @@ function payments(){
 
  <div class="card">
 
- <h2>💳 ගෙවීම්</h2>
+  <h2>💳 ගෙවීම්</h2>
 
- <p>
- සාමාජික ගාස්තුව:
- ${e(D.memberFee)}
- |
- මරණාධාර:
- ${e(D.deathFee)}
- </p>
+  <p>
+   සාමාජික ගාස්තුව:
+   <b>${e(D.memberFee)}</b>
+  </p>
 
- ${A(`
-  <button
-   class="btn blue"
-   onclick="payment(-1)">
-   + Add
-  </button>
- `)}
+  <p>
+   මරණාධාර:
+   <b>${e(D.deathFee)}</b>
+  </p>
+
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="payment(-1)">
+      + Add Payment
+     </button>`
+   : ''
+  }
 
  </div>
 
@@ -1403,23 +1658,24 @@ function payments(){
 
   <div class="card">
 
-   <b>${e(x.name)}</b>
-   —
-   ${e(x.date)}
-   —
-   රු. ${e(x.amount)}
+   <h3>${e(x.name)}</h3>
 
-   <br>
+   <p>📅 ${e(x.date)}</p>
 
-   ${e(x.type)}
+   <p>
+    ${e(x.type)}
+    — රු. ${e(x.amount)}
+   </p>
 
-   ${A(`
-    <button
-     class="btn red"
-     onclick="del('payments',${i})">
-     Delete
-    </button>
-   `)}
+   ${
+    ADMIN
+    ? `<button
+       class="btn red"
+       onclick="del('payments',${i})">
+       Delete
+      </button>`
+    : ''
+   }
 
   </div>
 
@@ -1430,18 +1686,18 @@ function payments(){
 
 }
 
-
 function payment(i){
 
  if(!req())
   return;
 
- const x=
-  i<0 ? {} : D.payments[i];
+ const x=i<0
+  ? {}
+  : D.payments[i];
 
  openM(`
 
- <h2>ගෙවීම</h2>
+ <h2>💳 ගෙවීම</h2>
 
  <input
   id="pd"
@@ -1456,7 +1712,7 @@ function payment(i){
  <input
   id="pt"
   value="${e(x.type)}"
-  placeholder="වර්ගය">
+  placeholder="ගෙවීම් වර්ගය">
 
  <input
   id="pa"
@@ -1465,7 +1721,7 @@ function payment(i){
 
  <button
   class="btn blue"
-  onclick="spay(${i})">
+  onclick="savePayment(${i})">
   💾 Save
  </button>
 
@@ -1473,19 +1729,13 @@ function payment(i){
 
 }
 
-
-async function spay(i){
-
- if(!ADMIN)
-  return;
+function savePayment(i){
 
  const x={
-
   date:pd.value,
   name:pn.value,
   type:pt.value,
   amount:pa.value
-
  };
 
  if(i<0)
@@ -1493,12 +1743,11 @@ async function spay(i){
  else
   D.payments[i]=x;
 
- await save();
+ save();
 
  closeM();
 
 }
-
 
 /* =====================================================
    FEES
@@ -1528,34 +1777,35 @@ function fees(){
  </p>
 
  <p>
-  <b>සාමාජිකයෙකු අසනීප වූ විට:</b>
-  <br>${e(D.sick)}
+  <b>සාමාජිකයෙකු අසනීප වූ විට:</b><br>
+  ${e(D.sick)}
  </p>
 
  <p>
-  <b>බිරිඳ/දරුවන් අසනීප වූ විට:</b>
-  <br>${e(D.familySick)}
+  <b>බිරිඳ / දරුවන් අසනීප වූ විට:</b><br>
+  ${e(D.familySick)}
  </p>
 
  <p>
-  <b>විශේෂ සටහන්:</b>
-  <br>${e(D.special)}
+  <b>විශේෂ සටහන්:</b><br>
+  ${e(D.special)}
  </p>
 
- ${A(`
-  <button
-   class="btn blue"
-   onclick="settings()">
-   Edit
-  </button>
- `)}
+ ${
+  ADMIN
+  ? `<button
+     class="btn blue"
+     onclick="settings()">
+     Edit
+    </button>`
+  : ''
+ }
 
  </div>
 
  `;
 
 }
-
 
 /* =====================================================
    CALENDAR
@@ -1582,9 +1832,7 @@ function calendar(){
     ${e(x.title)||'වැඩසටහන නැත'}
    </b>
 
-   <p>
-    දිනය: ${e(x.date)}
-   </p>
+   <p>දිනය: ${e(x.date)}</p>
 
    <p>
     ${e(x.members)
@@ -1593,13 +1841,15 @@ function calendar(){
 
    <p>${e(x.notes)}</p>
 
-   ${A(`
-    <button
-     class="btn blue"
-     onclick="cal(${i})">
-     Edit
-    </button>
-   `)}
+   ${
+    ADMIN
+    ? `<button
+       class="btn blue"
+       onclick="cal(${i})">
+       Edit
+      </button>`
+    : ''
+   }
 
   </div>
 
@@ -1611,7 +1861,6 @@ function calendar(){
  `;
 
 }
-
 
 function cal(i){
 
@@ -1652,302 +1901,137 @@ function cal(i){
 
 }
 
-
-async function saveCalendar(i){
-
- if(!ADMIN)
-  return;
+function saveCalendar(i){
 
  D.calendar[i]={
-
   title:ct.value,
   date:cd.value,
   members:cm.value,
   notes:cx.value
-
  };
 
- await save();
+ save();
 
  closeM();
 
 }
 
-
 /* =====================================================
-   REPORTS / ACCOUNTS
+   REPORTS
 ===================================================== */
 
-function list(id,title,arr){
+function reports(){
 
- p(id).innerHTML=`
+ p('reports').innerHTML=`
 
  <div class="card">
 
-  <h2>${title}</h2>
+  <h2>📊 වාර්තා</h2>
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="addText('${id}')">
-    + Add
-   </button>
-  `)}
-
- </div>
-
- ${
-  arr.map((x,i)=>`
-
-  <div class="card">
-
-   <h3>
-    ${e(
-     x.title||
-     x.month||
-     x.date
-    )}
-   </h3>
-
-   <p>
-    ${e(
-     x.text||
-     x.details||
-     ''
-    )}
-   </p>
-
-   ${A(`
-    <button
-     class="btn red"
-     onclick="del('${id}',${i})">
-     Delete
-    </button>
-   `)}
-
-  </div>
-
-  `).join('')
- }
-
- `;
-
-}
-
-
-function addText(type){
-
- if(!req())
-  return;
-
- openM(`
-
- <h2>නව වාර්තාව</h2>
-
- <input
-  id="tm"
-  placeholder="මාසය / දිනය">
-
- <input
-  id="tt"
-  placeholder="මාතෘකාව">
-
- <textarea
-  id="tx"
-  placeholder="විස්තර"></textarea>
-
- <button
-  class="btn blue"
-  onclick="saveText('${type}')">
-  💾 Save
- </button>
-
- `);
-
-}
-
-
-async function saveText(type){
-
- if(!ADMIN)
-  return;
-
- D[type].push({
-
-  month:tm.value,
-  title:tt.value,
-  text:tx.value
-
- });
-
- await save();
-
- closeM();
-
-}
-
-
-/* =====================================================
-   MEMORIES
-===================================================== */
-
-function memories(){
-
- p('memories').innerHTML=`
-
- <div class="card">
-
-  <h2>📸 අපේ මතකයන්</h2>
-
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="media(-1,'memories')">
-    + Add
-   </button>
-  `)}
-
- </div>
-
- <div class="grid">
-
- ${
-  D.memories.map((x,i)=>`
-
-  <div class="card">
-
-   ${
-    x.photo
-    ? `<img
-        class="preview"
-        src="${x.photo}">`
-    : ''
-   }
-
-   <h3>${e(x.title)}</h3>
-
-   <p>${e(x.text)}</p>
-
-   ${A(`
-
-    <button
-     class="btn blue"
-     onclick="media(${i},'memories')">
-     Edit
-    </button>
-
-    <button
-     class="btn red"
-     onclick="del('memories',${i})">
-     Delete
-    </button>
-
-   `)}
-
-  </div>
-
-  `).join('')
- }
-
- </div>
-
- `;
-
-}
-
-
-/* =====================================================
-   NOTICES
-===================================================== */
-
-function notices(){
-
- p('notices').innerHTML=`
-
- <div class="card">
-
-  <h2>📢 විශේෂ නිවේදන</h2>
-
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="media(-1,'notices')">
-    + Add
-   </button>
-  `)}
-
- </div>
-
- ${
-  D.notices.map((x,i)=>`
-
-  <div class="card notice">
-
-   ${
-    x.photo
-    ? `<img
-        class="preview"
-        src="${x.photo}">`
-    : ''
-   }
-
-   <h3>${e(x.title)}</h3>
-
-   <p>${e(x.text)}</p>
-
-   ${A(`
-    <button
-     class="btn red"
-     onclick="del('notices',${i})">
-     Delete
-    </button>
-   `)}
-
-  </div>
-
-  `).join('')
- }
-
- `;
-
-}
-
-
-function media(i,type){
-
- if(!req())
-  return;
-
- const x=
-  i<0
-  ? {
-     title:'',
-     text:'',
-     photo:''
-    }
-  : D[type][i];
-
- openM(`
-
- <h2>
   ${
-   type==='memories'
-   ? 'අපේ මතකයක්'
-   : 'විශේෂ නිවේදනය'
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="reportEdit(-1)">
+      + Add Report
+     </button>`
+   : ''
   }
- </h2>
+
+ </div>
+
+ ${
+  D.reports.length
+  ? D.reports.map((x,i)=>`
+
+   <div class="card">
+
+    ${
+     x.photo
+     ? `<img
+         class="preview"
+         src="${x.photo}">`
+     : ''
+    }
+
+    <p>
+     📅 <b>${e(x.date)}</b>
+    </p>
+
+    <h3>${e(x.title)}</h3>
+
+    <p>
+     ${e(x.text)
+       .replace(/\n/g,'<br>')}
+    </p>
+
+    ${
+     ADMIN
+     ? `
+
+      <button
+       class="btn blue"
+       onclick="reportEdit(${i})">
+       Edit
+      </button>
+
+      <button
+       class="btn red"
+       onclick="del('reports',${i})">
+       Delete
+      </button>
+
+     `
+     : ''
+    }
+
+   </div>
+
+  `).join('')
+  : '<div class="card">වාර්තා නැත.</div>'
+ }
+
+ `;
+
+}
+
+function reportEdit(i){
+
+ if(!req())
+  return;
+
+ const x=i<0
+  ? {date:'',title:'',text:'',photo:''}
+  : D.reports[i];
+
+ openM(`
+
+ <h2>📊 වාර්තාව</h2>
+
+ <label>දිනය</label>
 
  <input
-  id="mt"
+  id="rd"
+  type="date"
+  value="${e(x.date)}">
+
+ <label>මාතෘකාව</label>
+
+ <input
+  id="rt"
   value="${e(x.title)}"
   placeholder="මාතෘකාව">
 
+ <label>විස්තර</label>
+
  <textarea
-  id="mx"
+  id="rx"
   placeholder="විස්තර">${e(x.text)}</textarea>
 
+ <label>ඡායාරූප</label>
+
  <input
-  id="mediaFile"
+  id="rf"
   type="file"
   accept="image/*">
 
@@ -1961,69 +2045,523 @@ function media(i,type){
 
  <button
   class="btn blue"
-  onclick="sm2(${i},'${type}')">
-  💾 Save / Upload
+  onclick="saveReport(${i})">
+  💾 Save
  </button>
 
  `);
 
 }
 
+function saveReport(i){
 
-async function sm2(i,t){
+ const x=i<0
+  ? {date:'',title:'',text:'',photo:''}
+  : D.reports[i];
 
- if(!ADMIN)
+ x.date=rd.value;
+ x.title=rt.value;
+ x.text=rx.value;
+
+ fd(
+  rf.files[0],
+  s=>{
+
+   if(s)
+    x.photo=s;
+
+   if(i<0)
+    D.reports.push(x);
+
+   save();
+
+   closeM();
+
+  }
+ );
+
+}
+
+/* =====================================================
+   ACCOUNTS
+===================================================== */
+
+function accounts(){
+
+ p('accounts').innerHTML=`
+
+ <div class="card">
+
+  <h2>🧾 ගිණුම්</h2>
+
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="accountEdit(-1)">
+      + Add Account Report
+     </button>`
+   : ''
+  }
+
+ </div>
+
+ ${
+  D.accounts.length
+  ? D.accounts.map((x,i)=>`
+
+   <div class="card">
+
+    ${
+     x.photo
+     ? `<img
+         class="preview"
+         src="${x.photo}">`
+     : ''
+    }
+
+    <p>
+     📅 <b>${e(x.date)}</b>
+    </p>
+
+    <h3>${e(x.title)}</h3>
+
+    <p>
+     ${e(x.text)
+       .replace(/\n/g,'<br>')}
+    </p>
+
+    ${
+     ADMIN
+     ? `
+
+      <button
+       class="btn blue"
+       onclick="accountEdit(${i})">
+       Edit
+      </button>
+
+      <button
+       class="btn red"
+       onclick="del('accounts',${i})">
+       Delete
+      </button>
+
+     `
+     : ''
+    }
+
+   </div>
+
+  `).join('')
+  : '<div class="card">ගිණුම් වාර්තා නැත.</div>'
+ }
+
+ `;
+
+}
+
+function accountEdit(i){
+
+ if(!req())
   return;
 
- let x=
-  i<0
-  ? {
-     title:'',
-     text:'',
-     photo:''
+ const x=i<0
+  ? {date:'',title:'',text:'',photo:''}
+  : D.accounts[i];
+
+ openM(`
+
+ <h2>🧾 ගිණුම් වාර්තාව</h2>
+
+ <label>දිනය</label>
+
+ <input
+  id="adate"
+  type="date"
+  value="${e(x.date)}">
+
+ <label>මාතෘකාව</label>
+
+ <input
+  id="atitle"
+  value="${e(x.title)}">
+
+ <label>විස්තර</label>
+
+ <textarea
+  id="atext">${e(x.text)}</textarea>
+
+ <label>ඡායාරූප</label>
+
+ <input
+  id="afile"
+  type="file"
+  accept="image/*">
+
+ ${
+  x.photo
+  ? `<img
+      class="preview"
+      src="${x.photo}">`
+  : ''
+ }
+
+ <button
+  class="btn blue"
+  onclick="saveAccount(${i})">
+  💾 Save
+ </button>
+
+ `);
+
+}
+
+function saveAccount(i){
+
+ const x=i<0
+  ? {date:'',title:'',text:'',photo:''}
+  : D.accounts[i];
+
+ x.date=adate.value;
+ x.title=atitle.value;
+ x.text=atext.value;
+
+ fd(
+  afile.files[0],
+  s=>{
+
+   if(s)
+    x.photo=s;
+
+   if(i<0)
+    D.accounts.push(x);
+
+   save();
+
+   closeM();
+
+  }
+ );
+
+}
+
+/* =====================================================
+   MEMORIES
+===================================================== */
+
+function memories(){
+
+ p('memories').innerHTML=`
+
+ <div class="card">
+
+  <h2>📸 අපේ මතකයන්</h2>
+
+  <p>
+   එක මාතෘකාවකට ඡායාරූප කිහිපයක්
+   ඇතුළත් කළ හැක.
+  </p>
+
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="memoryEdit(-1)">
+      + Add Memory
+     </button>`
+   : ''
+  }
+
+ </div>
+
+ ${
+  D.memories.length
+  ? D.memories.map((x,i)=>`
+
+   <div class="card">
+
+    <h3>${e(x.title)}</h3>
+
+    <p>${e(x.text)}</p>
+
+    <div class="gallery">
+
+     ${
+      (x.photos||[]).map(photo=>`
+       <img src="${photo}">
+      `).join('')
+     }
+
+    </div>
+
+    ${
+     ADMIN
+     ? `
+
+      <button
+       class="btn blue"
+       onclick="memoryEdit(${i})">
+       Edit
+      </button>
+
+      <button
+       class="btn red"
+       onclick="del('memories',${i})">
+       Delete
+      </button>
+
+     `
+     : ''
     }
-  : D[t][i];
 
- x.title=mt.value;
- x.text=mx.value;
+   </div>
 
- const file=
-  document.getElementById(
-   'mediaFile'
-  ).files[0];
+  `).join('')
+  : '<div class="card">මතකයන් නැත.</div>'
+ }
 
- if(file){
+ `;
 
-  fd(
-   file,
-   async s=>{
+}
 
-    if(s)
-     x.photo=s;
+function memoryEdit(i){
+
+ if(!req())
+  return;
+
+ const x=i<0
+  ? {title:'',text:'',photos:[]}
+  : D.memories[i];
+
+ openM(`
+
+ <h2>📸 අපේ මතකය</h2>
+
+ <input
+  id="memtitle"
+  value="${e(x.title)}"
+  placeholder="මාතෘකාව">
+
+ <textarea
+  id="memtext"
+  placeholder="විස්තර">${e(x.text)}</textarea>
+
+ <label>
+  ඡායාරූප කිහිපයක් තෝරන්න
+ </label>
+
+ <input
+  id="memfiles"
+  type="file"
+  accept="image/*"
+  multiple>
+
+ ${
+  (x.photos||[]).length
+  ? `<div class="gallery">
+     ${
+      x.photos.map(photo=>`
+       <img src="${photo}">
+      `).join('')
+     }
+     </div>`
+  : ''
+ }
+
+ <button
+  class="btn blue"
+  onclick="saveMemory(${i})">
+  💾 Save
+ </button>
+
+ `);
+
+}
+
+function saveMemory(i){
+
+ const x=i<0
+  ? {title:'',text:'',photos:[]}
+  : D.memories[i];
+
+ x.title=memtitle.value;
+ x.text=memtext.value;
+
+ const files=
+  Array.from(
+   memfiles.files
+  );
+
+ if(!files.length){
+
+  if(i<0)
+   D.memories.push(x);
+
+  save();
+  closeM();
+
+  return;
+
+ }
+
+ let photos=[];
+ let done=0;
+
+ files.forEach(file=>{
+
+  fd(file,s=>{
+
+   if(s)
+    photos.push(s);
+
+   done++;
+
+   if(done===files.length){
+
+    x.photos=[
+     ...(x.photos||[]),
+     ...photos
+    ];
 
     if(i<0)
-     D[t].push(x);
+     D.memories.push(x);
 
-    await save();
+    save();
 
     closeM();
 
    }
-  );
 
- }else{
+  });
 
-  if(i<0)
-   D[t].push(x);
-
-  await save();
-
-  closeM();
-
- }
+ });
 
 }
 
+/* =====================================================
+   NOTICES
+===================================================== */
+
+function notices(){
+
+ p('notices').innerHTML=`
+
+ <div class="card">
+
+  <h2>📢 විශේෂ නිවේදන</h2>
+
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="noticeEdit(-1)">
+      + Add Notice
+     </button>`
+   : ''
+  }
+
+ </div>
+
+ ${
+  D.notices.map((x,i)=>`
+
+   <div class="card notice">
+
+    ${
+     x.photo
+     ? `<img
+         class="preview"
+         src="${x.photo}">`
+     : ''
+    }
+
+    <h3>${e(x.title)}</h3>
+
+    <p>${e(x.text)}</p>
+
+    ${
+     ADMIN
+     ? `<button
+        class="btn red"
+        onclick="del('notices',${i})">
+        Delete
+       </button>`
+     : ''
+    }
+
+   </div>
+
+  `).join('')
+ }
+
+ `;
+
+}
+
+function noticeEdit(i){
+
+ if(!req())
+  return;
+
+ const x=i<0
+  ? {title:'',text:'',photo:''}
+  : D.notices[i];
+
+ openM(`
+
+ <h2>📢 විශේෂ නිවේදනය</h2>
+
+ <input
+  id="nt"
+  value="${e(x.title)}"
+  placeholder="මාතෘකාව">
+
+ <textarea
+  id="nx">${e(x.text)}</textarea>
+
+ <input
+  id="nf"
+  type="file"
+  accept="image/*">
+
+ <button
+  class="btn blue"
+  onclick="saveNotice(${i})">
+  💾 Save
+ </button>
+
+ `);
+
+}
+
+function saveNotice(i){
+
+ const x=i<0
+  ? {title:'',text:'',photo:''}
+  : D.notices[i];
+
+ x.title=nt.value;
+ x.text=nx.value;
+
+ fd(
+  nf.files[0],
+  s=>{
+
+   if(s)
+    x.photo=s;
+
+   if(i<0)
+    D.notices.push(x);
+
+   save();
+
+   closeM();
+
+  }
+ );
+
+}
 
 /* =====================================================
    ATTENDANCE
@@ -2035,98 +2573,177 @@ function attendance(){
 
  <div class="card">
 
-  <h2>✅ Online Attendance</h2>
+  <h2>✅ පැමිණීම</h2>
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="att(-1)">
-    + Mark Attendance
-   </button>
-  `)}
+  <p>
+   සාමාජිකයෙකුට තමන්ගේ App එකෙන්
+   තම පැමිණීම Mark කළ හැක.
+  </p>
+
+  <button
+   class="btn green"
+   onclick="markAttendance()">
+   ✅ මගේ පැමිණීම Mark කරන්න
+  </button>
 
  </div>
 
  ${
-  D.attendance.map((x,i)=>`
+  ADMIN
+  ? `
 
-  <div class="card">
+   <div class="card">
 
-   <h3>${e(x.date)}</h3>
+    <h3>📋 Attendance Records</h3>
 
-   <p>
-    ${e(x.names)
-      .replace(/\n/g,'<br>')}
-   </p>
+    ${
+     D.attendance.map((x,i)=>`
 
-   ${A(`
-    <button
-     class="btn red"
-     onclick="del('attendance',${i})">
-     Delete
-    </button>
-   `)}
+      <div class="card">
 
-  </div>
+       <b>${e(x.memberName)}</b>
 
-  `).join('')
+       <p>
+        අංකය: ${e(x.memberNo)}
+       </p>
+
+       <p>
+        📅 ${e(x.date)}
+       </p>
+
+       <p>
+        ⏰ ${e(x.time)}
+       </p>
+
+       <button
+        class="btn red"
+        onclick="del('attendance',${i})">
+        Delete
+       </button>
+
+      </div>
+
+     `).join('')
+    }
+
+   </div>
+
+  `
+  : ''
  }
 
  `;
 
 }
 
+function markAttendance(){
 
-function att(i){
+ const options=
+  D.members
+  .filter(x=>x.name)
+  .map(x=>`
+   <option value="${e(x.no)}">
+    ${e(x.no)} - ${e(x.name)}
+   </option>
+  `)
+  .join('');
 
- if(!req())
+ if(!options){
+
+  alert(
+   'පළමුව සාමාජික විස්තර ඇතුළත් කරන්න.'
+  );
+
   return;
 
- const x=
-  i<0 ? {} : D.attendance[i];
+ }
 
  openM(`
 
- <h2>Attendance</h2>
+ <h2>✅ මගේ පැමිණීම</h2>
+
+ <p>
+ ඔබගේ සාමාජික අංකය සහ නම තෝරන්න.
+ </p>
+
+ <select id="attMember">
+  <option value="">
+   -- සාමාජිකයා තෝරන්න --
+  </option>
+  ${options}
+ </select>
 
  <input
-  id="ad"
-  type="date"
-  value="${e(x.date)}">
-
- <textarea
-  id="an"
-  placeholder="පැමිණි සාමාජිකයන්">${e(x.names)}</textarea>
+  id="attDate"
+  type="date">
 
  <button
-  class="btn blue"
+  class="btn green"
   onclick="saveAttendance()">
-  💾 Save
+  ✅ පැමිණීම Mark කරන්න
  </button>
 
  `);
 
-}
+ attDate.value=
+  new Date()
+  .toISOString()
+  .slice(0,10);
 
+}
 
 async function saveAttendance(){
 
- if(!ADMIN)
+ const no=
+  attMember.value;
+
+ if(!no){
+
+  alert(
+   'සාමාජිකයා තෝරන්න.'
+  );
+
   return;
 
- D.attendance.push({
+ }
 
-  date:ad.value,
-  names:an.value
+ const member=
+  D.members.find(
+   x=>String(x.no)===String(no)
+  );
 
- });
+ if(!member)
+  return;
+
+ const now=new Date();
+
+ const record={
+
+  memberNo:member.no,
+
+  memberName:member.name,
+
+  date:attDate.value,
+
+  time:now.toLocaleTimeString(),
+
+  id:
+   String(member.no)+'_'+
+   attDate.value
+
+ };
+
+ D.attendance.push(record);
 
  await save();
 
  closeM();
 
-}
+ alert(
+  '✅ ඔබගේ පැමිණීම Mark කරන ලදී.'
+ );
 
+}
 
 /* =====================================================
    ONLINE
@@ -2138,7 +2755,9 @@ function online(){
 
  <div class="card">
 
-  <h2>🌐 Online ගෙවීම්</h2>
+  <h2>🌐 Online</h2>
+
+  <h3>💳 Online ගෙවීම්</h3>
 
   <p>
    ${e(D.paymentInfo)
@@ -2147,57 +2766,79 @@ function online(){
 
   ${
    D.qr
-   ? `<img
-       class="preview"
-       src="${D.qr}">`
+   ? `
+
+    <h3>📱 Payment QR</h3>
+
+    <img
+     class="preview"
+     src="${D.qr}">
+
+   `
    : ''
   }
 
   ${
    D.paymentForm
-   ? `<p>
-      <a
-       class="btn blue"
-       href="${e(D.paymentForm)}"
-       target="_blank">
-       Payment Google Form
-      </a>
-     </p>`
+   ? `
+
+    <p>
+     <a
+      class="btn blue"
+      href="${e(D.paymentForm)}"
+      target="_blank">
+      💳 Payment Google Form
+     </a>
+    </p>
+
+   `
    : ''
   }
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="settings()">
-    Edit
-   </button>
-  `)}
-
  </div>
-
 
  <div class="card">
 
-  <h2>Online ණය මුදලක් ගැනීම</h2>
+  <h3>💰 Online ණය මුදලක් ලබාගැනීම</h3>
 
   ${
    D.loanForm
-   ? `<a
-      class="btn blue"
-      href="${e(D.loanForm)}"
-      target="_blank">
-      Loan Google Form
-     </a>`
-   : 'Form link එක නැත'
+   ? `
+
+    <a
+     class="btn green"
+     href="${e(D.loanForm)}"
+     target="_blank">
+     📝 Loan Google Form
+    </a>
+
+   `
+   : '<p>Loan Form එක ඇතුළත් කර නැත.</p>'
   }
 
  </div>
+
+ ${
+  ADMIN
+  ? `
+
+   <div class="card">
+
+    <button
+     class="btn blue"
+     onclick="settings()">
+     ⚙️ Online Settings Edit
+    </button>
+
+   </div>
+
+  `
+  : ''
+ }
 
  `;
 
 }
-
 
 /* =====================================================
    NEXT
@@ -2211,13 +2852,15 @@ function next(){
 
   <h2>🗓️ ඉදිරි සමිති වාරය</h2>
 
-  ${A(`
-   <button
-    class="btn blue"
-    onclick="nx(-1)">
-    + Add
-   </button>
-  `)}
+  ${
+   ADMIN
+   ? `<button
+      class="btn blue"
+      onclick="nx()">
+      + Add
+     </button>`
+   : ''
+  }
 
  </div>
 
@@ -2241,13 +2884,15 @@ function next(){
 
    <p>${e(x.notes)}</p>
 
-   ${A(`
-    <button
-     class="btn red"
-     onclick="del('next',${i})">
-     Delete
-    </button>
-   `)}
+   ${
+    ADMIN
+    ? `<button
+       class="btn red"
+       onclick="del('next',${i})">
+       Delete
+      </button>`
+    : ''
+   }
 
   </div>
 
@@ -2258,15 +2903,14 @@ function next(){
 
 }
 
-
-function nx(i){
+function nx(){
 
  if(!req())
   return;
 
  openM(`
 
- <h2>ඉදිරි සමිති වාරය</h2>
+ <h2>🗓️ ඉදිරි සමිති වාරය</h2>
 
  <input
   id="np"
@@ -2294,110 +2938,25 @@ function nx(i){
 
 }
 
-
-async function saveNext(){
-
- if(!ADMIN)
-  return;
+function saveNext(){
 
  D.next.push({
 
   place:np.value,
+
   date:nd.value,
+
   members:nm.value,
+
   notes:nn.value
 
  });
 
- await save();
+ save();
 
  closeM();
 
 }
-
-
-/* =====================================================
-   ADMIN PAGE
-===================================================== */
-
-function admin(){
-
- p('admin').innerHTML=`
-
- <div class="card">
-
-  <h2>⚙️ Admin / Edit</h2>
-
-  <p>
-   ${
-    ADMIN
-    ? '🟢 Admin Mode — Editing Allowed'
-    : '🔒 View Only — Editing Locked'
-   }
-  </p>
-
-  ${
-   ADMIN
-   ? `
-
-   <button
-    class="btn yellow"
-    onclick="settings()">
-    ⚙️ Settings / Upload
-   </button>
-
-   <button
-    class="btn green"
-    onclick="backup()">
-    💾 Backup
-   </button>
-
-   <button
-    class="btn red"
-    onclick="logout()">
-    🔒 Logout
-   </button>
-
-   `
-   : `
-
-   <button
-    class="btn blue"
-    onclick="login()">
-    🔐 Admin Login
-   </button>
-
-   `
-  }
-
- </div>
-
-
- <div class="card">
-
-  ${
-   ADMIN
-   ? `
-   <p>
-    🟢 ඔබ දැන් Admin Mode එකේ.
-    සියලු Edit / Add / Delete /
-    Upload controls සක්‍රීයයි.
-   </p>
-   `
-   : `
-   <p>
-    🔒 මෙම website එක සාමාන්‍ය
-    user කෙනෙකුට View Only වේ.
-   </p>
-   `
-  }
-
- </div>
-
- `;
-
-}
-
 
 /* =====================================================
    SETTINGS
@@ -2418,13 +2977,10 @@ function settings(){
   id="ga"
   value="${e(D.address)}">
 
- <label>බැංකු විස්තර</label>
-
- <textarea id="gb">${e(D.bank)}</textarea>
-
  <label>ව්‍යවස්ථාව</label>
 
- <textarea id="gc">${e(D.constitution)}</textarea>
+ <textarea
+  id="gc">${e(D.constitution)}</textarea>
 
  <label>ව්‍යවස්ථා PDF</label>
 
@@ -2432,13 +2988,6 @@ function settings(){
   id="gpdf"
   type="file"
   accept="application/pdf">
-
- <label>QR Code</label>
-
- <input
-  id="gqr"
-  type="file"
-  accept="image/*">
 
  <label>සාමාජික ගාස්තුව</label>
 
@@ -2458,37 +3007,58 @@ function settings(){
   id="gj"
   value="${e(D.joinFee)}">
 
- <label>
-  සාමාජිකයෙකු අසනීප වූ විට
- </label>
+ <label>අසනීප වූ විට</label>
 
- <textarea id="gs">${e(D.sick)}</textarea>
+ <textarea
+  id="gs">${e(D.sick)}</textarea>
 
- <label>
-  බිරිඳ / දරුවන් අසනීප වූ විට
- </label>
+ <label>බිරිඳ / දරුවන් අසනීප වූ විට</label>
 
- <textarea id="gf">${e(D.familySick)}</textarea>
+ <textarea
+  id="gf">${e(D.familySick)}</textarea>
 
  <label>විශේෂ සටහන්</label>
 
- <textarea id="gx">${e(D.special)}</textarea>
+ <textarea
+  id="gx">${e(D.special)}</textarea>
+
+ <hr>
+
+ <h3>🌐 Online Payment</h3>
 
  <label>Online Payment විස්තර</label>
 
- <textarea id="gpay">${e(D.paymentInfo)}</textarea>
+ <textarea
+  id="gpay">${e(D.paymentInfo)}</textarea>
 
- <label>Payment Google Form</label>
+ <label>Payment Google Form Link</label>
 
  <input
   id="gform"
   value="${e(D.paymentForm)}">
 
- <label>Loan Google Form</label>
+ <label>Loan Google Form Link</label>
 
  <input
   id="gloan"
   value="${e(D.loanForm)}">
+
+ <label>Payment QR Code</label>
+
+ <input
+  id="gqr"
+  type="file"
+  accept="image/*">
+
+ ${
+  D.qr
+  ? `<img
+      class="preview"
+      src="${D.qr}">`
+  : ''
+ }
+
+ <hr>
 
  <label>Admin Password</label>
 
@@ -2507,105 +3077,147 @@ function settings(){
 
 }
 
-
-async function saveSettings(){
+function saveSettings(){
 
  if(!ADMIN)
   return;
 
  D.address=ga.value;
- D.bank=gb.value;
+
  D.constitution=gc.value;
 
  D.memberFee=gm.value;
+
  D.deathFee=gd.value;
+
  D.joinFee=gj.value;
 
  D.sick=gs.value;
+
  D.familySick=gf.value;
+
  D.special=gx.value;
 
  D.paymentInfo=gpay.value;
+
  D.paymentForm=gform.value;
+
  D.loanForm=gloan.value;
 
  D.password=
   gp.value || '1234';
 
+ let files=[];
 
- const pdfFile=
-  document.getElementById(
-   'gpdf'
-  ).files[0];
+ if(gpdf.files[0])
+  files.push({
+   type:'pdf',
+   file:gpdf.files[0]
+  });
 
- const qrFile=
-  document.getElementById(
-   'gqr'
-  ).files[0];
+ if(gqr.files[0])
+  files.push({
+   type:'qr',
+   file:gqr.files[0]
+  });
 
+ if(!files.length){
 
- if(pdfFile){
+  save();
 
-  fd(
-   pdfFile,
-   async s=>{
+  closeM();
 
-    if(s)
-     D.pdf=s;
+  return;
 
-    if(qrFile){
+ }
 
-     fd(
-      qrFile,
-      async q=>{
+ let done=0;
 
-       if(q)
-        D.qr=q;
+ files.forEach(item=>{
 
-       await save();
+  fd(item.file,s=>{
 
-       closeM();
+   if(item.type==='pdf')
+    D.pdf=s;
 
-      }
-     );
+   if(item.type==='qr')
+    D.qr=s;
 
-    }else{
+   done++;
 
-     await save();
+   if(done===files.length){
 
-     closeM();
-
-    }
-
-   }
-  );
-
- }else if(qrFile){
-
-  fd(
-   qrFile,
-   async q=>{
-
-    if(q)
-     D.qr=q;
-
-    await save();
+    save();
 
     closeM();
 
    }
-  );
 
- }else{
+  });
 
-  await save();
-
-  closeM();
-
- }
+ });
 
 }
 
+/* =====================================================
+   ADMIN
+===================================================== */
+
+function admin(){
+
+ p('admin').innerHTML=`
+
+ <div class="card">
+
+  <h2>⚙️ Admin / Edit</h2>
+
+  ${
+   ADMIN
+   ? `
+
+    <div class="success">
+     🟢 Admin Mode — Editing Allowed
+    </div>
+
+    <button
+     class="btn yellow"
+     onclick="settings()">
+     ⚙️ Settings
+    </button>
+
+    <button
+     class="btn green"
+     onclick="backup()">
+     💾 Backup
+    </button>
+
+    <button
+     class="btn red"
+     onclick="logout()">
+     🔒 Logout
+    </button>
+
+   `
+   : `
+
+    <div class="viewonly">
+     🔒 View Only
+    </div>
+
+    <button
+     class="btn blue"
+     onclick="login()">
+     🔐 Admin Login
+    </button>
+
+   `
+  }
+
+ </div>
+
+ `;
+
+}
 
 /* =====================================================
    BACKUP
@@ -2616,18 +3228,17 @@ function backup(){
  if(!req())
   return;
 
+ const blob=
+  new Blob(
+   [JSON.stringify(D,null,2)],
+   {type:'application/json'}
+  );
+
  const a=
   document.createElement('a');
 
  a.href=
-  URL.createObjectURL(
-   new Blob(
-    [JSON.stringify(D,null,2)],
-    {
-     type:'application/json'
-    }
-   )
-  );
+  URL.createObjectURL(blob);
 
  a.download=
   'strength-of-friendship-backup.json';
@@ -2636,25 +3247,18 @@ function backup(){
 
 }
 
-
-/* =====================================================
-   PAGE HELPER
-===================================================== */
-
-function p(id){
-
- return document.getElementById(
-  'p-'+id
- );
-
-}
-
-
 /* =====================================================
    START
 ===================================================== */
 
 render();
+
+window.addEventListener(
+ 'firebaseReady',
+ ()=>{
+  loadFirebaseData();
+ }
+);
 
 </script>
 
